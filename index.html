@@ -9,77 +9,107 @@
   :root{
     --bg:#F5F8FC; --panel:#FFFFFF; --ink:#132234; --soft:#53637A; --faint:#8593A6;
     --line:#E3E9F2; --mist:#EAF1FB;
-    --azure:#1466C7; --azure-ink:#0E4C97; --amber:#E0930F;
+    --azure:#1466C7; --azure-ink:#0E4C97; --amber:#E0930F; --amber-ink:#B4770A;
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,sans-serif;
   }
   @media (prefers-color-scheme:dark){
     :root:not([data-theme="light"]){
       --bg:#0B111A; --panel:#141D2B; --ink:#EAF1FB; --soft:#9DACC0; --faint:#67768C;
-      --line:#243247; --mist:#152134; --azure:#5AA6F0; --azure-ink:#9CC8F6; --amber:#F0A63A;
+      --line:#243247; --mist:#152134; --azure:#5AA6F0; --azure-ink:#9CC8F6; --amber:#F0A63A; --amber-ink:#F0A63A;
     }
   }
   :root[data-theme="dark"]{
     --bg:#0B111A; --panel:#141D2B; --ink:#EAF1FB; --soft:#9DACC0; --faint:#67768C;
-    --line:#243247; --mist:#152134; --azure:#5AA6F0; --azure-ink:#9CC8F6; --amber:#F0A63A;
+    --line:#243247; --mist:#152134; --azure:#5AA6F0; --azure-ink:#9CC8F6; --amber:#F0A63A; --amber-ink:#F0A63A;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+  a{color:var(--azure)}
 
-  .toggle{position:fixed;top:16px;right:16px;z-index:20;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;width:40px;height:40px;font-size:16px;cursor:pointer;box-shadow:0 6px 18px -10px rgba(0,0,0,.4)}
+  .toggle{position:fixed;top:16px;right:16px;z-index:30;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;width:40px;height:40px;font-size:16px;cursor:pointer;box-shadow:0 6px 18px -10px rgba(0,0,0,.4)}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:650;font-size:14.5px;padding:12px 20px;border-radius:12px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .12s ease,filter .12s ease}
+  .btn:hover{transform:translateY(-1px);filter:brightness(1.03)}
+  .btn.primary{background:var(--azure);color:#fff}
+  .btn.amber{background:var(--amber);color:#3a2500}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btnrow{display:flex;flex-wrap:wrap;gap:11px}
 
   /* hero */
-  .hero{text-align:center;padding:72px 22px 40px;background:
-    radial-gradient(120% 90% at 50% -10%, var(--mist), transparent 60%)}
-  .brand{display:inline-flex;align-items:center;gap:13px;margin-bottom:20px}
+  .hero{text-align:center;padding:76px 22px 46px;background:radial-gradient(120% 90% at 50% -10%, var(--mist), transparent 60%)}
+  .brand{display:inline-flex;align-items:center;gap:13px;margin-bottom:22px}
   .brand .glyph{width:52px;height:52px;border-radius:15px;background:var(--azure);display:grid;place-items:center;box-shadow:0 12px 26px -12px var(--azure)}
   .brand .wm{font-family:var(--serif);font-size:34px;color:var(--ink)}
   .brand .wm b{color:var(--azure);font-weight:600}
-  .hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,50px);line-height:1.08;margin:6px auto 0;max-width:16ch;text-wrap:balance}
-  .hero .tag{color:var(--amber);font-weight:700;letter-spacing:.3px;font-size:14px;text-transform:uppercase;margin-bottom:10px}
-  .hero p{color:var(--soft);font-size:17px;max-width:60ch;margin:18px auto 0}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:26px 0 0}
+  .hero .tag{color:var(--amber-ink);font-weight:700;letter-spacing:.4px;font-size:13.5px;text-transform:uppercase}
+  .hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,50px);line-height:1.08;margin:10px auto 0;max-width:16ch;text-wrap:balance}
+  .hero p{color:var(--soft);font-size:17px;max-width:58ch;margin:18px auto 26px}
+  .hero .btnrow{justify-content:center}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:30px 0 0}
   .chip{font-size:12.5px;font-weight:700;padding:6px 13px;border-radius:999px;background:var(--panel);border:1px solid var(--line);color:var(--azure-ink)}
-  .scrollcue{margin-top:34px;color:var(--faint);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+
+  /* generic section */
+  .section{padding:58px 0}
+  .eyebrow{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--amber-ink)}
+  .section > .eyebrow, .section > h2, .section > .lead{text-align:center}
+  .section h2{font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);margin:8px auto 6px;text-wrap:balance;max-width:22ch}
+  .section .lead{color:var(--soft);max-width:64ch;margin:0 auto;font-size:16px}
+
+  /* feature grid */
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:15px;margin-top:36px}
+  .feat{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
+  .feat .fi{width:44px;height:44px;border-radius:12px;background:var(--mist);display:grid;place-items:center;font-size:22px}
+  .feat h3{font-size:15.5px;margin:13px 0 5px}
+  .feat p{font-size:13.5px;color:var(--soft);margin:0}
 
   /* journey */
-  .section{padding:56px 0}
-  .eyebrow{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--amber);text-align:center}
-  .section h2{font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);text-align:center;margin:8px auto 6px;text-wrap:balance;max-width:20ch}
-  .section .lead{color:var(--soft);text-align:center;max-width:62ch;margin:0 auto;font-size:16px}
-  .journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:34px}
-  .step{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
-  .step .n{width:34px;height:34px;border-radius:10px;background:var(--mist);color:var(--azure-ink);display:grid;place-items:center;font-weight:800;font-family:var(--serif);font-size:16px}
-  .step h3{font-size:15px;margin:13px 0 5px}
-  .step p{font-size:13px;color:var(--soft);margin:0}
+  .journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:13px;margin-top:34px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:19px;position:relative}
+  .step .n{width:32px;height:32px;border-radius:9px;background:var(--azure);color:#fff;display:grid;place-items:center;font-weight:800;font-family:var(--serif);font-size:15px}
+  .step h3{font-size:14.5px;margin:12px 0 5px}
+  .step p{font-size:12.5px;color:var(--soft);margin:0}
 
   /* showcase */
-  .showcase{display:grid;grid-template-columns:1fr;gap:30px;align-items:center;margin-top:20px}
+  .showcase{display:grid;grid-template-columns:1fr;gap:30px;align-items:center;margin-top:8px}
   @media(min-width:920px){
-    .showcase{grid-template-columns:1fr 1.05fr;gap:48px}
+    .showcase{grid-template-columns:1fr 1.02fr;gap:52px}
     .showcase.flip .copy{order:2}
     .showcase.flip .device{order:1}
   }
-  .copy .eyebrow{text-align:left}
-  .copy h2{text-align:left;margin-left:0}
-  .copy .lead{text-align:left;margin-left:0}
+  .copy .eyebrow{display:block;margin-bottom:6px}
+  .copy h2{font-family:var(--serif);font-size:clamp(23px,3vw,31px);margin:0 0 10px;text-wrap:balance}
+  .copy .lead{color:var(--soft);font-size:15.5px;margin:0}
   .copy ul{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-direction:column;gap:12px}
-  .copy li{display:flex;gap:11px;font-size:14.5px;color:var(--ink)}
+  .copy li{display:flex;gap:11px;font-size:14.5px}
   .copy li svg{flex:0 0 auto;margin-top:3px}
   .copy li b{font-weight:650}
   .copy li span{color:var(--soft)}
   .rolelist{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
-  .rolelist span{font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:999px;background:var(--mist);color:var(--azure-ink)}
+  .rolelist span{font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;background:var(--mist);color:var(--azure-ink)}
+  .copy .btnrow{margin-top:24px}
 
-  .device{display:flex;justify-content:center}
+  .device{display:flex;flex-direction:column;align-items:center;gap:12px}
   .device .screen-frame{width:100%;max-width:460px;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 80px -40px rgba(20,60,120,.55),0 12px 30px -16px rgba(0,0,0,.25);background:var(--panel)}
   .device iframe{display:block;width:100%;height:940px;border:0}
+  .device .openlink{font-size:13px;font-weight:650;color:var(--azure);text-decoration:none}
+  .device .openlink:hover{text-decoration:underline}
 
-  footer{padding:50px 22px 70px;text-align:center;color:var(--faint);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
-  footer .fbrand{font-family:var(--serif);color:var(--ink);font-size:16px}
-  footer a{color:var(--azure)}
+  /* closing CTA */
+  .cta{background:linear-gradient(135deg,var(--azure),var(--azure-ink));color:#fff;border-radius:26px;padding:46px 30px;text-align:center;margin:20px 0 0}
+  .cta h2{font-family:var(--serif);font-size:clamp(24px,3.4vw,32px);margin:0 0 10px}
+  .cta p{color:rgba(255,255,255,.85);max-width:52ch;margin:0 auto 24px;font-size:16px}
+  .cta .btnrow{justify-content:center}
+  .cta .btn.primary{background:#fff;color:var(--azure-ink)}
+  .cta .btn.amber{background:var(--amber);color:#3a2500}
+  .cta .btn.ghost{border-color:rgba(255,255,255,.5);color:#fff}
+
+  footer{padding:44px 22px 66px;text-align:center;color:var(--faint);font-size:13px}
+  footer .fbrand{font-family:var(--serif);color:var(--ink);font-size:16px;margin-bottom:6px}
+  footer .flinks{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
 
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
@@ -99,45 +129,65 @@
     </div>
     <div class="tag">Your bone-care friend</div>
     <h1>Dignified orthopedic care, at home &amp; to every hospital visit.</h1>
-    <p>Asthimitra places trained, doctor-supervised caretakers at the patient&rsquo;s bedside and gives every recovery a safe hospital escort &mdash; while keeping the whole family in the loop, in their own language.</p>
+    <p>Trained, doctor-supervised caretakers at the bedside &mdash; and a safe hospital escort for every appointment &mdash; while the whole family stays in the loop, in their own language.</p>
+    <div class="btnrow">
+      <a class="btn primary" href="suite.html" target="_blank" rel="noopener">Experience the app &#8599;</a>
+      <a class="btn ghost" href="prototype.html" target="_blank" rel="noopener">Family app (EN / &#3108;&#3142; / &#2361;&#2367;) &#8599;</a>
+      <a class="btn amber" href="Asthimitra_Overview.pptx">View the slides &#8595;</a>
+    </div>
     <div class="chips">
       <span class="chip">Hyderabad</span>
-      <span class="chip">English &middot; Telugu &middot; Hindi</span>
+      <span class="chip">Doctor-supervised</span>
       <span class="chip">In-app payments</span>
       <span class="chip">Offline-first field apps</span>
     </div>
-    <div class="scrollcue">Scroll to explore &darr;</div>
   </header>
+
+  <!-- WHAT IT DOES -->
+  <section class="section wrap reveal">
+    <div class="eyebrow">What Asthimitra does</div>
+    <h2>Everything a recovery needs, in one place</h2>
+    <p class="lead">Clinical-grade care at home, safe transport to hospital, and total transparency for the family.</p>
+    <div class="features">
+      <div class="feat"><div class="fi">&#129658;</div><h3>Doctor-supervised care</h3><p>Every plan is designed and approved by an orthopedic surgeon &mdash; care never starts unapproved.</p></div>
+      <div class="feat"><div class="fi">&#128737;&#65039;</div><h3>Verified caretakers</h3><p>Police-checked, 120-hour certified, BLS &amp; first-aid trained &mdash; and never swapped without consent.</p></div>
+      <div class="feat"><div class="fi">&#128260;</div><h3>Complication safety</h3><p>2-hour repositioning to prevent bed sores, fall prevention, and proper wound care.</p></div>
+      <div class="feat"><div class="fi">&#128657;</div><h3>Safe hospital escort</h3><p>GPS-tracked trips, help through registration and tests, and notes taken back for the family.</p></div>
+      <div class="feat"><div class="fi">&#128241;</div><h3>Daily family updates</h3><p>Today&rsquo;s report, vitals, care team and schedule &mdash; in English, Telugu or Hindi.</p></div>
+      <div class="feat"><div class="fi">&#9201;&#65039;</div><h3>24&#215;7 emergency</h3><p>One tap alerts the whole team, with an under-30-minute response promise.</p></div>
+    </div>
+  </section>
 
   <!-- JOURNEY -->
   <section class="section wrap reveal">
     <div class="eyebrow">How it works</div>
     <h2>One recovery journey, start to finish</h2>
-    <p class="lead">From the first phone call to walking independently again &mdash; Asthimitra runs every step.</p>
+    <p class="lead">From the first phone call to walking independently again.</p>
     <div class="journey">
       <div class="step"><div class="n">1</div><h3>Enquiry &amp; assessment</h3><p>A free home visit to understand the patient and the home.</p></div>
-      <div class="step"><div class="n">2</div><h3>Doctor care plan</h3><p>A physician designs and approves the plan &mdash; care never starts unapproved.</p></div>
-      <div class="step"><div class="n">3</div><h3>Team assigned</h3><p>A matched, background-verified team is briefed and begins.</p></div>
-      <div class="step"><div class="n">4</div><h3>Care &amp; monitoring</h3><p>Daily reports, 2-hour repositioning, physiotherapy and escorts.</p></div>
+      <div class="step"><div class="n">2</div><h3>Doctor care plan</h3><p>A physician designs and approves the personalised plan.</p></div>
+      <div class="step"><div class="n">3</div><h3>Team assigned</h3><p>A matched, verified team is briefed and begins care.</p></div>
+      <div class="step"><div class="n">4</div><h3>Care &amp; monitoring</h3><p>Daily reports, repositioning, physiotherapy and escorts.</p></div>
       <div class="step"><div class="n">5</div><h3>Review &amp; transition</h3><p>Monthly review guides the patient back to independence.</p></div>
     </div>
   </section>
 
-  <!-- SUITE -->
+  <!-- SUITE SHOWCASE -->
   <section class="section wrap reveal">
     <div class="showcase">
       <div class="copy">
-        <div class="eyebrow">The platform</div>
+        <span class="eyebrow">The platform &middot; live demo</span>
         <h2>One app, the whole care team</h2>
-        <p class="lead">Everyone around a recovery works in the same place &mdash; each role gets exactly the view they need. Tap a role in the launcher to explore it live.</p>
+        <p class="lead">Everyone around a recovery works in the same place &mdash; each of eight roles gets exactly the view they need. Tap a role in the launcher below to try it.</p>
         <ul>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--azure)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Doctor</b> approves care plans &mdash; the supervision gate.</span></li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--azure)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Escort</b> runs a live, GPS-tracked hospital trip &mdash; and logs it even offline.</span></li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--azure)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Coordinator &amp; Admin</b> handle intake, rosters, safety alerts, compliance and billing.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--azure)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Escort</b> runs a GPS-tracked hospital trip &mdash; logging even offline.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--azure)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Coordinator &amp; Admin</b> run intake, rosters, safety alerts, compliance and billing.</span></li>
         </ul>
         <div class="rolelist">
           <span>Family</span><span>Doctor</span><span>Escort</span><span>Coordinator</span><span>Physiotherapist</span><span>Nurse</span><span>Nutritionist</span><span>Admin</span>
         </div>
+        <div class="btnrow"><a class="btn primary" href="suite.html" target="_blank" rel="noopener">Open the full app &#8599;</a></div>
       </div>
       <div class="device">
         <div class="screen-frame"><iframe title="Asthimitra multi-role suite" srcdoc="<title>Asthimitra — Role Suite</title>
@@ -1160,22 +1210,24 @@
 })();
 </script>
 "></iframe></div>
+        <a class="openlink" href="suite.html" target="_blank" rel="noopener">Open full screen &#8599;</a>
       </div>
     </div>
   </section>
 
-  <!-- FAMILY -->
+  <!-- FAMILY SHOWCASE -->
   <section class="section wrap reveal">
     <div class="showcase flip">
       <div class="copy">
-        <div class="eyebrow">For families</div>
+        <span class="eyebrow">For families &middot; live demo</span>
         <h2>A calm window into a loved one&rsquo;s day</h2>
-        <p class="lead">The family app carries the emotional core of the service &mdash; and it speaks the family&rsquo;s language. Switch between English, Telugu and Hindi in the header, and pay the GST invoice right in the app.</p>
+        <p class="lead">The family app carries the heart of the service &mdash; and it speaks the family&rsquo;s language. Switch EN / Telugu / Hindi in the header, and pay the GST invoice right in the app.</p>
         <ul>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Today&rsquo;s report</b> &mdash; vitals, the 2-hour repositioning log, and a note from the caretaker.</span></li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Trilingual</b> &mdash; tap EN / &#3108;&#3142; / &#2361;&#2367; to translate the whole app.</span></li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Pay now</b> &mdash; UPI, card or net-banking, with a transparent GST invoice.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber-ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Today&rsquo;s report</b> &mdash; vitals, the repositioning log, a note from the caretaker.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber-ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Trilingual</b> &mdash; tap EN / &#3108;&#3142; / &#2361;&#2367; to translate the whole app.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber-ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Pay now</b> &mdash; UPI, card or net-banking, with a transparent GST invoice.</span></li>
         </ul>
+        <div class="btnrow"><a class="btn primary" href="prototype.html" target="_blank" rel="noopener">Open the family app &#8599;</a></div>
       </div>
       <div class="device">
         <div class="screen-frame"><iframe title="Asthimitra family app" loading="lazy" srcdoc="<title>Asthimitra — Family Care Companion</title>
@@ -1970,12 +2022,31 @@
 })();
 </script>
 "></iframe></div>
+        <a class="openlink" href="prototype.html" target="_blank" rel="noopener">Open full screen &#8599;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="section wrap reveal">
+    <div class="cta">
+      <h2>See it for yourself</h2>
+      <p>Open the interactive prototype, try the family app in three languages, or walk through the overview slides.</p>
+      <div class="btnrow">
+        <a class="btn primary" href="suite.html" target="_blank" rel="noopener">Experience the app &#8599;</a>
+        <a class="btn amber" href="Asthimitra_Overview.pptx">View the slides &#8595;</a>
+        <a class="btn ghost" href="prototype.html" target="_blank" rel="noopener">Family app &#8599;</a>
       </div>
     </div>
   </section>
 
   <footer>
     <div class="fbrand">Asthi<b style="color:var(--azure)">mitra</b></div>
+    <div class="flinks">
+      <a href="suite.html" target="_blank" rel="noopener">The app</a>
+      <a href="prototype.html" target="_blank" rel="noopener">Family app</a>
+      <a href="Asthimitra_Overview.pptx">Slides</a>
+    </div>
     <p>Doctor-supervised orthopedic home care &amp; hospital escort &middot; Hyderabad &middot; interactive prototype</p>
   </footer>
 
@@ -1987,7 +2058,7 @@
         if(mode==='system'){root.removeAttribute('data-theme');b.innerHTML='&#9680;';}
         else{root.setAttribute('data-theme',mode);b.innerHTML=(mode==='light'?'&#9728;':'&#9790;');}
       });
-      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});
       document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
     })();
   </script>
