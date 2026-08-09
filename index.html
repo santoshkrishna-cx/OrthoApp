@@ -4,80 +4,1992 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="favicon.svg">
-<title>Asthimitra — Project Index</title>
+<title>Asthimitra — Home care that heals</title>
 <style>
   :root{
-    --bg:#F7F9F6; --surface:#fff; --ink:#182A27; --soft:#5A6A66; --faint:#8A9994;
-    --line:#E2E8E3; --primary:#1466C7; --primary-ink:#0E4C97; --accent:#E0930F; --mist:#F0F4F0;
+    --bg:#F5F8FC; --panel:#FFFFFF; --ink:#132234; --soft:#53637A; --faint:#8593A6;
+    --line:#E3E9F2; --mist:#EAF1FB;
+    --azure:#1466C7; --azure-ink:#0E4C97; --amber:#E0930F;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,sans-serif;
   }
   @media (prefers-color-scheme:dark){
-    :root{--bg:#0F1C1A;--surface:#162823;--ink:#EAF1EE;--soft:#A3B6B0;--faint:#6E827C;
-      --line:#274038;--primary:#5AA6F0;--primary-ink:#9CC8F6;--accent:#F0A63A;--mist:#1E332D;}
+    :root:not([data-theme="light"]){
+      --bg:#0B111A; --panel:#141D2B; --ink:#EAF1FB; --soft:#9DACC0; --faint:#67768C;
+      --line:#243247; --mist:#152134; --azure:#5AA6F0; --azure-ink:#9CC8F6; --amber:#F0A63A;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B111A; --panel:#141D2B; --ink:#EAF1FB; --soft:#9DACC0; --faint:#67768C;
+    --line:#243247; --mist:#152134; --azure:#5AA6F0; --azure-ink:#9CC8F6; --amber:#F0A63A;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-    color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:820px;margin:0 auto;padding:48px 22px 72px}
-  .serif{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
-  header{display:flex;align-items:center;gap:14px;margin-bottom:6px}
-  .glyph{width:46px;height:46px;border-radius:13px;background:var(--primary);color:#fff;
-    display:grid;place-items:center;flex:0 0 auto}
-  h1{font-size:30px;margin:0}
-  h1 b{color:var(--primary);font-weight:600}
-  .lede{color:var(--soft);font-size:16px;margin:8px 0 4px;max-width:60ch}
-  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 30px}
-  .chip{font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;background:var(--mist);color:var(--primary-ink)}
-  .label{font-size:11px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--faint);margin:30px 0 13px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-  a.tile{display:flex;flex-direction:column;gap:9px;text-decoration:none;color:inherit;
-    background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;
-    transition:transform .14s ease,border-color .14s ease}
-  a.tile:hover{transform:translateY(-2px);border-color:var(--accent)}
-  .ico{width:46px;height:46px;border-radius:13px;flex:0 0 auto;display:grid;place-items:center;font-size:23px;color:#fff}
-  .tile b{font-size:15.5px;line-height:1.2}
-  .tile span{font-size:12.5px;color:var(--soft);line-height:1.4}
-  footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
-  code{background:var(--mist);padding:1px 6px;border-radius:6px;font-size:12.5px}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+
+  .toggle{position:fixed;top:16px;right:16px;z-index:20;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;width:40px;height:40px;font-size:16px;cursor:pointer;box-shadow:0 6px 18px -10px rgba(0,0,0,.4)}
+
+  /* hero */
+  .hero{text-align:center;padding:72px 22px 40px;background:
+    radial-gradient(120% 90% at 50% -10%, var(--mist), transparent 60%)}
+  .brand{display:inline-flex;align-items:center;gap:13px;margin-bottom:20px}
+  .brand .glyph{width:52px;height:52px;border-radius:15px;background:var(--azure);display:grid;place-items:center;box-shadow:0 12px 26px -12px var(--azure)}
+  .brand .wm{font-family:var(--serif);font-size:34px;color:var(--ink)}
+  .brand .wm b{color:var(--azure);font-weight:600}
+  .hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,50px);line-height:1.08;margin:6px auto 0;max-width:16ch;text-wrap:balance}
+  .hero .tag{color:var(--amber);font-weight:700;letter-spacing:.3px;font-size:14px;text-transform:uppercase;margin-bottom:10px}
+  .hero p{color:var(--soft);font-size:17px;max-width:60ch;margin:18px auto 0}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:26px 0 0}
+  .chip{font-size:12.5px;font-weight:700;padding:6px 13px;border-radius:999px;background:var(--panel);border:1px solid var(--line);color:var(--azure-ink)}
+  .scrollcue{margin-top:34px;color:var(--faint);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+
+  /* journey */
+  .section{padding:56px 0}
+  .eyebrow{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--amber);text-align:center}
+  .section h2{font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);text-align:center;margin:8px auto 6px;text-wrap:balance;max-width:20ch}
+  .section .lead{color:var(--soft);text-align:center;max-width:62ch;margin:0 auto;font-size:16px}
+  .journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:34px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
+  .step .n{width:34px;height:34px;border-radius:10px;background:var(--mist);color:var(--azure-ink);display:grid;place-items:center;font-weight:800;font-family:var(--serif);font-size:16px}
+  .step h3{font-size:15px;margin:13px 0 5px}
+  .step p{font-size:13px;color:var(--soft);margin:0}
+
+  /* showcase */
+  .showcase{display:grid;grid-template-columns:1fr;gap:30px;align-items:center;margin-top:20px}
+  @media(min-width:920px){
+    .showcase{grid-template-columns:1fr 1.05fr;gap:48px}
+    .showcase.flip .copy{order:2}
+    .showcase.flip .device{order:1}
+  }
+  .copy .eyebrow{text-align:left}
+  .copy h2{text-align:left;margin-left:0}
+  .copy .lead{text-align:left;margin-left:0}
+  .copy ul{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-direction:column;gap:12px}
+  .copy li{display:flex;gap:11px;font-size:14.5px;color:var(--ink)}
+  .copy li svg{flex:0 0 auto;margin-top:3px}
+  .copy li b{font-weight:650}
+  .copy li span{color:var(--soft)}
+  .rolelist{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+  .rolelist span{font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:999px;background:var(--mist);color:var(--azure-ink)}
+
+  .device{display:flex;justify-content:center}
+  .device .screen-frame{width:100%;max-width:460px;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 80px -40px rgba(20,60,120,.55),0 12px 30px -16px rgba(0,0,0,.25);background:var(--panel)}
+  .device iframe{display:block;width:100%;height:940px;border:0}
+
+  footer{padding:50px 22px 70px;text-align:center;color:var(--faint);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
+  footer .fbrand{font-family:var(--serif);color:var(--ink);font-size:16px}
+  footer a{color:var(--azure)}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
+  <button class="toggle" id="tg" aria-label="Toggle light/dark theme">&#9680;</button>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="brand">
       <span class="glyph" aria-hidden="true">
-        <svg width="26" height="26" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M50 20 L28 82" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M50 20 L72 82" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M32 57 H68" stroke="#F4B23C" stroke-width="12" stroke-linecap="round"/><circle cx="31" cy="50" r="9" fill="#F4B23C"/><circle cx="31" cy="64" r="9" fill="#F4B23C"/><circle cx="69" cy="50" r="9" fill="#F4B23C"/><circle cx="69" cy="64" r="9" fill="#F4B23C"/></svg>
+        <svg width="30" height="30" viewBox="0 0 100 100" fill="none"><path d="M50 20 L28 82" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M50 20 L72 82" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M32 57 H68" stroke="#F4B23C" stroke-width="12" stroke-linecap="round"/><circle cx="31" cy="50" r="9" fill="#F4B23C"/><circle cx="31" cy="64" r="9" fill="#F4B23C"/><circle cx="69" cy="50" r="9" fill="#F4B23C"/><circle cx="69" cy="64" r="9" fill="#F4B23C"/></svg>
       </span>
-      <h1 class="serif">Asthi<b>mitra</b></h1>
-    </header>
-    <p class="lede">Digital operations & family-engagement platform for <strong>Asthimitra HomeCare</strong> — dignified, doctor-supervised orthopedic home care and safe hospital escort.</p>
+      <span class="wm">Asthi<b>mitra</b></span>
+    </div>
+    <div class="tag">Your bone-care friend</div>
+    <h1>Dignified orthopedic care, at home &amp; to every hospital visit.</h1>
+    <p>Asthimitra places trained, doctor-supervised caretakers at the patient&rsquo;s bedside and gives every recovery a safe hospital escort &mdash; while keeping the whole family in the loop, in their own language.</p>
     <div class="chips">
       <span class="chip">Hyderabad</span>
-      <span class="chip">English · Telugu · Hindi</span>
+      <span class="chip">English &middot; Telugu &middot; Hindi</span>
       <span class="chip">In-app payments</span>
       <span class="chip">Offline-first field apps</span>
     </div>
+    <div class="scrollcue">Scroll to explore &darr;</div>
+  </header>
 
-    <div class="label">Prototypes</div>
-    <div class="grid">
-      <a class="tile" href="suite.html"><span class="ico" style="background:var(--primary)">🏥</span><b>Multi-role suite</b><span>8 role apps in one launcher — Family, Doctor, Escort, Coordinator, Physio, Nurse, Nutritionist, Admin</span></a>
-      <a class="tile" href="prototype.html"><span class="ico" style="background:var(--accent)">👪</span><b>Family app — trilingual</b><span>Daily reports, care plan, escorts, GST billing + Pay now · EN / తె / हि</span></a>
+  <!-- JOURNEY -->
+  <section class="section wrap reveal">
+    <div class="eyebrow">How it works</div>
+    <h2>One recovery journey, start to finish</h2>
+    <p class="lead">From the first phone call to walking independently again &mdash; Asthimitra runs every step.</p>
+    <div class="journey">
+      <div class="step"><div class="n">1</div><h3>Enquiry &amp; assessment</h3><p>A free home visit to understand the patient and the home.</p></div>
+      <div class="step"><div class="n">2</div><h3>Doctor care plan</h3><p>A physician designs and approves the plan &mdash; care never starts unapproved.</p></div>
+      <div class="step"><div class="n">3</div><h3>Team assigned</h3><p>A matched, background-verified team is briefed and begins.</p></div>
+      <div class="step"><div class="n">4</div><h3>Care &amp; monitoring</h3><p>Daily reports, 2-hour repositioning, physiotherapy and escorts.</p></div>
+      <div class="step"><div class="n">5</div><h3>Review &amp; transition</h3><p>Monthly review guides the patient back to independence.</p></div>
     </div>
+  </section>
 
-    <div class="label">Brand</div>
-    <div class="grid">
-      <a class="tile" href="brand.html"><span class="ico" style="background:#1466C7">🦴</span><b>Logo directions</b><span>Concepts, wordmark, colour variants & app icons</span></a>
-      <a class="tile" href="brand-bone-shapes.html"><span class="ico" style="background:#E0930F">🅰️</span><b>Final logo &amp; colours</b><span>Azure A-Bone, gold-amber, chunky bone</span></a>
-    </div>
+  <!-- SUITE -->
+  <section class="section wrap reveal">
+    <div class="showcase">
+      <div class="copy">
+        <div class="eyebrow">The platform</div>
+        <h2>One app, the whole care team</h2>
+        <p class="lead">Everyone around a recovery works in the same place &mdash; each role gets exactly the view they need. Tap a role in the launcher to explore it live.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--azure)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Doctor</b> approves care plans &mdash; the supervision gate.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--azure)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Escort</b> runs a live, GPS-tracked hospital trip &mdash; and logs it even offline.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--azure)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Coordinator &amp; Admin</b> handle intake, rosters, safety alerts, compliance and billing.</span></li>
+        </ul>
+        <div class="rolelist">
+          <span>Family</span><span>Doctor</span><span>Escort</span><span>Coordinator</span><span>Physiotherapist</span><span>Nurse</span><span>Nutritionist</span><span>Admin</span>
+        </div>
+      </div>
+      <div class="device">
+        <div class="screen-frame"><iframe title="Asthimitra multi-role suite" srcdoc="<title>Asthimitra — Role Suite</title>
+<style>
+  :root{
+    --ground:#DCE4E0; --ground-2:#EAEFEB;
+    --bg:#F7F9F6; --surface:#FFFFFF; --surface-2:#F0F4F0;
+    --ink:#182A27; --ink-soft:#5A6A66; --ink-faint:#8A9994;
+    --line:#E2E8E3;
+    --primary:#1466C7; --primary-ink:#0E4C97; --primary-soft:#DCEAFB;
+    --accent:#E0930F;
+    --good:#2E7D5B; --good-soft:#DBEFE4;
+    --warn:#B9821A; --warn-soft:#F6EACE;
+    --crit:#C0392B; --crit-soft:#F6DED9;
+    --accent-soft:color-mix(in srgb, var(--accent) 16%, var(--surface));
+    --shadow:0 24px 60px -20px rgba(14,52,48,.45), 0 8px 20px -12px rgba(14,52,48,.25);
+    --radius:20px;
+    --serif:&quot;Iowan Old Style&quot;,&quot;Palatino Linotype&quot;,Palatino,Georgia,&quot;Times New Roman&quot;,serif;
+    --sans:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,system-ui,Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme=&quot;light&quot;]){
+      --ground:#08110F; --ground-2:#0C1917;
+      --bg:#0F1C1A; --surface:#162823; --surface-2:#1E332D;
+      --ink:#EAF1EE; --ink-soft:#A3B6B0; --ink-faint:#6E827C;
+      --line:#274038;
+      --primary:#5AA6F0; --primary-ink:#9CC8F6; --primary-soft:#14335C;
+      --accent:#F0A63A;
+      --good:#5CC08C; --good-soft:#153229;
+      --warn:#E0B056; --warn-soft:#33290F;
+      --crit:#E4685C; --crit-soft:#38201C;
+      --shadow:0 24px 60px -20px rgba(0,0,0,.7), 0 8px 20px -12px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme=&quot;dark&quot;]{
+    --ground:#08110F; --ground-2:#0C1917;
+    --bg:#0F1C1A; --surface:#162823; --surface-2:#1E332D;
+    --ink:#EAF1EE; --ink-soft:#A3B6B0; --ink-faint:#6E827C;
+    --line:#274038;
+    --primary:#5AA6F0; --primary-ink:#9CC8F6; --primary-soft:#14335C;
+    --accent:#F0A63A;
+    --good:#5CC08C; --good-soft:#153229;
+    --warn:#E0B056; --warn-soft:#33290F;
+    --crit:#E4685C; --crit-soft:#38201C;
+    --shadow:0 24px 60px -20px rgba(0,0,0,.7), 0 8px 20px -12px rgba(0,0,0,.5);
+  }
 
-    <div class="label">Documents</div>
-    <div class="grid">
-      <a class="tile" href="BRD.md"><span class="ico" style="background:#4C7BB0">📋</span><b>Business Requirements</b><span>Objectives, scope, personas, 40+ requirements, v1 decisions</span></a>
-      <a class="tile" href="Asthimitra_Overview.pptx"><span class="ico" style="background:#8A5A2B">📊</span><b>Overview deck</b><span>8 brief slides — what / why / who / how</span></a>
-      <a class="tile" href="OrthoApp.docx"><span class="ico" style="background:#5A6E4A">📄</span><b>Source charter</b><span>The original service brochure</span></a>
-    </div>
+  /* per-app accent identity */
+  .app-family{--accent:#E0930F}
+  .app-doctor{--accent:#4C7BB0}
+  .app-escort{--accent:#E07A3E}
+  .app-coord{--accent:#0E9488}
+  .app-physio{--accent:#2AA775}
+  .app-nurse{--accent:#C0508A}
+  .app-nutri{--accent:#7A9E2E}
+  .app-admin{--accent:#6B5BD2}
+  .app{--accent-soft:color-mix(in srgb, var(--accent) 16%, var(--surface))}
 
-    <footer>
-      Open the <code>.html</code> files directly in a browser. Telugu/Hindi strings await a native-speaker proofread before production.
-    </footer>
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:var(--sans); color:var(--ink);
+    background:radial-gradient(120% 80% at 50% -10%, var(--ground-2), transparent 60%), var(--ground);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center; gap:16px;
+    padding:28px 16px 44px; -webkit-font-smoothing:antialiased;
+  }
+  .caption{text-align:center;max-width:440px;color:var(--ink-soft)}
+  .caption .mark{font-family:var(--serif);font-size:22px;color:var(--ink)}
+  .caption .mark b{color:var(--primary);font-weight:600}
+  .caption p{margin:6px 0 0;font-size:13px;line-height:1.5}
+
+  .phone{width:100%;max-width:412px;height:860px;max-height:90vh;background:var(--bg);border-radius:44px;box-shadow:var(--shadow);position:relative;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
+  .statusbar{height:44px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font-size:13px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;z-index:2}
+  .statusbar .dots{display:flex;gap:5px;align-items:center}
+  .statusbar .dots span{width:6px;height:6px;border-radius:50%;background:var(--ink-soft)}
+  .statusbar .dots .bat{width:22px;height:11px;border:1.5px solid var(--ink-soft);border-radius:3px;position:relative}
+  .statusbar .dots .bat::after{content:&quot;&quot;;position:absolute;inset:2px;right:6px;background:var(--good);border-radius:1px}
+
+  .view{flex:1 1 auto;min-height:0;flex-direction:column}
+  .view:not(.active){display:none}
+  .view.active{display:flex}
+
+  /* ---------- Launcher ---------- */
+  #launcher{padding:20px 20px 24px;justify-content:flex-start;gap:6px;overflow-y:auto;background:linear-gradient(180deg,var(--surface-2),transparent 45%)}
+  .launch-brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:24px;color:var(--ink)}
+  .launch-brand .glyph{width:42px;height:42px;border-radius:13px;background:var(--primary);color:#fff;display:grid;place-items:center;box-shadow:0 10px 22px -10px var(--primary)}
+  .launch-brand b{color:var(--primary);font-weight:600}
+  .launch-sub{font-size:13px;color:var(--ink-soft);line-height:1.45;margin:8px 0 16px}
+  .rolegrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+  .roletile{display:flex;flex-direction:column;align-items:flex-start;gap:7px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 13px;cursor:pointer;text-align:left;font-family:var(--sans);color:var(--ink);transition:transform .14s ease,border-color .14s ease}
+  .roletile:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .roletile .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:21px;color:#fff}
+  .roletile b{font-size:14px;font-weight:650;line-height:1.15}
+  .roletile span{font-size:11px;color:var(--ink-soft);line-height:1.3}
+  .launch-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.3px;color:var(--ink-faint);margin-bottom:12px}
+  .rolecard{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:12px;cursor:pointer;font-family:var(--sans);color:var(--ink);transition:transform .15s ease,border-color .15s ease}
+  .rolecard:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .rolecard .ico{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;color:#fff;flex:0 0 auto;font-size:24px}
+  .rolecard .rc{flex:1;min-width:0}
+  .rolecard .rc b{font-size:16.5px;font-weight:650;display:block}
+  .rolecard .rc span{font-size:12.5px;color:var(--ink-soft);line-height:1.4}
+  .rolecard .go{color:var(--ink-faint);font-size:20px}
+  .launch-foot{font-size:11px;color:var(--ink-faint);text-align:center;margin-top:8px;line-height:1.5}
+
+  /* ---------- App shell ---------- */
+  .appbar{flex:0 0 auto;padding:6px 18px 15px;color:#fff;background:linear-gradient(180deg,var(--primary),var(--primary-ink));border-bottom-left-radius:26px;border-bottom-right-radius:26px}
+  .appbar .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .homebtn{appearance:none;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--sans);display:inline-flex;align-items:center;gap:5px}
+  .homebtn:hover{background:rgba(255,255,255,.2)}
+  .rolechip{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;background:rgba(255,255,255,.18);padding:5px 10px;border-radius:999px}
+  .theme-toggle{appearance:none;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;width:30px;height:30px;font-size:14px;cursor:pointer;font-family:var(--sans)}
+  .theme-toggle:hover{background:rgba(255,255,255,.2)}
+  .controls{display:flex;align-items:center;gap:7px}
+
+  .idrow{margin-top:14px;display:flex;align-items:center;gap:13px}
+  .avatar{width:52px;height:52px;border-radius:16px;flex:0 0 auto;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:20px;font-weight:600}
+  .idrow .who{flex:1;min-width:0}
+  .idrow .who h1{margin:0;font-size:18px;font-weight:650}
+  .idrow .who p{margin:2px 0 0;font-size:12.5px;color:rgba(255,255,255,.82)}
+  .idrow .stat{text-align:right;font-size:11px;color:rgba(255,255,255,.85)}
+  .idrow .stat b{display:block;font-size:20px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+
+  .sos{margin-top:13px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:var(--crit);border:none;cursor:pointer;font-family:var(--sans);font-weight:700;font-size:13.5px;padding:12px;border-radius:14px;box-shadow:0 6px 16px -8px rgba(0,0,0,.35)}
+  .sos .pulse{width:9px;height:9px;border-radius:50%;background:var(--crit);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(192,57,43,.55)}70%{box-shadow:0 0 0 10px rgba(192,57,43,0)}100%{box-shadow:0 0 0 0 rgba(192,57,43,0)}}
+
+  .conn{margin-top:12px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.14);border-radius:12px;padding:8px 12px;font-size:12px;font-weight:600}
+  .conn .st{display:flex;align-items:center;gap:7px}
+  .conn .st .d{width:9px;height:9px;border-radius:50%;background:#7CE0B0}
+  .conn.off .st .d{background:#F0C36B}
+  .conn button{appearance:none;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--sans)}
+
+  .screen{flex:1 1 auto;overflow-y:auto;overflow-x:hidden;padding:16px 16px 92px;scroll-behavior:smooth}
+  .panel{display:none;animation:fade .28s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--ink-faint);margin:2px 0 10px}
+  .section-title{font-family:var(--serif);font-size:19px;font-weight:600;margin:22px 4px 10px;color:var(--ink);text-wrap:balance}
+  .section-title:first-child{margin-top:4px}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:13px}
+  .card h3{margin:0 0 3px;font-size:15px;font-weight:650}
+  .card .sub{margin:0;font-size:12.5px;color:var(--ink-soft);line-height:1.45}
+  .between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px;letter-spacing:.2px;white-space:nowrap}
+  .pill.good{background:var(--good-soft);color:var(--good)}
+  .pill.warn{background:var(--warn-soft);color:var(--warn)}
+  .pill.crit{background:var(--crit-soft);color:var(--crit)}
+  .pill.info{background:var(--primary-soft);color:var(--primary-ink)}
+  .pill.neutral{background:var(--surface-2);color:var(--ink-soft)}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+
+  .vitals{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:4px}
+  .vital{background:var(--surface-2);border-radius:14px;padding:11px 8px;text-align:center}
+  .vital .v{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .vital .u{font-size:9.5px;color:var(--ink-faint);font-weight:600}
+  .vital .l{font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-soft);margin-top:3px;font-weight:700}
+
+  .timeline{display:flex;align-items:flex-start;margin-top:6px;padding:2px}
+  .slot{flex:1;text-align:center;position:relative}
+  .slot .node{width:26px;height:26px;border-radius:50%;margin:0 auto;display:grid;place-items:center;font-size:12px;font-weight:700;position:relative;z-index:1;border:2px solid var(--surface)}
+  .slot.done .node{background:var(--good);color:#fff}
+  .slot.now .node{background:var(--accent);color:#fff;box-shadow:0 0 0 4px var(--accent-soft)}
+  .slot.next .node{background:var(--surface-2);color:var(--ink-faint);border:2px dashed var(--line)}
+  .slot::before{content:&quot;&quot;;position:absolute;top:12px;left:-50%;width:100%;height:2px;background:var(--good)}
+  .slot:first-child::before{display:none}
+  .slot.next::before,.slot.now::before{background:var(--line)}
+  .slot .t{font-size:10px;color:var(--ink-soft);margin-top:5px;font-variant-numeric:tabular-nums;font-weight:600}
+
+  .tasks{display:flex;flex-direction:column;gap:2px;margin-top:4px}
+  .task{display:flex;align-items:center;gap:11px;padding:9px 2px;border-bottom:1px solid var(--line)}
+  .task:last-child{border-bottom:none}
+  .task .ck{width:22px;height:22px;border-radius:7px;flex:0 0 auto;display:grid;place-items:center;font-size:12px;font-weight:800}
+  .task .ck.done{background:var(--good);color:#fff}
+  .task .ck.due{background:var(--surface-2);border:2px solid var(--line);color:transparent}
+  .task .tx{flex:1;min-width:0}
+  .task .tx b{font-size:13.5px;font-weight:600;display:block}
+  .task .tx span{font-size:11.5px;color:var(--ink-soft)}
+  .task .time{font-size:11px;font-weight:700;color:var(--ink-faint);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .note{background:var(--accent-soft);border-radius:var(--radius);padding:16px;margin-bottom:13px}
+  .note .quote{font-family:var(--serif);font-size:14.5px;line-height:1.55;color:var(--ink);font-style:italic}
+  .note .by{display:flex;align-items:center;gap:8px;margin-top:11px;font-size:12px;color:var(--ink-soft)}
+  .note .by .ic{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:11px;font-family:var(--sans)}
+
+  .track{height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin:12px 0 6px}
+  .track > i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:999px;transition:width .35s ease}
+  .milestones{display:flex;justify-content:space-between;margin-top:6px}
+  .milestones .m{font-size:10px;text-align:center;color:var(--ink-faint);font-weight:600;flex:1}
+  .milestones .m.reached{color:var(--primary)}
+  .milestones .m.here{color:var(--accent);font-weight:800}
+
+  /* vertical journey stepper */
+  .stepper{position:relative;margin:4px 0 0}
+  .jstep{display:flex;gap:13px;padding-bottom:18px;position:relative}
+  .jstep:last-child{padding-bottom:0}
+  .jstep::before{content:&quot;&quot;;position:absolute;left:14px;top:28px;bottom:-2px;width:2px;background:var(--line)}
+  .jstep:last-child::before{display:none}
+  .jstep.done::before{background:var(--good)}
+  .jbadge{width:30px;height:30px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;font-size:13px;font-weight:800;z-index:1;border:2px solid var(--surface)}
+  .jstep.done .jbadge{background:var(--good);color:#fff}
+  .jstep.now .jbadge{background:var(--accent);color:#fff;box-shadow:0 0 0 4px var(--accent-soft)}
+  .jstep.todo .jbadge{background:var(--surface-2);color:var(--ink-faint);border:2px dashed var(--line)}
+  .jbody{flex:1;min-width:0;padding-top:3px}
+  .jbody b{font-size:14px;font-weight:650;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .jbody p{margin:3px 0 0;font-size:12px;color:var(--ink-soft);line-height:1.45}
+
+  .member{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}
+  .member:last-child{border-bottom:none}
+  .member .ph{width:44px;height:44px;border-radius:13px;flex:0 0 auto;display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:16px;color:#fff}
+  .member .info{flex:1;min-width:0}
+  .member .info .nm{font-size:14px;font-weight:650;display:flex;align-items:center;flex-wrap:wrap;gap:5px}
+  .member .info .rl{font-size:11.5px;color:var(--primary);font-weight:600}
+  .member .info .cr{font-size:11px;color:var(--ink-soft);margin-top:3px;line-height:1.4}
+  .verified{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;color:var(--good);margin-top:5px}
+
+  /* patient rows (doctor) */
+  .prow{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:12px 2px;cursor:pointer;font-family:var(--sans);color:var(--ink)}
+  .prow:last-child{border-bottom:none}
+  .prow .pi{width:40px;height:40px;border-radius:12px;flex:0 0 auto;display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:15px;color:#fff;background:var(--primary)}
+  .prow .pd{flex:1;min-width:0}
+  .prow .pd b{font-size:14px;font-weight:650;display:block}
+  .prow .pd span{font-size:11.5px;color:var(--ink-soft)}
+
+  /* sparkline */
+  .spark{display:flex;align-items:flex-end;gap:12px;margin-top:6px}
+  .spark svg{flex:1}
+  .spark .val{text-align:right}
+  .spark .val b{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .spark .val span{display:block;font-size:10px;color:var(--ink-faint);font-weight:600}
+
+  /* escort checklist (interactive) */
+  .chk{display:flex;flex-direction:column;gap:1px;margin-top:6px}
+  .cstep{display:flex;gap:11px;align-items:center;padding:11px 2px;cursor:pointer;border-bottom:1px solid var(--line)}
+  .cstep:last-child{border-bottom:none}
+  .cstep .b{width:24px;height:24px;border-radius:8px;flex:0 0 auto;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--surface-2);border:2px solid var(--line);color:transparent;transition:.15s}
+  .cstep.done .b{background:var(--good);color:#fff;border-color:var(--good)}
+  .cstep span{font-size:13px;color:var(--ink-soft)}
+  .cstep.done span{color:var(--ink);text-decoration:line-through;text-decoration-color:var(--ink-faint)}
+
+  .notes{width:100%;min-height:82px;resize:vertical;background:var(--surface-2);border:1px solid var(--line);border-radius:13px;padding:12px;font-family:var(--sans);font-size:13px;color:var(--ink);margin-top:4px}
+  .notes:focus{outline:2px solid var(--accent);outline-offset:1px}
+
+  .gps{background:var(--surface-2);border-radius:14px;padding:0;overflow:hidden;margin-top:4px;border:1px solid var(--line)}
+  .gps .map{height:118px;position:relative;background:
+    linear-gradient(0deg,transparent 96%,var(--line) 96%) 0 0/100% 24px,
+    linear-gradient(90deg,transparent 96%,var(--line) 96%) 0 0/24px 100%,
+    var(--surface)}
+  .gps .route{position:absolute;left:14%;top:70%;right:18%;height:3px;background:var(--accent);border-radius:3px;transform-origin:left;box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%, transparent)}
+  .gps .pin{position:absolute;width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--surface);top:calc(70% - 7px)}
+  .gps .pin.a{left:12%} .gps .pin.b{right:16%;background:var(--primary)}
+  .gps .car{position:absolute;top:calc(70% - 9px);left:38%;font-size:15px}
+  .gps .lbl{padding:11px 13px;display:flex;align-items:center;justify-content:space-between;font-size:12px}
+  .gps .lbl b{font-weight:650;color:var(--ink)}
+  .gps .lbl span{color:var(--ink-soft)}
+
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+  .line .amt{font-variant-numeric:tabular-nums;font-weight:600}
+  .line.disc{color:var(--good)}
+  .line.total{border-bottom:none;font-weight:700;font-size:16px;padding-top:14px}
+  .line.total .amt{color:var(--primary)}
+
+  .btn{width:100%;border:none;cursor:pointer;font-family:var(--sans);font-weight:650;font-size:13.5px;padding:13px;border-radius:13px;background:var(--primary);color:#fff;margin-top:8px}
+  .btn.accent{background:var(--accent)}
+  .btn.ghost{background:var(--surface-2);color:var(--ink)}
+  .btn.call{background:var(--crit)}
+  .btn:hover{filter:brightness(1.05)}
+  .btn:disabled{opacity:.7;cursor:default;filter:none}
+  .btnrow{display:flex;gap:9px}
+  .btnrow .btn{flex:1}
+
+  .microcopy{font-size:11.5px;color:var(--ink-faint);line-height:1.5;margin:8px 4px 0;display:flex;gap:7px}
+  .microcopy svg{flex:0 0 auto;margin-top:1px}
+
+  .tabbar{flex:0 0 auto;height:76px;background:var(--surface);border-top:1px solid var(--line);display:flex;align-items:stretch;padding:8px 4px 18px}
+  .tab{flex:1;background:none;border:none;cursor:pointer;font-family:var(--sans);display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:center;color:var(--ink-faint);font-size:9.5px;font-weight:600;padding:2px}
+  .tab svg{width:22px;height:22px}
+  .tab.active{color:var(--primary)}
+
+  /* sheets */
+  .overlay{position:absolute;inset:0;background:rgba(10,20,18,.55);backdrop-filter:blur(3px);display:none;align-items:flex-end;z-index:60}
+  .overlay.open{display:flex}
+  .sheet{width:100%;background:var(--surface);border-top-left-radius:28px;border-top-right-radius:28px;padding:22px 20px 30px;animation:rise .3s cubic-bezier(.2,.8,.2,1)}
+  @keyframes rise{from{transform:translateY(100%)}to{transform:none}}
+  .sheet .grab{width:38px;height:4px;border-radius:999px;background:var(--line);margin:0 auto 16px}
+  .sheet h2{font-family:var(--serif);font-size:20px;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  .sheet h2 .ring{width:34px;height:34px;border-radius:50%;background:var(--crit-soft);color:var(--crit);display:grid;place-items:center}
+  .sheet h2 .ring.pay{background:var(--primary-soft);color:var(--primary-ink)}
+  .sheet p{font-size:13px;color:var(--ink-soft);line-height:1.55;margin:0 0 4px}
+  .sheet .sla{background:var(--crit-soft);color:var(--crit);font-weight:700;font-size:12.5px;padding:11px 13px;border-radius:12px;margin:14px 0;display:flex;align-items:center;gap:9px}
+  .payopt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:9px;cursor:pointer;font-family:var(--sans);color:var(--ink)}
+  .payopt:hover{border-color:var(--primary)}
+  .payopt .ic{width:38px;height:38px;border-radius:11px;background:var(--primary-soft);color:var(--primary-ink);display:grid;place-items:center;flex:0 0 auto}
+  .payopt .txt{flex:1;min-width:0}
+  .payopt .txt b{font-size:14px;font-weight:650;display:block}
+  .payopt .txt span{font-size:11.5px;color:var(--ink-soft)}
+  .securenote{display:flex;gap:7px;align-items:flex-start;font-size:11.5px;color:var(--ink-faint);line-height:1.5;margin-top:14px}
+
+  .toast{position:absolute;left:16px;right:16px;bottom:88px;background:var(--ink);color:var(--bg);border-radius:12px;padding:12px 14px;font-size:12.5px;font-weight:600;text-align:center;z-index:70;opacity:0;transform:translateY(10px);pointer-events:none;transition:.25s}
+  .toast.show{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div class=&quot;caption&quot;>
+  <div class=&quot;mark&quot;>Asthi<b>mitra</b> · Role Suite</div>
+  <p>One platform, eight roles. Pick a role to enter its app — Family, Doctor, Escort, Coordinator, Physiotherapist, Nurse, Nutritionist, or Admin. Use ⌂ to switch roles anytime.</p>
+</div>
+
+<div class=&quot;phone&quot; role=&quot;application&quot; aria-label=&quot;Asthimitra multi-role prototype&quot;>
+  <div class=&quot;statusbar&quot;>
+    <span>9:41</span>
+    <span class=&quot;dots&quot;><span></span><span></span><span></span><span class=&quot;bat&quot;></span></span>
   </div>
+
+  <!-- ==================== LAUNCHER ==================== -->
+  <section class=&quot;view active&quot; id=&quot;launcher&quot;>
+    <div class=&quot;launch-brand&quot;><span class=&quot;glyph&quot; aria-hidden=&quot;true&quot;>
+      <svg width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 100 100&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;><path d=&quot;M50 20 L28 82&quot; stroke=&quot;#fff&quot; stroke-width=&quot;12&quot; stroke-linecap=&quot;round&quot;/><path d=&quot;M50 20 L72 82&quot; stroke=&quot;#fff&quot; stroke-width=&quot;12&quot; stroke-linecap=&quot;round&quot;/><path d=&quot;M32 57 H68&quot; stroke=&quot;#F4B23C&quot; stroke-width=&quot;12&quot; stroke-linecap=&quot;round&quot;/><circle cx=&quot;31&quot; cy=&quot;50&quot; r=&quot;9&quot; fill=&quot;#F4B23C&quot;/><circle cx=&quot;31&quot; cy=&quot;64&quot; r=&quot;9&quot; fill=&quot;#F4B23C&quot;/><circle cx=&quot;69&quot; cy=&quot;50&quot; r=&quot;9&quot; fill=&quot;#F4B23C&quot;/><circle cx=&quot;69&quot; cy=&quot;64&quot; r=&quot;9&quot; fill=&quot;#F4B23C&quot;/></svg>
+    </span>Asthi<b>mitra</b></div>
+    <p class=&quot;launch-sub&quot;>Doctor-supervised orthopedic home care &amp; hospital escort, Hyderabad. Tap a role.</p>
+
+    <div class=&quot;rolegrid&quot;>
+      <button class=&quot;roletile&quot; data-role=&quot;familyApp&quot;><span class=&quot;ico&quot; style=&quot;background:#E0930F&quot;>👪</span><b>Family</b><span>Track recovery daily</span></button>
+      <button class=&quot;roletile&quot; data-role=&quot;doctorApp&quot;><span class=&quot;ico&quot; style=&quot;background:#4C7BB0&quot;>🩺</span><b>Doctor</b><span>Approve &amp;amp; review plans</span></button>
+      <button class=&quot;roletile&quot; data-role=&quot;escortApp&quot;><span class=&quot;ico&quot; style=&quot;background:#E07A3E&quot;>🚑</span><b>Escort</b><span>Safe hospital trips</span></button>
+      <button class=&quot;roletile&quot; data-role=&quot;coordApp&quot;><span class=&quot;ico&quot; style=&quot;background:#0E9488&quot;>🗂️</span><b>Coordinator</b><span>Intake, roster, quality</span></button>
+      <button class=&quot;roletile&quot; data-role=&quot;physioApp&quot;><span class=&quot;ico&quot; style=&quot;background:#2AA775&quot;>🤸</span><b>Physiotherapist</b><span>Exercise plans &amp;amp; logs</span></button>
+      <button class=&quot;roletile&quot; data-role=&quot;nurseApp&quot;><span class=&quot;ico&quot; style=&quot;background:#C0508A&quot;>💉</span><b>Home Nurse</b><span>Meds, wounds, IV</span></button>
+      <button class=&quot;roletile&quot; data-role=&quot;nutriApp&quot;><span class=&quot;ico&quot; style=&quot;background:#7A9E2E&quot;>🥗</span><b>Nutritionist</b><span>Bone-health diets</span></button>
+      <button class=&quot;roletile&quot; data-role=&quot;adminApp&quot;><span class=&quot;ico&quot; style=&quot;background:#6B5BD2&quot;>📊</span><b>Admin</b><span>KPIs, staff, billing</span></button>
+    </div>
+
+    <div class=&quot;launch-foot&quot;>Prototype · English. The family app also exists in EN / తె / हि in a separate build.</div>
+  </section>
+
+  <!-- ==================== FAMILY APP ==================== -->
+  <div class=&quot;view app app-family&quot; id=&quot;familyApp&quot;>
+    <header class=&quot;appbar&quot;>
+      <div class=&quot;row1&quot;>
+        <button class=&quot;homebtn&quot; data-home>⌂ Roles</button>
+        <div class=&quot;controls&quot;><span class=&quot;rolechip&quot;>Family view</span><button class=&quot;theme-toggle&quot; data-theme-btn>◐</button></div>
+      </div>
+      <div class=&quot;idrow&quot;>
+        <div class=&quot;avatar&quot;>KR</div>
+        <div class=&quot;who&quot;><h1>Mrs. Kamala Rao</h1><p>68 · Right Total Hip Replacement · Day 9</p></div>
+        <span class=&quot;pill neutral&quot; style=&quot;background:rgba(255,255,255,.18);color:#fff&quot;>Comprehensive</span>
+      </div>
+      <button class=&quot;sos&quot; data-open=&quot;emSheet&quot;><span class=&quot;pulse&quot;></span>Emergency — reach the care team now</button>
+    </header>
+    <main class=&quot;screen&quot;>
+      <!-- Journey -->
+      <section class=&quot;panel active&quot; data-panel=&quot;f-journey&quot;>
+        <p class=&quot;eyebrow&quot;>Recovery journey</p>
+        <div class=&quot;card&quot;>
+          <div class=&quot;stepper&quot;>
+            <div class=&quot;jstep done&quot;><div class=&quot;jbadge&quot;>✓</div><div class=&quot;jbody&quot;><b>Enquiry &amp; home assessment</b><p>Free assessment on 28 Jul · needs &amp; home environment reviewed</p></div></div>
+            <div class=&quot;jstep done&quot;><div class=&quot;jbadge&quot;>✓</div><div class=&quot;jbody&quot;><b>Doctor consultation &amp; care plan <span class=&quot;pill good&quot; style=&quot;font-size:9px&quot;><span class=&quot;dot&quot;></span>Approved</span></b><p>Dr. Anand Iyer designed &amp; approved the plan on 30 Jul</p></div></div>
+            <div class=&quot;jstep done&quot;><div class=&quot;jbadge&quot;>✓</div><div class=&quot;jbody&quot;><b>Team assigned &amp; briefed</b><p>5-member verified team matched · briefed on plan &amp; preferences</p></div></div>
+            <div class=&quot;jstep now&quot;><div class=&quot;jbadge&quot;>4</div><div class=&quot;jbody&quot;><b>Care delivery &amp; monitoring <span class=&quot;pill warn&quot; style=&quot;font-size:9px&quot;>Active · Day 9</span></b><p>Daily reports, 2-hour repositioning, physio &amp; escorts underway</p></div></div>
+            <div class=&quot;jstep todo&quot;><div class=&quot;jbadge&quot;>5</div><div class=&quot;jbody&quot;><b>Review &amp; transition</b><p>Next physician review 25 Aug · plan to assisted independence</p></div></div>
+          </div>
+        </div>
+
+        <p class=&quot;section-title&quot;>Your care team</p>
+        <div class=&quot;card&quot;>
+          <div class=&quot;member&quot;><div class=&quot;ph&quot; style=&quot;background:#1466C7&quot;>AI</div><div class=&quot;info&quot;><div class=&quot;nm&quot;>Dr. Anand Iyer</div><div class=&quot;rl&quot;>Supervising Orthopedic Surgeon</div><div class=&quot;verified&quot;>✓ Background verified</div></div></div>
+          <div class=&quot;member&quot;><div class=&quot;ph&quot; style=&quot;background:#2E7DE1&quot;>PV</div><div class=&quot;info&quot;><div class=&quot;nm&quot;>Priya Venkat</div><div class=&quot;rl&quot;>Registered Physiotherapist</div><div class=&quot;verified&quot;>✓ Background verified</div></div></div>
+          <div class=&quot;member&quot;><div class=&quot;ph&quot; style=&quot;background:var(--accent)&quot;>SM</div><div class=&quot;info&quot;><div class=&quot;nm&quot;>Sunita M. <span class=&quot;pill good&quot; style=&quot;font-size:9px&quot;><span class=&quot;dot&quot;></span>On shift</span></div><div class=&quot;rl&quot;>Orthopedic Caretaker</div><div class=&quot;verified&quot;>✓ Background verified</div></div></div>
+          <div class=&quot;member&quot;><div class=&quot;ph&quot; style=&quot;background:#5A6E4A&quot;>RK</div><div class=&quot;info&quot;><div class=&quot;nm&quot;>Ramesh K.</div><div class=&quot;rl&quot;>Patient Escort Associate</div><div class=&quot;verified&quot;>✓ Background verified</div></div></div>
+        </div>
+        <div class=&quot;microcopy&quot;><svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;var(--primary)&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z&quot;/></svg><span>No caretaker is changed without your consent first.</span></div>
+      </section>
+
+      <!-- Today -->
+      <section class=&quot;panel&quot; data-panel=&quot;f-today&quot;>
+        <p class=&quot;eyebrow&quot;>Today · Fri, 8 Aug</p>
+        <div class=&quot;card&quot;>
+          <div class=&quot;between&quot; style=&quot;margin-bottom:12px&quot;><div><h3>Today's report</h3><p class=&quot;sub&quot;>Updated 11 minutes ago by Sunita M.</p></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Stable</span></div>
+          <div class=&quot;vitals&quot;>
+            <div class=&quot;vital&quot;><div class=&quot;v&quot;>118/76</div><div class=&quot;u&quot;>mmHg</div><div class=&quot;l&quot;>BP</div></div>
+            <div class=&quot;vital&quot;><div class=&quot;v&quot;>72</div><div class=&quot;u&quot;>bpm</div><div class=&quot;l&quot;>Pulse</div></div>
+            <div class=&quot;vital&quot;><div class=&quot;v&quot;>98</div><div class=&quot;u&quot;>%</div><div class=&quot;l&quot;>SpO₂</div></div>
+            <div class=&quot;vital&quot;><div class=&quot;v&quot;>98.4</div><div class=&quot;u&quot;>°F</div><div class=&quot;l&quot;>Temp</div></div>
+          </div>
+        </div>
+        <div class=&quot;card&quot;>
+          <div class=&quot;between&quot;><div><h3>Repositioning</h3><p class=&quot;sub&quot;>2-hour turning · prevents pressure sores</p></div><span class=&quot;pill info&quot;><span class=&quot;dot&quot;></span>Next 12:00</span></div>
+          <div class=&quot;timeline&quot;>
+            <div class=&quot;slot done&quot;><div class=&quot;node&quot;>✓</div><div class=&quot;t&quot;>06:00</div></div>
+            <div class=&quot;slot done&quot;><div class=&quot;node&quot;>✓</div><div class=&quot;t&quot;>08:00</div></div>
+            <div class=&quot;slot now&quot;><div class=&quot;node&quot;>✓</div><div class=&quot;t&quot;>10:00</div></div>
+            <div class=&quot;slot next&quot;><div class=&quot;node&quot;>·</div><div class=&quot;t&quot;>12:00</div></div>
+            <div class=&quot;slot next&quot;><div class=&quot;node&quot;>·</div><div class=&quot;t&quot;>14:00</div></div>
+          </div>
+        </div>
+        <div class=&quot;card&quot;>
+          <h3 style=&quot;margin-bottom:8px&quot;>Care given today</h3>
+          <div class=&quot;tasks&quot;>
+            <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Morning medication</b><span>Calcium + Vitamin D, pain relief</span></div><div class=&quot;time&quot;>08:00</div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Physiotherapy — ankle pumps &amp; quad sets</b><span>Per Dr. Iyer's plan · 2 sets done</span></div><div class=&quot;time&quot;>09:30</div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Sponge bath &amp; wound dressing check</b><span>Surgical site clean, no redness</span></div><div class=&quot;time&quot;>10:15</div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b>Midday meal — high-protein, calcium-rich</b><span>Per nutritionist plan</span></div><div class=&quot;time&quot;>13:00</div></div>
+          </div>
+        </div>
+        <div class=&quot;note&quot;>
+          <div class=&quot;quote&quot;>“Amma sat up at the edge of the bed on her own today and walked six steps with the walker — a little further than yesterday. She ate a full breakfast and was in good spirits.”</div>
+          <div class=&quot;by&quot;><span class=&quot;ic&quot;>SM</span>Sunita M. · Orthopedic Caretaker · on shift until 8 PM</div>
+        </div>
+        <button class=&quot;btn ghost&quot; data-once=&quot;★★★★★  Thank you — feedback saved&quot;>★  Rate today's visit</button>
+      </section>
+
+      <!-- Plan -->
+      <section class=&quot;panel&quot; data-panel=&quot;f-plan&quot;>
+        <p class=&quot;eyebrow&quot;>Doctor-supervised care plan</p>
+        <div class=&quot;card&quot;>
+          <div class=&quot;between&quot;><div><h3>Recovery progress</h3><p class=&quot;sub&quot;>Day 9 of an estimated 6-week plan</p></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>On track</span></div>
+          <div class=&quot;track&quot;><i style=&quot;width:34%&quot;></i></div>
+          <div class=&quot;milestones&quot;><div class=&quot;m reached&quot;>Surgery</div><div class=&quot;m reached&quot;>Bed mobility</div><div class=&quot;m here&quot;>Walker steps</div><div class=&quot;m&quot;>Stairs</div><div class=&quot;m&quot;>Independent</div></div>
+        </div>
+        <p class=&quot;section-title&quot;>This week's goals</p>
+        <div class=&quot;card&quot;>
+          <div class=&quot;tasks&quot;>
+            <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Walker-assisted walking</b><span>Increase to 10 steps, twice daily</span></div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Seated hip &amp; knee exercises</b><span>Physiotherapist-guided, 3× daily</span></div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b>Bone-health nutrition</b><span>Calcium + Vitamin D optimised diet</span></div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b>Pressure-sore prevention</b><span>2-hour repositioning maintained</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Escorts -->
+      <section class=&quot;panel&quot; data-panel=&quot;f-escorts&quot;>
+        <p class=&quot;eyebrow&quot;>Hospital escort</p>
+        <div class=&quot;card&quot;>
+          <div class=&quot;between&quot; style=&quot;margin-bottom:10px&quot;><div><h3>Follow-up with Dr. Iyer</h3><p class=&quot;sub&quot;>Sat, 16 Aug · 10:30 AM · Apollo Ortho OPD, Hyderabad</p></div><span class=&quot;pill info&quot;><span class=&quot;dot&quot;></span>Scheduled</span></div>
+          <div style=&quot;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px&quot;><span class=&quot;pill neutral&quot;>Home → Hospital → Home</span><span class=&quot;pill good&quot;>◍ GPS-tracked</span></div>
+          <p class=&quot;sub&quot;>Escort: <b style=&quot;color:var(--ink)&quot;>Ramesh K.</b> · arrives 9:45 AM</p>
+        </div>
+        <p class=&quot;section-title&quot;>Last visit</p>
+        <div class=&quot;card&quot;>
+          <div class=&quot;between&quot;><div><h3 style=&quot;font-size:14px&quot;>Suture review · 2 Aug</h3><p class=&quot;sub&quot;>Sutures removed · wound healing well</p></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Complete</span></div>
+          <button class=&quot;btn ghost&quot; data-once=&quot;📄  Summary shared to your inbox&quot; style=&quot;margin-top:12px&quot;>📄  View visit summary</button>
+        </div>
+      </section>
+
+      <!-- Billing -->
+      <section class=&quot;panel&quot; data-panel=&quot;f-billing&quot;>
+        <p class=&quot;eyebrow&quot;>Billing · August 2026</p>
+        <div class=&quot;card&quot;>
+          <div class=&quot;between&quot; style=&quot;margin-bottom:6px&quot;><div><h3>Comprehensive Care</h3><p class=&quot;sub&quot;>24-hr caretaker · 4 escorts/mo · physio &amp; nutrition</p></div><span class=&quot;pill warn&quot; id=&quot;f-payStatus&quot;><span class=&quot;dot&quot;></span>Due</span></div>
+          <div style=&quot;margin-top:8px&quot;>
+            <div class=&quot;line&quot;><span>Comprehensive package</span><span class=&quot;amt&quot;>₹58,000</span></div>
+            <div class=&quot;line&quot;><span>Home physiotherapy (8 sessions)</span><span class=&quot;amt&quot;>₹6,400</span></div>
+            <div class=&quot;line disc&quot;><span>Senior citizen discount (10%)</span><span class=&quot;amt&quot;>−₹6,440</span></div>
+            <div class=&quot;line&quot;><span>GST (18%)</span><span class=&quot;amt&quot;>₹10,433</span></div>
+            <div class=&quot;line total&quot;><span>Total due</span><span class=&quot;amt&quot;>₹68,393</span></div>
+          </div>
+        </div>
+        <button class=&quot;btn&quot; id=&quot;f-payBtn&quot; data-open=&quot;paySheet&quot;>Pay now</button>
+        <button class=&quot;btn ghost&quot; data-once=&quot;✓  GST invoice downloaded&quot;>Download GST invoice</button>
+        <div class=&quot;microcopy&quot;><svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;var(--primary)&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/><path d=&quot;M12 16v-4M12 8h.01&quot;/></svg><span>A written estimate was shared before care began — no hidden charges.</span></div>
+      </section>
+    </main>
+    <nav class=&quot;tabbar&quot;>
+      <button class=&quot;tab active&quot; data-goto=&quot;f-journey&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M22 11.08V12a10 10 0 11-5.93-9.14&quot;/><path d=&quot;M22 4L12 14.01l-3-3&quot;/></svg>Journey</button>
+      <button class=&quot;tab&quot; data-goto=&quot;f-today&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z&quot;/><path d=&quot;M9 22V12h6v10&quot;/></svg>Today</button>
+      <button class=&quot;tab&quot; data-goto=&quot;f-plan&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M9 11l3 3L22 4&quot;/><path d=&quot;M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11&quot;/></svg>Plan</button>
+      <button class=&quot;tab&quot; data-goto=&quot;f-escorts&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M5 17H3V6a1 1 0 011-1h11v12h-3&quot;/><path d=&quot;M15 8h4l3 4v5h-2&quot;/><circle cx=&quot;7.5&quot; cy=&quot;17.5&quot; r=&quot;2&quot;/><circle cx=&quot;16.5&quot; cy=&quot;17.5&quot; r=&quot;2&quot;/></svg>Escorts</button>
+      <button class=&quot;tab&quot; data-goto=&quot;f-billing&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;1&quot; y=&quot;4&quot; width=&quot;22&quot; height=&quot;16&quot; rx=&quot;2&quot;/><path d=&quot;M1 10h22&quot;/></svg>Billing</button>
+    </nav>
+  </div>
+
+  <!-- ==================== DOCTOR APP ==================== -->
+  <div class=&quot;view app app-doctor&quot; id=&quot;doctorApp&quot;>
+    <header class=&quot;appbar&quot;>
+      <div class=&quot;row1&quot;>
+        <button class=&quot;homebtn&quot; data-home>⌂ Roles</button>
+        <div class=&quot;controls&quot;><span class=&quot;rolechip&quot;>Doctor view</span><button class=&quot;theme-toggle&quot; data-theme-btn>◐</button></div>
+      </div>
+      <div class=&quot;idrow&quot;>
+        <div class=&quot;avatar&quot;>AI</div>
+        <div class=&quot;who&quot;><h1>Dr. Anand Iyer</h1><p>MBBS · MS (Orthopaedics) · Supervising Surgeon</p></div>
+        <div class=&quot;stat&quot;><b>5</b>patients</div>
+      </div>
+    </header>
+    <main class=&quot;screen&quot;>
+      <!-- Patients -->
+      <section class=&quot;panel active&quot; data-panel=&quot;d-patients&quot;>
+        <p class=&quot;eyebrow&quot;>Patients under supervision</p>
+        <div class=&quot;card&quot; style=&quot;padding:6px 16px&quot;>
+          <button class=&quot;prow&quot; data-goto=&quot;d-detail&quot;><div class=&quot;pi&quot; style=&quot;background:#1466C7&quot;>KR</div><div class=&quot;pd&quot;><b>Kamala Rao · 68</b><span>Right THR · Day 9</span></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Stable</span></button>
+          <button class=&quot;prow&quot; data-goto=&quot;d-detail&quot;><div class=&quot;pi&quot; style=&quot;background:#C0392B&quot;>VR</div><div class=&quot;pd&quot;><b>Venkat Reddy · 74</b><span>Femur fracture · Day 4</span></div><span class=&quot;pill crit&quot;><span class=&quot;dot&quot;></span>Attention</span></button>
+          <button class=&quot;prow&quot; data-goto=&quot;d-detail&quot;><div class=&quot;pi&quot; style=&quot;background:#2E7DE1&quot;>FB</div><div class=&quot;pd&quot;><b>Fatima Begum · 66</b><span>TKR (knee) · Day 15</span></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Stable</span></button>
+          <button class=&quot;prow&quot; data-goto=&quot;d-approvals&quot;><div class=&quot;pi&quot; style=&quot;background:#8A5A2B&quot;>AR</div><div class=&quot;pd&quot;><b>Arjun Rao · 52</b><span>Spinal fusion · Day 2</span></div><span class=&quot;pill warn&quot;><span class=&quot;dot&quot;></span>Plan pending</span></button>
+          <button class=&quot;prow&quot; data-goto=&quot;d-detail&quot;><div class=&quot;pi&quot; style=&quot;background:#5A6E4A&quot;>LD</div><div class=&quot;pd&quot;><b>Lakshmi Devi · 71</b><span>Osteoporosis · conservative</span></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Stable</span></button>
+        </div>
+      </section>
+
+      <!-- Patient detail -->
+      <section class=&quot;panel&quot; data-panel=&quot;d-detail&quot;>
+        <p class=&quot;eyebrow&quot;>Kamala Rao · Right THR · Day 9</p>
+        <div class=&quot;card&quot;>
+          <h3 style=&quot;margin-bottom:6px&quot;>Clinical summary</h3>
+          <p class=&quot;sub&quot;>Total hip replacement (right), 30 Jul. Uncemented prosthesis. No post-op complications. Weight-bearing as tolerated with walker. On calcium/Vit-D + analgesia.</p>
+        </div>
+        <div class=&quot;card&quot;>
+          <div class=&quot;between&quot;><h3>Vitals trend · systolic BP</h3><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Normal</span></div>
+          <div class=&quot;spark&quot;>
+            <svg viewBox=&quot;0 0 120 40&quot; preserveAspectRatio=&quot;none&quot; height=&quot;40&quot;><polyline fill=&quot;none&quot; stroke=&quot;var(--accent)&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; points=&quot;2,26 22,22 42,28 62,20 82,24 102,18 118,19&quot;/></svg>
+            <div class=&quot;val&quot;><b>118</b><span>mmHg today</span></div>
+          </div>
+        </div>
+        <div class=&quot;card&quot;>
+          <h3 style=&quot;margin-bottom:6px&quot;>Active care plan</h3>
+          <div class=&quot;tasks&quot;>
+            <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Caretaking</b><span>24-hr · repositioning 2-hourly · wound care</span></div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Physiotherapy</b><span>Walker gait + quad sets, 3× daily</span></div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Nutrition</b><span>High-protein, calcium-rich</span></div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Escort</b><span>4 hospital visits / month</span></div></div>
+          </div>
+        </div>
+        <div class=&quot;btnrow&quot;>
+          <button class=&quot;btn ghost&quot; data-goto=&quot;d-patients&quot;>‹ All patients</button>
+          <button class=&quot;btn accent&quot; data-once=&quot;✓  Care plan updated &amp; versioned&quot;>Adjust plan</button>
+        </div>
+      </section>
+
+      <!-- Approvals -->
+      <section class=&quot;panel&quot; data-panel=&quot;d-approvals&quot;>
+        <p class=&quot;eyebrow&quot;>Care plans awaiting approval</p>
+        <div class=&quot;microcopy&quot; style=&quot;margin:0 4px 12px&quot;><svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;var(--warn)&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M12 9v4M12 17h.01&quot;/><path d=&quot;M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z&quot;/></svg><span>Care cannot begin until a supervising physician approves the plan.</span></div>
+        <div class=&quot;card&quot; id=&quot;d-approvalCard&quot;>
+          <div class=&quot;between&quot; style=&quot;margin-bottom:8px&quot;><div><h3>Arjun Rao · 52</h3><p class=&quot;sub&quot;>Spinal fusion (L4–L5) · post-op Day 2</p></div><span class=&quot;pill warn&quot; id=&quot;d-apStatus&quot;><span class=&quot;dot&quot;></span>Pending</span></div>
+          <div class=&quot;tasks&quot;>
+            <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Caretaking</b><span>24-hr · log-roll transfers · brace care</span></div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Physiotherapy</b><span>Isometric core, no flexion — from Day 5</span></div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Escort</b><span>2 visits / month</span></div></div>
+          </div>
+          <div class=&quot;btnrow&quot; id=&quot;d-apActions&quot;>
+            <button class=&quot;btn ghost&quot; data-once=&quot;Change request sent to coordinator&quot;>Request changes</button>
+            <button class=&quot;btn accent&quot; id=&quot;d-approveBtn&quot;>Approve plan</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Schedule -->
+      <section class=&quot;panel&quot; data-panel=&quot;d-schedule&quot;>
+        <p class=&quot;eyebrow&quot;>Upcoming reviews</p>
+        <div class=&quot;card&quot;>
+          <div class=&quot;tasks&quot;>
+            <div class=&quot;task&quot;><div class=&quot;ck due&quot; style=&quot;background:var(--primary-soft);border-color:var(--primary);color:var(--primary-ink)&quot;>25</div><div class=&quot;tx&quot;><b>Home review · Kamala Rao</b><span>Mon 25 Aug · 11:00 AM · monthly plan review</span></div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck due&quot; style=&quot;background:var(--primary-soft);border-color:var(--primary);color:var(--primary-ink)&quot;>27</div><div class=&quot;tx&quot;><b>Teleconsult · Fatima Begum</b><span>Wed 27 Aug · 4:00 PM · progress check</span></div></div>
+            <div class=&quot;task&quot;><div class=&quot;ck due&quot; style=&quot;background:var(--primary-soft);border-color:var(--primary);color:var(--primary-ink)&quot;>29</div><div class=&quot;tx&quot;><b>Home review · Venkat Reddy</b><span>Fri 29 Aug · 10:00 AM · BP follow-up</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Alerts -->
+      <section class=&quot;panel&quot; data-panel=&quot;d-alerts&quot;>
+        <p class=&quot;eyebrow&quot;>Clinical alerts</p>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3 style=&quot;font-size:14px&quot;>Venkat Reddy — BP 150/95</h3><p class=&quot;sub&quot;>Flagged by caretaker · 2 hours ago</p></div><span class=&quot;pill crit&quot;><span class=&quot;dot&quot;></span>Review</span></div></div>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3 style=&quot;font-size:14px&quot;>Kamala Rao — reposition logged late</h3><p class=&quot;sub&quot;>One 04:00 turn logged 22 min late, yesterday</p></div><span class=&quot;pill warn&quot;><span class=&quot;dot&quot;></span>Note</span></div></div>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3 style=&quot;font-size:14px&quot;>Arjun Rao — plan awaiting approval</h3><p class=&quot;sub&quot;>Submitted by coordinator · Day 2 post-op</p></div><button class=&quot;pill info&quot; data-goto=&quot;d-approvals&quot; style=&quot;border:none;cursor:pointer&quot;>Open ›</button></div></div>
+      </section>
+    </main>
+    <nav class=&quot;tabbar&quot;>
+      <button class=&quot;tab active&quot; data-goto=&quot;d-patients&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2&quot;/><circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/><path d=&quot;M23 21v-2a4 4 0 00-3-3.87&quot;/></svg>Patients</button>
+      <button class=&quot;tab&quot; data-goto=&quot;d-approvals&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M9 11l3 3L22 4&quot;/><path d=&quot;M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11&quot;/></svg>Approvals</button>
+      <button class=&quot;tab&quot; data-goto=&quot;d-schedule&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;3&quot; y=&quot;4&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot;/><path d=&quot;M16 2v4M8 2v4M3 10h18&quot;/></svg>Schedule</button>
+      <button class=&quot;tab&quot; data-goto=&quot;d-alerts&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9&quot;/><path d=&quot;M13.73 21a2 2 0 01-3.46 0&quot;/></svg>Alerts</button>
+    </nav>
+  </div>
+
+  <!-- ==================== ESCORT APP ==================== -->
+  <div class=&quot;view app app-escort&quot; id=&quot;escortApp&quot;>
+    <header class=&quot;appbar&quot;>
+      <div class=&quot;row1&quot;>
+        <button class=&quot;homebtn&quot; data-home>⌂ Roles</button>
+        <div class=&quot;controls&quot;><span class=&quot;rolechip&quot;>Escort view</span><button class=&quot;theme-toggle&quot; data-theme-btn>◐</button></div>
+      </div>
+      <div class=&quot;idrow&quot;>
+        <div class=&quot;avatar&quot;>RK</div>
+        <div class=&quot;who&quot;><h1>Ramesh K.</h1><p>Patient Escort Associate · Hyderabad</p></div>
+        <div class=&quot;stat&quot;><b>2</b>trips today</div>
+      </div>
+      <div class=&quot;conn&quot; id=&quot;e-conn&quot;>
+        <span class=&quot;st&quot;><span class=&quot;d&quot;></span><span id=&quot;e-connText&quot;>Online · syncing live</span></span>
+        <button id=&quot;e-connBtn&quot;>Go offline</button>
+      </div>
+    </header>
+    <main class=&quot;screen&quot;>
+      <!-- Schedule -->
+      <section class=&quot;panel active&quot; data-panel=&quot;e-schedule&quot;>
+        <p class=&quot;eyebrow&quot;>Today · Fri, 8 Aug</p>
+        <button class=&quot;card&quot; style=&quot;width:100%;text-align:left;border:none;cursor:pointer&quot; data-goto=&quot;e-active&quot;>
+          <div class=&quot;between&quot;><div><h3>Kamala Rao</h3><p class=&quot;sub&quot;>10:30 AM · Apollo Ortho OPD · follow-up</p></div><span class=&quot;pill warn&quot;><span class=&quot;dot&quot;></span>Next</span></div>
+          <div style=&quot;display:flex;gap:8px;margin-top:10px;flex-wrap:wrap&quot;><span class=&quot;pill neutral&quot;>Home → Hospital → Home</span><span class=&quot;pill info&quot;>Pickup 9:45</span></div>
+        </button>
+        <div class=&quot;card&quot;>
+          <div class=&quot;between&quot;><div><h3>Fatima Begum</h3><p class=&quot;sub&quot;>3:00 PM · Yashoda Diagnostics · X-ray</p></div><span class=&quot;pill neutral&quot;><span class=&quot;dot&quot;></span>Later</span></div>
+          <div style=&quot;display:flex;gap:8px;margin-top:10px;flex-wrap:wrap&quot;><span class=&quot;pill neutral&quot;>Home → Centre → Home</span><span class=&quot;pill neutral&quot;>Pickup 2:20</span></div>
+        </div>
+        <button class=&quot;btn call&quot; data-open=&quot;emSheet&quot;>Report an emergency</button>
+      </section>
+
+      <!-- Active trip -->
+      <section class=&quot;panel&quot; data-panel=&quot;e-active&quot;>
+        <p class=&quot;eyebrow&quot;>Active trip · Kamala Rao</p>
+        <div class=&quot;gps&quot;>
+          <div class=&quot;map&quot;><div class=&quot;route&quot;></div><div class=&quot;pin a&quot;></div><div class=&quot;pin b&quot;></div><div class=&quot;car&quot;>🚑</div></div>
+          <div class=&quot;lbl&quot;><b>En route to Apollo Ortho, Hyderabad</b><span>ETA 10:15</span></div>
+        </div>
+        <div class=&quot;btnrow&quot; style=&quot;margin-top:10px&quot;>
+          <button class=&quot;btn ghost&quot; data-log=&quot;✓  Checked in: arrived at home&quot;>Arrived at home</button>
+          <button class=&quot;btn ghost&quot; data-log=&quot;✓  Checked in: arrived at hospital&quot;>At hospital</button>
+        </div>
+
+        <p class=&quot;section-title&quot;>Journey checklist <span class=&quot;pill neutral&quot; id=&quot;e-progress&quot; style=&quot;font-family:var(--sans)&quot;>0 / 6</span></p>
+        <div class=&quot;card&quot;>
+          <div class=&quot;chk&quot; id=&quot;e-chk&quot;>
+            <div class=&quot;cstep&quot;><span class=&quot;b&quot;>✓</span><span>Help patient get dressed &amp; ready at home</span></div>
+            <div class=&quot;cstep&quot;><span class=&quot;b&quot;>✓</span><span>Safe transfer to adapted vehicle</span></div>
+            <div class=&quot;cstep&quot;><span class=&quot;b&quot;>✓</span><span>Accompany through registration &amp; triage</span></div>
+            <div class=&quot;cstep&quot;><span class=&quot;b&quot;>✓</span><span>Take consultation notes for the family</span></div>
+            <div class=&quot;cstep&quot;><span class=&quot;b&quot;>✓</span><span>Assist with X-ray &amp; pharmacy</span></div>
+            <div class=&quot;cstep&quot;><span class=&quot;b&quot;>✓</span><span>Return home &amp; hand over doctor's instructions</span></div>
+          </div>
+        </div>
+
+        <p class=&quot;section-title&quot;>Consultation notes for family</p>
+        <textarea class=&quot;notes&quot; id=&quot;e-notes&quot; placeholder=&quot;e.g. Dr. Iyer advised continuing walker use; next X-ray in 3 weeks; add calcium supplement…&quot;></textarea>
+        <button class=&quot;btn accent&quot; data-log=&quot;✓  Notes saved &amp; shared with family&quot;>Save &amp; share notes</button>
+        <button class=&quot;btn&quot; id=&quot;e-complete&quot; data-log=&quot;✓  Escort completed · synced to care record&quot;>Complete escort</button>
+      </section>
+
+      <!-- History -->
+      <section class=&quot;panel&quot; data-panel=&quot;e-history&quot;>
+        <p class=&quot;eyebrow&quot;>Past escorts</p>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3 style=&quot;font-size:14px&quot;>Kamala Rao · Suture review</h3><p class=&quot;sub&quot;>2 Aug · Apollo Ortho OPD</p></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Completed</span></div><button class=&quot;btn ghost&quot; data-once=&quot;📄  Visit record opened&quot; style=&quot;margin-top:10px&quot;>📄  Visit record</button></div>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3 style=&quot;font-size:14px&quot;>Venkat Reddy · MRI scan</h3><p class=&quot;sub&quot;>28 Jul · Yashoda Diagnostics</p></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Completed</span></div></div>
+      </section>
+    </main>
+    <nav class=&quot;tabbar&quot;>
+      <button class=&quot;tab active&quot; data-goto=&quot;e-schedule&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;3&quot; y=&quot;4&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot;/><path d=&quot;M16 2v4M8 2v4M3 10h18&quot;/></svg>Today</button>
+      <button class=&quot;tab&quot; data-goto=&quot;e-active&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M5 17H3V6a1 1 0 011-1h11v12h-3&quot;/><path d=&quot;M15 8h4l3 4v5h-2&quot;/><circle cx=&quot;7.5&quot; cy=&quot;17.5&quot; r=&quot;2&quot;/><circle cx=&quot;16.5&quot; cy=&quot;17.5&quot; r=&quot;2&quot;/></svg>Active trip</button>
+      <button class=&quot;tab&quot; data-goto=&quot;e-history&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M3 3v5h5&quot;/><path d=&quot;M3.05 13A9 9 0 106 5.3L3 8&quot;/><path d=&quot;M12 7v5l4 2&quot;/></svg>History</button>
+    </nav>
+  </div>
+
+  <!-- ==================== CARE COORDINATOR ==================== -->
+  <div class=&quot;view app app-coord&quot; id=&quot;coordApp&quot;>
+    <header class=&quot;appbar&quot;>
+      <div class=&quot;row1&quot;><button class=&quot;homebtn&quot; data-home>⌂ Roles</button><div class=&quot;controls&quot;><span class=&quot;rolechip&quot;>Coordinator view</span><button class=&quot;theme-toggle&quot; data-theme-btn>◐</button></div></div>
+      <div class=&quot;idrow&quot;><div class=&quot;avatar&quot;>LG</div><div class=&quot;who&quot;><h1>Lata G.</h1><p>Care Coordinator · Hyderabad</p></div><div class=&quot;stat&quot;><b>5</b>patients</div></div>
+    </header>
+    <main class=&quot;screen&quot;>
+      <section class=&quot;panel active&quot; data-panel=&quot;c-intake&quot;>
+        <p class=&quot;eyebrow&quot;>New enquiries</p>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3>S. Reddy · 70</h3><p class=&quot;sub&quot;>Hip fracture · website enquiry · 2h ago</p></div><span class=&quot;pill warn&quot;><span class=&quot;dot&quot;></span>New</span></div><button class=&quot;btn accent&quot; data-once=&quot;✓  Free home assessment booked · Sat 10 AM&quot; style=&quot;margin-top:12px&quot;>Schedule free home assessment</button></div>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3>M. Fatima · 63</h3><p class=&quot;sub&quot;>Post-TKR · helpline · assessment booked</p></div><span class=&quot;pill info&quot;><span class=&quot;dot&quot;></span>Assessment Fri</span></div></div>
+        <p class=&quot;section-title&quot;>Ready to onboard</p>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3>Arjun Rao · 52</h3><p class=&quot;sub&quot;>Spinal fusion · plan approved by Dr. Iyer</p></div><button class=&quot;pill good&quot; data-once=&quot;✓  Team matched &amp;amp; briefed&quot; style=&quot;border:none;cursor:pointer&quot;>Assign team ›</button></div></div>
+      </section>
+      <section class=&quot;panel&quot; data-panel=&quot;c-roster&quot;>
+        <p class=&quot;eyebrow&quot;>Today's assignments</p>
+        <div class=&quot;card&quot;>
+          <div class=&quot;member&quot;><div class=&quot;ph&quot; style=&quot;background:var(--accent)&quot;>SM</div><div class=&quot;info&quot;><div class=&quot;nm&quot;>Sunita M. <span class=&quot;pill good&quot; style=&quot;font-size:9px&quot;><span class=&quot;dot&quot;></span>On shift</span></div><div class=&quot;rl&quot;>Caretaker → Kamala Rao</div><div class=&quot;cr&quot;>24-hr · until 8 PM</div></div></div>
+          <div class=&quot;member&quot;><div class=&quot;ph&quot; style=&quot;background:#4C7BB0&quot;>RK</div><div class=&quot;info&quot;><div class=&quot;nm&quot;>Ramesh K.</div><div class=&quot;rl&quot;>Escort → Kamala Rao</div><div class=&quot;cr&quot;>Apollo OPD · Sat 10:30</div></div></div>
+          <div class=&quot;member&quot;><div class=&quot;ph&quot; style=&quot;background:#2AA775&quot;>PV</div><div class=&quot;info&quot;><div class=&quot;nm&quot;>Priya Venkat</div><div class=&quot;rl&quot;>Physiotherapist → 3 patients</div><div class=&quot;cr&quot;>Home sessions today</div></div></div>
+        </div>
+        <div class=&quot;microcopy&quot;><svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;var(--primary)&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z&quot;/></svg><span>No caretaker is reassigned without recorded family consent.</span></div>
+      </section>
+      <section class=&quot;panel&quot; data-panel=&quot;c-alerts&quot;>
+        <p class=&quot;eyebrow&quot;>Operational alerts</p>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3 style=&quot;font-size:14px&quot;>Escalation unacknowledged</h3><p class=&quot;sub&quot;>V. Reddy · raised 6 min ago · SLA 30 min</p></div><span class=&quot;pill crit&quot;><span class=&quot;dot&quot;></span>Act now</span></div></div>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3 style=&quot;font-size:14px&quot;>Credential expiring</h3><p class=&quot;sub&quot;>Escort R. Kumar · BLS cert · 12 days</p></div><span class=&quot;pill warn&quot;><span class=&quot;dot&quot;></span>Renew</span></div></div>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3 style=&quot;font-size:14px&quot;>Repositioning logged late</h3><p class=&quot;sub&quot;>Kamala Rao · 04:00 turn · +22 min</p></div><span class=&quot;pill neutral&quot;><span class=&quot;dot&quot;></span>Note</span></div></div>
+      </section>
+      <section class=&quot;panel&quot; data-panel=&quot;c-quality&quot;>
+        <p class=&quot;eyebrow&quot;>Quality &amp;amp; feedback</p>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3>Family satisfaction</h3><p class=&quot;sub&quot;>Avg after-visit rating, this month</p></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>4.8 / 5</span></div></div>
+        <p class=&quot;section-title&quot;>Supervisor spot-visits</p>
+        <div class=&quot;card&quot;><div class=&quot;tasks&quot;>
+          <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Kamala Rao — home visit</b><span>Care quality: excellent</span></div><div class=&quot;time&quot;>Mon</div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b>Fatima Begum — home visit</b><span>Scheduled</span></div><div class=&quot;time&quot;>Thu</div></div>
+        </div></div>
+      </section>
+    </main>
+    <nav class=&quot;tabbar&quot;>
+      <button class=&quot;tab active&quot; data-goto=&quot;c-intake&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z&quot;/><path d=&quot;M14 2v6h6M12 18v-6M9 15h6&quot;/></svg>Intake</button>
+      <button class=&quot;tab&quot; data-goto=&quot;c-roster&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2&quot;/><circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/><path d=&quot;M23 21v-2a4 4 0 00-3-3.87&quot;/></svg>Roster</button>
+      <button class=&quot;tab&quot; data-goto=&quot;c-alerts&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9&quot;/><path d=&quot;M13.73 21a2 2 0 01-3.46 0&quot;/></svg>Alerts</button>
+      <button class=&quot;tab&quot; data-goto=&quot;c-quality&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z&quot;/></svg>Quality</button>
+    </nav>
+  </div>
+
+  <!-- ==================== PHYSIOTHERAPIST ==================== -->
+  <div class=&quot;view app app-physio&quot; id=&quot;physioApp&quot;>
+    <header class=&quot;appbar&quot;>
+      <div class=&quot;row1&quot;><button class=&quot;homebtn&quot; data-home>⌂ Roles</button><div class=&quot;controls&quot;><span class=&quot;rolechip&quot;>Physio view</span><button class=&quot;theme-toggle&quot; data-theme-btn>◐</button></div></div>
+      <div class=&quot;idrow&quot;><div class=&quot;avatar&quot;>PV</div><div class=&quot;who&quot;><h1>Priya Venkat</h1><p>Registered Physiotherapist · MPT</p></div><div class=&quot;stat&quot;><b>6</b>patients</div></div>
+    </header>
+    <main class=&quot;screen&quot;>
+      <section class=&quot;panel active&quot; data-panel=&quot;p-today&quot;>
+        <p class=&quot;eyebrow&quot;>Today's session · Kamala Rao</p>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3>Walker gait &amp;amp; strengthening</h3><p class=&quot;sub&quot;>9:30 AM · home · Day 9 post-THR</p></div><span class=&quot;pill info&quot;><span class=&quot;dot&quot;></span>Now</span></div></div>
+        <p class=&quot;section-title&quot;>Exercise checklist</p>
+        <div class=&quot;card&quot;><div class=&quot;chk&quot;>
+          <div class=&quot;cstep&quot; data-toggle><span class=&quot;b&quot;>✓</span><span>Ankle pumps ×20</span></div>
+          <div class=&quot;cstep&quot; data-toggle><span class=&quot;b&quot;>✓</span><span>Quad sets — 3 sets ×10</span></div>
+          <div class=&quot;cstep&quot; data-toggle><span class=&quot;b&quot;>✓</span><span>Walker-assisted walk — 10 steps ×2</span></div>
+          <div class=&quot;cstep&quot; data-toggle><span class=&quot;b&quot;>✓</span><span>Seated knee extensions — 2 ×10</span></div>
+        </div></div>
+        <button class=&quot;btn accent&quot; data-log=&quot;✓  Session logged &amp;amp; shared with Dr. Iyer&quot;>Log session</button>
+      </section>
+      <section class=&quot;panel&quot; data-panel=&quot;p-patients&quot;>
+        <p class=&quot;eyebrow&quot;>My patients</p>
+        <div class=&quot;card&quot; style=&quot;padding:6px 16px&quot;>
+          <button class=&quot;prow&quot; data-goto=&quot;p-plan&quot;><div class=&quot;pi&quot; style=&quot;background:var(--accent)&quot;>KR</div><div class=&quot;pd&quot;><b>Kamala Rao · Day 9</b><span>THR · walker phase</span></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>On track</span></button>
+          <button class=&quot;prow&quot; data-goto=&quot;p-plan&quot;><div class=&quot;pi&quot; style=&quot;background:#4C7BB0&quot;>FB</div><div class=&quot;pd&quot;><b>Fatima Begum · Day 15</b><span>TKR · stairs phase</span></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Ahead</span></button>
+          <button class=&quot;prow&quot; data-goto=&quot;p-plan&quot;><div class=&quot;pi&quot; style=&quot;background:#C0392B&quot;>VR</div><div class=&quot;pd&quot;><b>Venkat Reddy · Day 4</b><span>Femur · bed mobility</span></div><span class=&quot;pill warn&quot;><span class=&quot;dot&quot;></span>Slow</span></button>
+        </div>
+      </section>
+      <section class=&quot;panel&quot; data-panel=&quot;p-plan&quot;>
+        <p class=&quot;eyebrow&quot;>Exercise plan · Kamala Rao</p>
+        <div class=&quot;card&quot;><div class=&quot;tasks&quot;>
+          <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Week 2 — mobilise</b><span>Walker gait, quad sets, ankle pumps · 3× daily</span></div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b>Week 3 — progress</b><span>Add mini-squats &amp;amp; step-ups, reduce walker reliance</span></div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b>Week 4 — stairs</b><span>Assisted stair practice, balance work</span></div></div>
+        </div></div>
+        <button class=&quot;btn accent&quot; data-once=&quot;✓  Plan updated — coordinator notified&quot;>Update plan</button>
+        <button class=&quot;btn ghost&quot; data-goto=&quot;p-patients&quot;>‹ All patients</button>
+      </section>
+    </main>
+    <nav class=&quot;tabbar&quot;>
+      <button class=&quot;tab active&quot; data-goto=&quot;p-today&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M20 6L9 17l-5-5&quot;/></svg>Today</button>
+      <button class=&quot;tab&quot; data-goto=&quot;p-patients&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2&quot;/><circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/><path d=&quot;M23 21v-2a4 4 0 00-3-3.87&quot;/></svg>Patients</button>
+      <button class=&quot;tab&quot; data-goto=&quot;p-plan&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M9 11l3 3L22 4&quot;/><path d=&quot;M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11&quot;/></svg>Plan</button>
+    </nav>
+  </div>
+
+  <!-- ==================== HOME NURSE ==================== -->
+  <div class=&quot;view app app-nurse&quot; id=&quot;nurseApp&quot;>
+    <header class=&quot;appbar&quot;>
+      <div class=&quot;row1&quot;><button class=&quot;homebtn&quot; data-home>⌂ Roles</button><div class=&quot;controls&quot;><span class=&quot;rolechip&quot;>Nurse view</span><button class=&quot;theme-toggle&quot; data-theme-btn>◐</button></div></div>
+      <div class=&quot;idrow&quot;><div class=&quot;avatar&quot;>AN</div><div class=&quot;who&quot;><h1>Anjali N.</h1><p>Registered Nurse · BSc Nursing</p></div><div class=&quot;stat&quot;><b>3</b>visits</div></div>
+    </header>
+    <main class=&quot;screen&quot;>
+      <section class=&quot;panel active&quot; data-panel=&quot;n-visits&quot;>
+        <p class=&quot;eyebrow&quot;>Today's visits</p>
+        <button class=&quot;card&quot; style=&quot;width:100%;text-align:left;border:none;cursor:pointer&quot; data-goto=&quot;n-tasks&quot;><div class=&quot;between&quot;><div><h3>Kamala Rao</h3><p class=&quot;sub&quot;>11:00 AM · wound care + medication</p></div><span class=&quot;pill warn&quot;><span class=&quot;dot&quot;></span>Next</span></div></button>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3>Venkat Reddy</h3><p class=&quot;sub&quot;>2:00 PM · IV antibiotics</p></div><span class=&quot;pill neutral&quot;><span class=&quot;dot&quot;></span>Later</span></div></div>
+      </section>
+      <section class=&quot;panel&quot; data-panel=&quot;n-tasks&quot;>
+        <p class=&quot;eyebrow&quot;>Clinical tasks · Kamala Rao</p>
+        <div class=&quot;card&quot;><div class=&quot;chk&quot;>
+          <div class=&quot;cstep&quot; data-toggle><span class=&quot;b&quot;>✓</span><span>Administer morning medication</span></div>
+          <div class=&quot;cstep&quot; data-toggle><span class=&quot;b&quot;>✓</span><span>Surgical wound dressing change</span></div>
+          <div class=&quot;cstep&quot; data-toggle><span class=&quot;b&quot;>✓</span><span>Inspect site for infection signs</span></div>
+          <div class=&quot;cstep&quot; data-toggle><span class=&quot;b&quot;>✓</span><span>Catheter care &amp;amp; output check</span></div>
+        </div></div>
+        <button class=&quot;btn accent&quot; data-log=&quot;✓  Clinical notes saved to care record&quot;>Save clinical notes</button>
+      </section>
+      <section class=&quot;panel&quot; data-panel=&quot;n-vitals&quot;>
+        <p class=&quot;eyebrow&quot;>Record vitals · Kamala Rao</p>
+        <div class=&quot;card&quot;><div class=&quot;vitals&quot;>
+          <div class=&quot;vital&quot;><div class=&quot;v&quot;>118/76</div><div class=&quot;u&quot;>mmHg</div><div class=&quot;l&quot;>BP</div></div>
+          <div class=&quot;vital&quot;><div class=&quot;v&quot;>72</div><div class=&quot;u&quot;>bpm</div><div class=&quot;l&quot;>Pulse</div></div>
+          <div class=&quot;vital&quot;><div class=&quot;v&quot;>98</div><div class=&quot;u&quot;>%</div><div class=&quot;l&quot;>SpO₂</div></div>
+          <div class=&quot;vital&quot;><div class=&quot;v&quot;>98.4</div><div class=&quot;u&quot;>°F</div><div class=&quot;l&quot;>Temp</div></div>
+        </div></div>
+        <button class=&quot;btn accent&quot; data-log=&quot;✓  Vitals recorded &amp;amp; shared with the doctor&quot;>Record vitals</button>
+      </section>
+    </main>
+    <nav class=&quot;tabbar&quot;>
+      <button class=&quot;tab active&quot; data-goto=&quot;n-visits&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;3&quot; y=&quot;4&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot;/><path d=&quot;M16 2v4M8 2v4M3 10h18&quot;/></svg>Visits</button>
+      <button class=&quot;tab&quot; data-goto=&quot;n-tasks&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M9 11l3 3L22 4&quot;/><path d=&quot;M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11&quot;/></svg>Tasks</button>
+      <button class=&quot;tab&quot; data-goto=&quot;n-vitals&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M22 12h-4l-3 9L9 3l-3 9H2&quot;/></svg>Vitals</button>
+    </nav>
+  </div>
+
+  <!-- ==================== NUTRITIONIST ==================== -->
+  <div class=&quot;view app app-nutri&quot; id=&quot;nutriApp&quot;>
+    <header class=&quot;appbar&quot;>
+      <div class=&quot;row1&quot;><button class=&quot;homebtn&quot; data-home>⌂ Roles</button><div class=&quot;controls&quot;><span class=&quot;rolechip&quot;>Nutritionist view</span><button class=&quot;theme-toggle&quot; data-theme-btn>◐</button></div></div>
+      <div class=&quot;idrow&quot;><div class=&quot;avatar&quot;>MK</div><div class=&quot;who&quot;><h1>Meena K.</h1><p>Diet Consultant · bone-health</p></div><div class=&quot;stat&quot;><b>4</b>plans</div></div>
+    </header>
+    <main class=&quot;screen&quot;>
+      <section class=&quot;panel active&quot; data-panel=&quot;d2-patients&quot;>
+        <p class=&quot;eyebrow&quot;>Diet plans</p>
+        <div class=&quot;card&quot; style=&quot;padding:6px 16px&quot;>
+          <button class=&quot;prow&quot; data-goto=&quot;d2-plan&quot;><div class=&quot;pi&quot; style=&quot;background:var(--accent)&quot;>KR</div><div class=&quot;pd&quot;><b>Kamala Rao</b><span>Post-THR · bone healing</span></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Active</span></button>
+          <button class=&quot;prow&quot; data-goto=&quot;d2-plan&quot;><div class=&quot;pi&quot; style=&quot;background:#4C7BB0&quot;>LD</div><div class=&quot;pd&quot;><b>Lakshmi Devi</b><span>Osteoporosis</span></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Active</span></button>
+        </div>
+      </section>
+      <section class=&quot;panel&quot; data-panel=&quot;d2-plan&quot;>
+        <p class=&quot;eyebrow&quot;>Bone-health plan · Kamala Rao</p>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><h3>Daily targets</h3><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>On plan</span></div>
+          <div class=&quot;vitals&quot; style=&quot;margin-top:10px&quot;>
+            <div class=&quot;vital&quot;><div class=&quot;v&quot;>1200</div><div class=&quot;u&quot;>mg</div><div class=&quot;l&quot;>Calcium</div></div>
+            <div class=&quot;vital&quot;><div class=&quot;v&quot;>800</div><div class=&quot;u&quot;>IU</div><div class=&quot;l&quot;>Vit D</div></div>
+            <div class=&quot;vital&quot;><div class=&quot;v&quot;>70</div><div class=&quot;u&quot;>g</div><div class=&quot;l&quot;>Protein</div></div>
+            <div class=&quot;vital&quot;><div class=&quot;v&quot;>2.0</div><div class=&quot;u&quot;>L</div><div class=&quot;l&quot;>Fluids</div></div>
+          </div>
+        </div>
+        <div class=&quot;card&quot;><div class=&quot;tasks&quot;>
+          <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Breakfast</b><span>Ragi porridge, milk, egg, banana</span></div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Lunch</b><span>Rice, dal, leafy greens, curd, fish</span></div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b>Snack</b><span>Almonds, sesame ladoo, fruit</span></div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b>Dinner</b><span>Millet roti, paneer, vegetables</span></div></div>
+        </div></div>
+        <button class=&quot;btn accent&quot; data-once=&quot;✓  Diet plan updated &amp;amp; shared with family&quot;>Update plan</button>
+        <button class=&quot;btn ghost&quot; data-goto=&quot;d2-patients&quot;>‹ All plans</button>
+      </section>
+    </main>
+    <nav class=&quot;tabbar&quot;>
+      <button class=&quot;tab active&quot; data-goto=&quot;d2-patients&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2&quot;/><circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/><path d=&quot;M23 21v-2a4 4 0 00-3-3.87&quot;/></svg>Patients</button>
+      <button class=&quot;tab&quot; data-goto=&quot;d2-plan&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M3 2v7c0 1.1.9 2 2 2h0a2 2 0 002-2V2M5 2v20M17 2a3 3 0 00-3 3v7h6V5a3 3 0 00-3-3zM17 12v10&quot;/></svg>Diet Plan</button>
+    </nav>
+  </div>
+
+  <!-- ==================== OPERATIONS / ADMIN ==================== -->
+  <div class=&quot;view app app-admin&quot; id=&quot;adminApp&quot;>
+    <header class=&quot;appbar&quot;>
+      <div class=&quot;row1&quot;><button class=&quot;homebtn&quot; data-home>⌂ Roles</button><div class=&quot;controls&quot;><span class=&quot;rolechip&quot;>Admin view</span><button class=&quot;theme-toggle&quot; data-theme-btn>◐</button></div></div>
+      <div class=&quot;idrow&quot;><div class=&quot;avatar&quot;>OP</div><div class=&quot;who&quot;><h1>Operations</h1><p>Asthimitra HomeCare · Hyderabad</p></div><div class=&quot;stat&quot;><b>5</b>patients</div></div>
+    </header>
+    <main class=&quot;screen&quot;>
+      <section class=&quot;panel active&quot; data-panel=&quot;a-dash&quot;>
+        <p class=&quot;eyebrow&quot;>This month · KPIs</p>
+        <div class=&quot;card&quot;><div class=&quot;vitals&quot;>
+          <div class=&quot;vital&quot;><div class=&quot;v&quot;>0</div><div class=&quot;u&quot;>this month</div><div class=&quot;l&quot;>Missed visits</div></div>
+          <div class=&quot;vital&quot;><div class=&quot;v&quot;>96</div><div class=&quot;u&quot;>%</div><div class=&quot;l&quot;>&amp;lt;30m emergency</div></div>
+          <div class=&quot;vital&quot;><div class=&quot;v&quot;>100</div><div class=&quot;u&quot;>%</div><div class=&quot;l&quot;>Reposition log</div></div>
+          <div class=&quot;vital&quot;><div class=&quot;v&quot;>4.8</div><div class=&quot;u&quot;>/5</div><div class=&quot;l&quot;>Family CSAT</div></div>
+        </div></div>
+        <div class=&quot;card&quot;><div class=&quot;between&quot;><div><h3>Monthly revenue</h3><p class=&quot;sub&quot;>Across 5 active patients</p></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>+8%</span></div>
+          <div style=&quot;margin-top:6px&quot;>
+            <div class=&quot;line&quot;><span>Recognised revenue</span><span class=&quot;amt&quot;>₹3.42L</span></div>
+            <div class=&quot;line&quot;><span>Outstanding (invoiced)</span><span class=&quot;amt&quot;>₹68,393</span></div>
+            <div class=&quot;line total&quot;><span>Collected</span><span class=&quot;amt&quot;>₹2.74L</span></div>
+          </div>
+        </div>
+      </section>
+      <section class=&quot;panel&quot; data-panel=&quot;a-staff&quot;>
+        <p class=&quot;eyebrow&quot;>Staff compliance</p>
+        <div class=&quot;microcopy&quot; style=&quot;margin:0 4px 12px&quot;><svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;var(--accent)&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z&quot;/><path d=&quot;M9 12l2 2 4-4&quot;/></svg><span>Staff with missing/expired credentials cannot be assigned.</span></div>
+        <div class=&quot;card&quot; style=&quot;padding:6px 16px&quot;>
+          <div class=&quot;prow&quot; style=&quot;cursor:default&quot;><div class=&quot;pi&quot; style=&quot;background:var(--accent)&quot;>SM</div><div class=&quot;pd&quot;><b>Sunita M. · Caretaker</b><span>120-hr · BLS · police-verified</span></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Valid</span></div>
+          <div class=&quot;prow&quot; style=&quot;cursor:default&quot;><div class=&quot;pi&quot; style=&quot;background:#4C7BB0&quot;>RK</div><div class=&quot;pd&quot;><b>Ramesh K. · Escort</b><span>BLS renewal in 12 days</span></div><span class=&quot;pill warn&quot;><span class=&quot;dot&quot;></span>Expiring</span></div>
+          <div class=&quot;prow&quot; style=&quot;cursor:default&quot;><div class=&quot;pi&quot; style=&quot;background:#2AA775&quot;>PV</div><div class=&quot;pd&quot;><b>Priya Venkat · Physio</b><span>MPT · verified</span></div><span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span>Valid</span></div>
+        </div>
+      </section>
+      <section class=&quot;panel&quot; data-panel=&quot;a-billing&quot;>
+        <p class=&quot;eyebrow&quot;>Billing overview</p>
+        <div class=&quot;card&quot;><div class=&quot;tasks&quot;>
+          <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Kamala Rao — Comprehensive</b><span>GST invoice · paid</span></div><div class=&quot;time&quot;>₹68k</div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b>Fatima Begum — Standard</b><span>GST invoice · due</span></div><div class=&quot;time&quot;>₹42k</div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b>Lakshmi Devi — Basic</b><span>GST invoice · paid</span></div><div class=&quot;time&quot;>₹24k</div></div>
+        </div></div>
+        <button class=&quot;btn accent&quot; data-once=&quot;✓  Monthly GST report exported&quot;>Export GST report</button>
+      </section>
+    </main>
+    <nav class=&quot;tabbar&quot;>
+      <button class=&quot;tab active&quot; data-goto=&quot;a-dash&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;3&quot; y=&quot;3&quot; width=&quot;7&quot; height=&quot;9&quot;/><rect x=&quot;14&quot; y=&quot;3&quot; width=&quot;7&quot; height=&quot;5&quot;/><rect x=&quot;14&quot; y=&quot;12&quot; width=&quot;7&quot; height=&quot;9&quot;/><rect x=&quot;3&quot; y=&quot;16&quot; width=&quot;7&quot; height=&quot;5&quot;/></svg>Dashboard</button>
+      <button class=&quot;tab&quot; data-goto=&quot;a-staff&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2&quot;/><circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/><path d=&quot;M23 21v-2a4 4 0 00-3-3.87&quot;/></svg>Staff</button>
+      <button class=&quot;tab&quot; data-goto=&quot;a-billing&quot;><svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;1&quot; y=&quot;4&quot; width=&quot;22&quot; height=&quot;16&quot; rx=&quot;2&quot;/><path d=&quot;M1 10h22&quot;/></svg>Billing</button>
+    </nav>
+  </div>
+
+  <!-- ===== Shared sheets ===== -->
+  <div class=&quot;overlay&quot; id=&quot;emSheet&quot;>
+    <div class=&quot;sheet&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Emergency&quot;>
+      <div class=&quot;grab&quot;></div>
+      <h2><span class=&quot;ring&quot;>⚠</span>We're here, right now</h2>
+      <p>This alerts the on-shift caretaker, the care coordinator, and our 24×7 emergency desk at the same time.</p>
+      <div class=&quot;sla&quot;>⏱  Guaranteed response in under 30 minutes</div>
+      <button class=&quot;btn call&quot; data-once=&quot;📞  Connecting… desk notified&quot;>📞  Call emergency desk</button>
+      <button class=&quot;btn ghost&quot; data-once=&quot;✓  Coordinator Lata G. alerted&quot;>Alert care coordinator</button>
+      <button class=&quot;btn ghost&quot; data-close style=&quot;background:transparent;color:var(--ink-soft)&quot;>Cancel</button>
+    </div>
+  </div>
+
+  <div class=&quot;overlay&quot; id=&quot;paySheet&quot;>
+    <div class=&quot;sheet&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Payment&quot;>
+      <div class=&quot;grab&quot;></div>
+      <h2><span class=&quot;ring pay&quot;>₹</span>Pay ₹68,393</h2>
+      <p>Choose how you'd like to pay</p>
+      <button class=&quot;payopt&quot; data-pay><span class=&quot;ic&quot;>₹</span><span class=&quot;txt&quot;><b>UPI</b><span>GPay, PhonePe, Paytm</span></span><span>›</span></button>
+      <button class=&quot;payopt&quot; data-pay><span class=&quot;ic&quot;><svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><rect x=&quot;1&quot; y=&quot;4&quot; width=&quot;22&quot; height=&quot;16&quot; rx=&quot;2&quot;/><path d=&quot;M1 10h22&quot;/></svg></span><span class=&quot;txt&quot;><b>Credit / Debit card</b><span>Visa · Mastercard · RuPay</span></span><span>›</span></button>
+      <button class=&quot;payopt&quot; data-pay><span class=&quot;ic&quot;>🏦</span><span class=&quot;txt&quot;><b>Net-banking</b><span>SBI · HDFC · ICICI · Axis</span></span><span>›</span></button>
+      <div class=&quot;securenote&quot;>🔒 Payments are secure. Asthimitra never stores your card details.</div>
+      <button class=&quot;btn ghost&quot; data-close style=&quot;background:transparent;color:var(--ink-soft)&quot;>Cancel</button>
+    </div>
+  </div>
+
+  <div class=&quot;toast&quot; id=&quot;toast&quot;></div>
+</div>
+
+<script>
+(function(){
+  var phone=document.querySelector('.phone');
+
+  // ---- role switching ----
+  function show(id){
+    document.querySelectorAll('.view').forEach(function(v){v.classList.toggle('active',v.id===id)});
+    var sc=document.querySelector('#'+id+' .screen'); if(sc)sc.scrollTop=0;
+  }
+  document.querySelectorAll('[data-role]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-role'))})});
+  document.querySelectorAll('[data-home]').forEach(function(b){b.addEventListener('click',function(){closeAll();show('launcher')})});
+
+  // ---- tab / goto navigation (scoped to current app) ----
+  document.querySelectorAll('[data-goto]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var target=b.getAttribute('data-goto');
+      var app=b.closest('.app'); if(!app)return;
+      app.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.getAttribute('data-panel')===target)});
+      // sync tabbar highlight if this target is a tab
+      var tabForTarget=app.querySelector('.tabbar .tab[data-goto=&quot;'+target+'&quot;]');
+      app.querySelectorAll('.tabbar .tab').forEach(function(t){t.classList.toggle('active',t===tabForTarget)});
+      var sc=app.querySelector('.screen'); if(sc)sc.scrollTop=0;
+    });
+  });
+
+  // ---- toast ----
+  var toast=document.getElementById('toast'), toastTimer;
+  function say(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(function(){toast.classList.remove('show')},2200)}
+
+  // ---- sheets ----
+  function closeAll(){document.querySelectorAll('.overlay').forEach(function(o){o.classList.remove('open')})}
+  document.querySelectorAll('[data-open]').forEach(function(b){b.addEventListener('click',function(){var t=document.getElementById(b.getAttribute('data-open'));if(t)t.classList.add('open')})});
+  document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',closeAll)});
+  document.querySelectorAll('.overlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===o)closeAll()})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+
+  // ---- one-shot buttons (change label once) ----
+  document.querySelectorAll('[data-once]').forEach(function(b){
+    b.addEventListener('click',function(){this.textContent=this.getAttribute('data-once');this.disabled=true;this.removeAttribute('data-once');closeAll();});
+  });
+
+  // ---- escort: connectivity (offline-first demo) ----
+  var offline=false, queued=0;
+  var conn=document.getElementById('e-conn'), connText=document.getElementById('e-connText'), connBtn=document.getElementById('e-connBtn');
+  if(connBtn){
+    connBtn.addEventListener('click',function(){
+      offline=!offline;
+      conn.classList.toggle('off',offline);
+      if(offline){connText.textContent='Offline · logging on device';connBtn.textContent='Sync now';}
+      else{
+        if(queued>0){say('✓  Synced '+queued+' update'+(queued>1?'s':'')+' to the care record');queued=0;}
+        connText.textContent='Online · syncing live';connBtn.textContent='Go offline';
+      }
+    });
+  }
+  // escort log actions respect offline state
+  document.querySelectorAll('[data-log]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var msg=b.getAttribute('data-log');
+      if(offline){queued++;say('Saved on device · will sync ('+queued+' queued)');}
+      else{say(msg);}
+    });
+  });
+
+  // ---- escort: checklist ----
+  var chk=document.getElementById('e-chk'), prog=document.getElementById('e-progress');
+  if(chk){
+    var steps=chk.querySelectorAll('.cstep');
+    function refresh(){
+      var done=chk.querySelectorAll('.cstep.done').length;
+      prog.textContent=done+' / '+steps.length;
+      prog.className='pill '+(done===steps.length?'good':'neutral');
+    }
+    steps.forEach(function(s){s.addEventListener('click',function(){
+      s.classList.toggle('done');
+      refresh();
+      if(offline){queued++;say('Saved on device · will sync ('+queued+' queued)');}
+    })});
+    refresh();
+  }
+
+  // ---- family: payment ----
+  document.querySelectorAll('[data-pay]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var s=document.getElementById('f-payStatus'); s.className='pill good'; s.innerHTML='<span class=&quot;dot&quot;></span>Paid';
+      var pb=document.getElementById('f-payBtn'); pb.textContent='✓  Payment successful — invoice paid'; pb.disabled=true; pb.removeAttribute('data-open');
+      closeAll(); say('✓  Payment successful — invoice paid');
+    });
+  });
+
+  // ---- doctor: approve plan ----
+  var ab=document.getElementById('d-approveBtn');
+  if(ab){ab.addEventListener('click',function(){
+    document.getElementById('d-apStatus').className='pill good';
+    document.getElementById('d-apStatus').innerHTML='<span class=&quot;dot&quot;></span>Approved';
+    document.getElementById('d-apActions').innerHTML='<div class=&quot;microcopy&quot; style=&quot;margin-top:4px&quot;><svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;var(--good)&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M20 6L9 17l-5-5&quot;/></svg><span>Plan approved — care can now begin. Team assignment unlocked.</span></div>';
+    say('✓  Care plan approved for Arjun Rao');
+  })}
+
+  // ---- generic checklists (physio, nurse) ----
+  document.querySelectorAll('.cstep[data-toggle]').forEach(function(s){
+    s.addEventListener('click',function(){
+      s.classList.toggle('done');
+      if(typeof say==='function') say(s.classList.contains('done')?'✓  Logged &amp; saved':'Unmarked');
+    });
+  });
+
+  // ---- theme toggle (any app) ----
+  var root=document.documentElement, mode='system';
+  document.querySelectorAll('[data-theme-btn]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      mode = mode==='system' ? 'light' : mode==='light' ? 'dark' : 'system';
+      if(mode==='system'){root.removeAttribute('data-theme');}
+      else{root.setAttribute('data-theme',mode);}
+      var g=mode==='system'?'◐':(mode==='light'?'☀':'☾');
+      document.querySelectorAll('[data-theme-btn]').forEach(function(x){x.textContent=g});
+    });
+  });
+})();
+</script>
+"></iframe></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAMILY -->
+  <section class="section wrap reveal">
+    <div class="showcase flip">
+      <div class="copy">
+        <div class="eyebrow">For families</div>
+        <h2>A calm window into a loved one&rsquo;s day</h2>
+        <p class="lead">The family app carries the emotional core of the service &mdash; and it speaks the family&rsquo;s language. Switch between English, Telugu and Hindi in the header, and pay the GST invoice right in the app.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Today&rsquo;s report</b> &mdash; vitals, the 2-hour repositioning log, and a note from the caretaker.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Trilingual</b> &mdash; tap EN / &#3108;&#3142; / &#2361;&#2367; to translate the whole app.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b>Pay now</b> &mdash; UPI, card or net-banking, with a transparent GST invoice.</span></li>
+        </ul>
+      </div>
+      <div class="device">
+        <div class="screen-frame"><iframe title="Asthimitra family app" loading="lazy" srcdoc="<title>Asthimitra — Family Care Companion</title>
+<style>
+  :root{
+    --ground:#DCE4E0; --ground-2:#EAEFEB;
+    --bg:#F7F9F6; --surface:#FFFFFF; --surface-2:#F0F4F0;
+    --ink:#182A27; --ink-soft:#5A6A66; --ink-faint:#8A9994;
+    --line:#E2E8E3;
+    --primary:#1466C7; --primary-ink:#0E4C97; --primary-soft:#DCEAFB;
+    --accent:#E0930F; --accent-soft:#FBEACB;
+    --good:#2E7D5B; --good-soft:#DBEFE4;
+    --warn:#B9821A; --warn-soft:#F6EACE;
+    --crit:#C0392B; --crit-soft:#F6DED9;
+    --shadow:0 24px 60px -20px rgba(14,52,48,.45), 0 8px 20px -12px rgba(14,52,48,.25);
+    --radius:20px;
+    --serif:&quot;Iowan Old Style&quot;,&quot;Palatino Linotype&quot;,Palatino,Georgia,&quot;Times New Roman&quot;,serif;
+    --sans:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,system-ui,Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme=&quot;light&quot;]){
+      --ground:#08110F; --ground-2:#0C1917;
+      --bg:#0F1C1A; --surface:#162823; --surface-2:#1E332D;
+      --ink:#EAF1EE; --ink-soft:#A3B6B0; --ink-faint:#6E827C;
+      --line:#274038;
+      --primary:#5AA6F0; --primary-ink:#9CC8F6; --primary-soft:#14335C;
+      --accent:#F0A63A; --accent-soft:#3A2A10;
+      --good:#5CC08C; --good-soft:#153229;
+      --warn:#E0B056; --warn-soft:#33290F;
+      --crit:#E4685C; --crit-soft:#38201C;
+      --shadow:0 24px 60px -20px rgba(0,0,0,.7), 0 8px 20px -12px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme=&quot;dark&quot;]{
+    --ground:#08110F; --ground-2:#0C1917;
+    --bg:#0F1C1A; --surface:#162823; --surface-2:#1E332D;
+    --ink:#EAF1EE; --ink-soft:#A3B6B0; --ink-faint:#6E827C;
+    --line:#274038;
+    --primary:#5AA6F0; --primary-ink:#9CC8F6; --primary-soft:#14335C;
+    --accent:#F0A63A; --accent-soft:#3A2A10;
+    --good:#5CC08C; --good-soft:#153229;
+    --warn:#E0B056; --warn-soft:#33290F;
+    --crit:#E4685C; --crit-soft:#38201C;
+    --shadow:0 24px 60px -20px rgba(0,0,0,.7), 0 8px 20px -12px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:var(--sans); color:var(--ink);
+    background:
+      radial-gradient(120% 80% at 50% -10%, var(--ground-2), transparent 60%),
+      var(--ground);
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; gap:18px;
+    padding:32px 16px 48px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .tagline{text-align:center; max-width:430px; color:var(--ink-soft)}
+  .tagline .mark{font-family:var(--serif); font-size:22px; color:var(--ink); letter-spacing:.2px}
+  .tagline .mark b{color:var(--primary); font-weight:600}
+  .tagline p{margin:6px 0 0; font-size:13px; line-height:1.5}
+
+  /* ---- Phone frame ---- */
+  .phone{
+    width:100%; max-width:412px; height:844px; max-height:88vh;
+    background:var(--bg); border-radius:44px; box-shadow:var(--shadow);
+    position:relative; overflow:hidden; display:flex; flex-direction:column;
+    border:1px solid var(--line);
+  }
+  .statusbar{
+    height:44px; flex:0 0 auto; display:flex; align-items:center; justify-content:space-between;
+    padding:0 26px; font-size:13px; font-weight:600; color:var(--ink);
+    font-variant-numeric:tabular-nums;
+  }
+  .statusbar .dots{display:flex; gap:5px; align-items:center}
+  .statusbar .dots span{width:6px;height:6px;border-radius:50%;background:var(--ink-soft)}
+  .statusbar .dots .bat{width:22px;height:11px;border:1.5px solid var(--ink-soft);border-radius:3px;position:relative}
+  .statusbar .dots .bat::after{content:&quot;&quot;;position:absolute;inset:2px;right:6px;background:var(--good);border-radius:1px}
+
+  /* ---- App header ---- */
+  .appbar{
+    flex:0 0 auto; padding:6px 18px 14px;
+    background:linear-gradient(180deg, var(--primary), var(--primary-ink));
+    color:#fff; border-bottom-left-radius:26px; border-bottom-right-radius:26px;
+  }
+  .appbar .row1{display:flex; align-items:center; justify-content:space-between; gap:8px}
+  .brand{display:flex; align-items:center; gap:9px; font-family:var(--serif); font-size:19px; letter-spacing:.2px}
+  .brand .glyph{width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.16);display:grid;place-items:center;color:#fff}
+  .controls{display:flex; align-items:center; gap:7px}
+  .langseg{display:flex; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.24); border-radius:999px; padding:2px; gap:1px}
+  .langseg button{
+    appearance:none; border:none; background:none; color:rgba(255,255,255,.72); cursor:pointer;
+    font-family:var(--sans); font-size:11px; font-weight:700; padding:5px 9px; border-radius:999px; line-height:1;
+  }
+  .langseg button.active{background:#fff; color:var(--primary-ink)}
+  .theme-toggle{
+    appearance:none;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);
+    color:#fff;border-radius:999px;width:30px;height:30px;font-size:14px;cursor:pointer;font-family:var(--sans);
+  }
+  .theme-toggle:hover{background:rgba(255,255,255,.2)}
+
+  .patient{margin-top:14px; display:flex; align-items:center; gap:13px}
+  .avatar{
+    width:52px;height:52px;border-radius:16px;flex:0 0 auto;background:var(--accent); color:#fff;
+    display:grid;place-items:center;font-family:var(--serif); font-size:20px; font-weight:600;
+    box-shadow:0 6px 14px -6px rgba(224,147,15,.7);
+  }
+  .patient .who{flex:1;min-width:0}
+  .patient .who h1{margin:0;font-size:18px;font-weight:650;letter-spacing:.1px}
+  .patient .who p{margin:2px 0 0;font-size:12.5px;color:rgba(255,255,255,.82)}
+  .patient .pkg{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;background:rgba(255,255,255,.18);padding:5px 9px;border-radius:999px;white-space:nowrap}
+  .sos{
+    margin-top:13px; width:100%; display:flex;align-items:center;justify-content:center;gap:8px;
+    background:#fff; color:var(--crit); border:none; cursor:pointer;
+    font-family:var(--sans); font-weight:700; font-size:13.5px; letter-spacing:.3px;
+    padding:12px; border-radius:14px; box-shadow:0 6px 16px -8px rgba(0,0,0,.35);
+  }
+  .sos .pulse{width:9px;height:9px;border-radius:50%;background:var(--crit);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(192,57,43,.55)}70%{box-shadow:0 0 0 10px rgba(192,57,43,0)}100%{box-shadow:0 0 0 0 rgba(192,57,43,0)}}
+
+  /* ---- Scroll body ---- */
+  .screen{flex:1 1 auto; overflow-y:auto; overflow-x:hidden; padding:16px 16px 92px; scroll-behavior:smooth}
+  .panel{display:none; animation:fade .28s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--ink-faint);margin:2px 0 10px}
+  .section-title{font-family:var(--serif);font-size:19px;font-weight:600;margin:22px 4px 10px;color:var(--ink);text-wrap:balance}
+  .section-title:first-child{margin-top:4px}
+
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:16px; margin-bottom:13px}
+  .card h3{margin:0 0 3px;font-size:15px;font-weight:650}
+  .card .sub{margin:0;font-size:12.5px;color:var(--ink-soft);line-height:1.45}
+  .between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px;letter-spacing:.2px}
+  .pill.good{background:var(--good-soft);color:var(--good)}
+  .pill.warn{background:var(--warn-soft);color:var(--warn)}
+  .pill.crit{background:var(--crit-soft);color:var(--crit)}
+  .pill.info{background:var(--primary-soft);color:var(--primary-ink)}
+  .pill.neutral{background:var(--surface-2);color:var(--ink-soft)}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+
+  .vitals{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:4px}
+  .vital{background:var(--surface-2);border-radius:14px;padding:11px 8px;text-align:center}
+  .vital .v{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .vital .u{font-size:9.5px;color:var(--ink-faint);font-weight:600}
+  .vital .l{font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-soft);margin-top:3px;font-weight:700}
+
+  .timeline{display:flex;gap:0;align-items:flex-start;margin-top:6px;padding:2px}
+  .slot{flex:1;text-align:center;position:relative}
+  .slot .node{width:26px;height:26px;border-radius:50%;margin:0 auto;display:grid;place-items:center;font-size:12px;font-weight:700;position:relative;z-index:1;border:2px solid var(--surface)}
+  .slot.done .node{background:var(--good);color:#fff}
+  .slot.now .node{background:var(--accent);color:#fff;box-shadow:0 0 0 4px var(--accent-soft)}
+  .slot.next .node{background:var(--surface-2);color:var(--ink-faint);border:2px dashed var(--line)}
+  .slot::before{content:&quot;&quot;;position:absolute;top:12px;left:-50%;width:100%;height:2px;background:var(--good)}
+  .slot:first-child::before{display:none}
+  .slot.next::before,.slot.now::before{background:var(--line)}
+  .slot .t{font-size:10px;color:var(--ink-soft);margin-top:5px;font-variant-numeric:tabular-nums;font-weight:600}
+
+  .tasks{display:flex;flex-direction:column;gap:2px;margin-top:4px}
+  .task{display:flex;align-items:center;gap:11px;padding:9px 2px;border-bottom:1px solid var(--line)}
+  .task:last-child{border-bottom:none}
+  .task .ck{width:22px;height:22px;border-radius:7px;flex:0 0 auto;display:grid;place-items:center;font-size:12px;font-weight:800}
+  .task .ck.done{background:var(--good);color:#fff}
+  .task .ck.due{background:var(--surface-2);border:2px solid var(--line);color:transparent}
+  .task .tx{flex:1;min-width:0}
+  .task .tx b{font-size:13.5px;font-weight:600;display:block}
+  .task .tx span{font-size:11.5px;color:var(--ink-soft)}
+  .task .time{font-size:11px;font-weight:700;color:var(--ink-faint);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .note{background:var(--accent-soft); border-radius:var(--radius); padding:16px; margin-bottom:13px}
+  .note .quote{font-family:var(--serif);font-size:14.5px;line-height:1.55;color:var(--ink);font-style:italic}
+  .note .by{display:flex;align-items:center;gap:8px;margin-top:11px;font-size:12px;color:var(--ink-soft)}
+  .note .by .ic{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:11px;font-style:normal;font-family:var(--sans)}
+
+  .track{height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin:12px 0 6px}
+  .track > i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:999px}
+  .milestones{display:flex;justify-content:space-between;margin-top:6px}
+  .milestones .m{font-size:10px;text-align:center;color:var(--ink-faint);font-weight:600;flex:1}
+  .milestones .m.reached{color:var(--primary)}
+  .milestones .m.here{color:var(--accent);font-weight:800}
+
+  .member{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}
+  .member:last-child{border-bottom:none}
+  .member .ph{width:44px;height:44px;border-radius:13px;flex:0 0 auto;display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:16px;color:#fff}
+  .member .info{flex:1;min-width:0}
+  .member .info .nm{font-size:14px;font-weight:650;display:flex;align-items:center;flex-wrap:wrap;gap:5px}
+  .member .info .rl{font-size:11.5px;color:var(--primary);font-weight:600}
+  .member .info .cr{font-size:11px;color:var(--ink-soft);margin-top:3px;line-height:1.4}
+  .verified{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;color:var(--good);margin-top:5px}
+
+  .chk{display:flex;flex-direction:column;gap:1px;margin-top:6px}
+  .chk .step{display:flex;gap:11px;align-items:center;padding:8px 0}
+  .chk .step .b{width:18px;height:18px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;font-size:10px;font-weight:800;background:var(--surface-2);border:2px solid var(--line);color:var(--ink-faint)}
+  .chk .step span{font-size:13px;color:var(--ink-soft)}
+
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+  .line .amt{font-variant-numeric:tabular-nums;font-weight:600}
+  .line.disc{color:var(--good)}
+  .line.total{border-bottom:none;font-weight:700;font-size:16px;padding-top:14px}
+  .line.total .amt{color:var(--primary)}
+
+  .btn{width:100%;border:none;cursor:pointer;font-family:var(--sans);font-weight:650;font-size:13.5px;padding:13px;border-radius:13px;background:var(--primary);color:#fff;margin-top:6px}
+  .btn.ghost{background:var(--surface-2);color:var(--ink)}
+  .btn:hover{filter:brightness(1.05)}
+  .btn:disabled{opacity:.7;cursor:default;filter:none}
+
+  .microcopy{font-size:11.5px;color:var(--ink-faint);line-height:1.5;margin:8px 4px 0;display:flex;gap:7px}
+  .microcopy svg{flex:0 0 auto;margin-top:1px}
+
+  .tabbar{position:absolute;left:0;right:0;bottom:0;height:76px;background:var(--surface);border-top:1px solid var(--line);display:flex;align-items:stretch;padding:8px 6px 18px}
+  .tab{flex:1;background:none;border:none;cursor:pointer;font-family:var(--sans);display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:center;color:var(--ink-faint);font-size:10px;font-weight:600;padding:2px}
+  .tab svg{width:23px;height:23px}
+  .tab.active{color:var(--primary)}
+
+  /* ---- Sheets ---- */
+  .overlay{position:absolute;inset:0;background:rgba(10,20,18,.55);backdrop-filter:blur(3px);display:none;align-items:flex-end;z-index:50}
+  .overlay.open{display:flex}
+  .sheet{width:100%;background:var(--surface);border-top-left-radius:28px;border-top-right-radius:28px;padding:22px 20px 30px;animation:rise .3s cubic-bezier(.2,.8,.2,1)}
+  @keyframes rise{from{transform:translateY(100%)}to{transform:none}}
+  .sheet .grab{width:38px;height:4px;border-radius:999px;background:var(--line);margin:0 auto 16px}
+  .sheet h2{font-family:var(--serif);font-size:20px;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  .sheet h2 .ring{width:34px;height:34px;border-radius:50%;background:var(--crit-soft);color:var(--crit);display:grid;place-items:center}
+  .sheet h2 .ring.pay{background:var(--primary-soft);color:var(--primary-ink)}
+  .sheet p{font-size:13px;color:var(--ink-soft);line-height:1.55;margin:0 0 4px}
+  .sheet .sla{background:var(--crit-soft);color:var(--crit);font-weight:700;font-size:12.5px;padding:11px 13px;border-radius:12px;margin:14px 0;display:flex;align-items:center;gap:9px}
+  .btn.call{background:var(--crit)}
+
+  .payopt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:9px;cursor:pointer;font-family:var(--sans);color:var(--ink)}
+  .payopt:hover{border-color:var(--primary)}
+  .payopt .ic{width:38px;height:38px;border-radius:11px;background:var(--primary-soft);color:var(--primary-ink);display:grid;place-items:center;flex:0 0 auto}
+  .payopt .txt{flex:1;min-width:0}
+  .payopt .txt b{font-size:14px;font-weight:650;display:block}
+  .payopt .txt span{font-size:11.5px;color:var(--ink-soft)}
+  .payopt .arw{color:var(--ink-faint)}
+  .securenote{display:flex;gap:7px;align-items:flex-start;font-size:11.5px;color:var(--ink-faint);line-height:1.5;margin-top:14px}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div class=&quot;tagline&quot;>
+  <div class=&quot;mark&quot;>Asthi<b>mitra</b></div>
+  <p>The family's window into doctor-supervised orthopedic home care in Hyderabad. Try the tabs, the language switch (EN / తె / हि), the emergency button, and Pay now on Billing.</p>
+</div>
+
+<div class=&quot;phone&quot; role=&quot;application&quot; aria-label=&quot;Asthimitra family companion prototype&quot;>
+  <div class=&quot;statusbar&quot;>
+    <span>9:41</span>
+    <span class=&quot;dots&quot;><span></span><span></span><span></span><span class=&quot;bat&quot;></span></span>
+  </div>
+
+  <header class=&quot;appbar&quot;>
+    <div class=&quot;row1&quot;>
+      <div class=&quot;brand&quot;><span class=&quot;glyph&quot; aria-hidden=&quot;true&quot;>
+        <svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 100 100&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;><path d=&quot;M50 20 L28 82&quot; stroke=&quot;#fff&quot; stroke-width=&quot;12&quot; stroke-linecap=&quot;round&quot;/><path d=&quot;M50 20 L72 82&quot; stroke=&quot;#fff&quot; stroke-width=&quot;12&quot; stroke-linecap=&quot;round&quot;/><path d=&quot;M32 57 H68&quot; stroke=&quot;#F4B23C&quot; stroke-width=&quot;12&quot; stroke-linecap=&quot;round&quot;/><circle cx=&quot;31&quot; cy=&quot;50&quot; r=&quot;9&quot; fill=&quot;#F4B23C&quot;/><circle cx=&quot;31&quot; cy=&quot;64&quot; r=&quot;9&quot; fill=&quot;#F4B23C&quot;/><circle cx=&quot;69&quot; cy=&quot;50&quot; r=&quot;9&quot; fill=&quot;#F4B23C&quot;/><circle cx=&quot;69&quot; cy=&quot;64&quot; r=&quot;9&quot; fill=&quot;#F4B23C&quot;/></svg>
+      </span>Asthimitra</div>
+      <div class=&quot;controls&quot;>
+        <div class=&quot;langseg&quot; role=&quot;group&quot; aria-label=&quot;Language&quot;>
+          <button data-lang=&quot;en&quot; class=&quot;active&quot;>EN</button>
+          <button data-lang=&quot;te&quot;>తె</button>
+          <button data-lang=&quot;hi&quot;>हि</button>
+        </div>
+        <button class=&quot;theme-toggle&quot; id=&quot;themeBtn&quot; aria-label=&quot;Toggle colour theme&quot;>◐</button>
+      </div>
+    </div>
+
+    <div class=&quot;patient&quot;>
+      <div class=&quot;avatar&quot; aria-hidden=&quot;true&quot;>KR</div>
+      <div class=&quot;who&quot;>
+        <h1 data-i18n=&quot;pt.name&quot;>Mrs. Kamala Rao</h1>
+        <p data-i18n=&quot;pt.detail&quot;>68 · Right Total Hip Replacement · Recovery Day 9</p>
+      </div>
+      <span class=&quot;pkg&quot; data-i18n=&quot;pt.pkg&quot;>Comprehensive</span>
+    </div>
+
+    <button class=&quot;sos&quot; id=&quot;sosBtn&quot;>
+      <span class=&quot;pulse&quot; aria-hidden=&quot;true&quot;></span><span data-i18n=&quot;sos&quot;>Emergency — reach the care team now</span>
+    </button>
+  </header>
+
+  <main class=&quot;screen&quot; id=&quot;screen&quot;>
+
+    <!-- TODAY -->
+    <section class=&quot;panel active&quot; id=&quot;today&quot; aria-label=&quot;Today&quot;>
+      <p class=&quot;eyebrow&quot; data-i18n=&quot;today.eyebrow&quot;>Today · Fri, 8 Aug</p>
+
+      <div class=&quot;card&quot;>
+        <div class=&quot;between&quot; style=&quot;margin-bottom:12px&quot;>
+          <div><h3 data-i18n=&quot;today.report&quot;>Today's report</h3><p class=&quot;sub&quot; data-i18n=&quot;today.updated&quot;>Updated 11 minutes ago by Sunita M.</p></div>
+          <span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span><span data-i18n=&quot;today.stable&quot;>Stable</span></span>
+        </div>
+        <div class=&quot;vitals&quot;>
+          <div class=&quot;vital&quot;><div class=&quot;v&quot;>118/76</div><div class=&quot;u&quot;>mmHg</div><div class=&quot;l&quot; data-i18n=&quot;v.bp&quot;>BP</div></div>
+          <div class=&quot;vital&quot;><div class=&quot;v&quot;>72</div><div class=&quot;u&quot;>bpm</div><div class=&quot;l&quot; data-i18n=&quot;v.pulse&quot;>Pulse</div></div>
+          <div class=&quot;vital&quot;><div class=&quot;v&quot;>98</div><div class=&quot;u&quot;>%</div><div class=&quot;l&quot;>SpO₂</div></div>
+          <div class=&quot;vital&quot;><div class=&quot;v&quot;>98.4</div><div class=&quot;u&quot;>°F</div><div class=&quot;l&quot; data-i18n=&quot;v.temp&quot;>Temp</div></div>
+        </div>
+      </div>
+
+      <div class=&quot;card&quot;>
+        <div class=&quot;between&quot;>
+          <div><h3 data-i18n=&quot;repo.title&quot;>Repositioning</h3><p class=&quot;sub&quot; data-i18n=&quot;repo.sub&quot;>2-hour turning · prevents pressure sores</p></div>
+          <span class=&quot;pill info&quot;><span class=&quot;dot&quot;></span><span data-i18n=&quot;repo.next&quot;>Next 12:00</span></span>
+        </div>
+        <div class=&quot;timeline&quot; role=&quot;list&quot; aria-label=&quot;Repositioning schedule&quot;>
+          <div class=&quot;slot done&quot; role=&quot;listitem&quot;><div class=&quot;node&quot;>✓</div><div class=&quot;t&quot;>06:00</div></div>
+          <div class=&quot;slot done&quot; role=&quot;listitem&quot;><div class=&quot;node&quot;>✓</div><div class=&quot;t&quot;>08:00</div></div>
+          <div class=&quot;slot now&quot; role=&quot;listitem&quot;><div class=&quot;node&quot;>✓</div><div class=&quot;t&quot;>10:00</div></div>
+          <div class=&quot;slot next&quot; role=&quot;listitem&quot;><div class=&quot;node&quot;>·</div><div class=&quot;t&quot;>12:00</div></div>
+          <div class=&quot;slot next&quot; role=&quot;listitem&quot;><div class=&quot;node&quot;>·</div><div class=&quot;t&quot;>14:00</div></div>
+        </div>
+      </div>
+
+      <div class=&quot;card&quot;>
+        <h3 style=&quot;margin-bottom:8px&quot; data-i18n=&quot;care.title&quot;>Care given today</h3>
+        <div class=&quot;tasks&quot;>
+          <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b data-i18n=&quot;care.t1&quot;>Morning medication</b><span data-i18n=&quot;care.t1s&quot;>Calcium + Vitamin D, pain relief</span></div><div class=&quot;time&quot;>08:00</div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b data-i18n=&quot;care.t2&quot;>Physiotherapy — ankle pumps &amp; quad sets</b><span data-i18n=&quot;care.t2s&quot;>Per Dr. Iyer's plan · 2 sets done</span></div><div class=&quot;time&quot;>09:30</div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b data-i18n=&quot;care.t3&quot;>Sponge bath &amp; wound dressing check</b><span data-i18n=&quot;care.t3s&quot;>Surgical site clean, no redness</span></div><div class=&quot;time&quot;>10:15</div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b data-i18n=&quot;care.t4&quot;>Midday meal — high-protein, calcium-rich</b><span data-i18n=&quot;care.t4s&quot;>Per nutritionist plan</span></div><div class=&quot;time&quot;>13:00</div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b data-i18n=&quot;care.t5&quot;>Afternoon medication</b><span data-i18n=&quot;care.t5s&quot;>With reminder to family</span></div><div class=&quot;time&quot;>14:00</div></div>
+        </div>
+      </div>
+
+      <div class=&quot;note&quot;>
+        <div class=&quot;quote&quot; data-i18n=&quot;note.quote&quot;>&quot;Amma sat up at the edge of the bed on her own today and walked six steps with the walker — a little further than yesterday. She was in good spirits and ate a full breakfast.&quot;</div>
+        <div class=&quot;by&quot;><span class=&quot;ic&quot;>SM</span><span data-i18n=&quot;note.by&quot;>Sunita M. · Orthopedic Caretaker · on shift until 8 PM</span></div>
+      </div>
+
+      <button class=&quot;btn ghost&quot; id=&quot;feedbackBtn&quot; data-i18n=&quot;today.rate&quot;>★  Rate today's visit</button>
+      <div class=&quot;microcopy&quot;>
+        <svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;var(--good)&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M20 6L9 17l-5-5&quot;/></svg>
+        <span data-i18n=&quot;today.feedmicro&quot;>Your feedback after every visit helps us keep the care right for Amma.</span>
+      </div>
+    </section>
+
+    <!-- CARE PLAN -->
+    <section class=&quot;panel&quot; id=&quot;plan&quot; aria-label=&quot;Care plan&quot;>
+      <p class=&quot;eyebrow&quot; data-i18n=&quot;plan.eyebrow&quot;>Doctor-supervised care plan</p>
+
+      <div class=&quot;card&quot;>
+        <div class=&quot;between&quot;>
+          <div><h3 data-i18n=&quot;plan.prog&quot;>Recovery progress</h3><p class=&quot;sub&quot; data-i18n=&quot;plan.progsub&quot;>Day 9 of an estimated 6-week plan</p></div>
+          <span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span><span data-i18n=&quot;plan.ontrack&quot;>On track</span></span>
+        </div>
+        <div class=&quot;track&quot;><i style=&quot;width:34%&quot;></i></div>
+        <div class=&quot;milestones&quot;>
+          <div class=&quot;m reached&quot; data-i18n=&quot;ms.surgery&quot;>Surgery</div>
+          <div class=&quot;m reached&quot; data-i18n=&quot;ms.bed&quot;>Bed mobility</div>
+          <div class=&quot;m here&quot; data-i18n=&quot;ms.walker&quot;>Walker steps</div>
+          <div class=&quot;m&quot; data-i18n=&quot;ms.stairs&quot;>Stairs</div>
+          <div class=&quot;m&quot; data-i18n=&quot;ms.indep&quot;>Independent</div>
+        </div>
+      </div>
+
+      <div class=&quot;card&quot;>
+        <div class=&quot;between&quot; style=&quot;margin-bottom:6px&quot;>
+          <h3 data-i18n=&quot;plan.appby&quot;>Plan approved by</h3>
+          <span class=&quot;verified&quot; style=&quot;font-size:11px&quot;>
+            <svg width=&quot;13&quot; height=&quot;13&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M20 6L9 17l-5-5&quot;/></svg><span data-i18n=&quot;plan.approved&quot;>Approved</span>
+          </span>
+        </div>
+        <p class=&quot;sub&quot; data-i18n-html=&quot;plan.doc&quot;><b style=&quot;color:var(--ink)&quot;>Dr. Anand Iyer</b>, MBBS · MS (Orthopaedics)<br>Next home review: <b style=&quot;color:var(--ink)&quot;>Mon, 25 Aug</b></p>
+      </div>
+
+      <p class=&quot;section-title&quot; data-i18n=&quot;plan.goals&quot;>This week's goals</p>
+      <div class=&quot;card&quot;>
+        <div class=&quot;tasks&quot;>
+          <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b data-i18n=&quot;g1&quot;>Walker-assisted walking</b><span data-i18n=&quot;g1s&quot;>Increase to 10 steps, twice daily</span></div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck done&quot;>✓</div><div class=&quot;tx&quot;><b data-i18n=&quot;g2&quot;>Seated hip &amp; knee exercises</b><span data-i18n=&quot;g2s&quot;>Physiotherapist-guided, 3× daily</span></div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b data-i18n=&quot;g3&quot;>Bone-health nutrition</b><span data-i18n=&quot;g3s&quot;>Calcium + Vitamin D optimised diet</span></div></div>
+          <div class=&quot;task&quot;><div class=&quot;ck due&quot;>·</div><div class=&quot;tx&quot;><b data-i18n=&quot;g4&quot;>Pressure-sore prevention</b><span data-i18n=&quot;g4s&quot;>2-hour repositioning maintained</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESCORTS -->
+    <section class=&quot;panel&quot; id=&quot;escorts&quot; aria-label=&quot;Hospital escorts&quot;>
+      <p class=&quot;eyebrow&quot; data-i18n=&quot;esc.eyebrow&quot;>Hospital escort</p>
+
+      <div class=&quot;card&quot;>
+        <div class=&quot;between&quot; style=&quot;margin-bottom:10px&quot;>
+          <div><h3 data-i18n=&quot;esc.followup&quot;>Follow-up with Dr. Iyer</h3><p class=&quot;sub&quot; data-i18n=&quot;esc.when&quot;>Sat, 16 Aug · 10:30 AM · Apollo Ortho OPD, Hyderabad</p></div>
+          <span class=&quot;pill info&quot;><span class=&quot;dot&quot;></span><span data-i18n=&quot;esc.scheduled&quot;>Scheduled</span></span>
+        </div>
+        <div style=&quot;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px&quot;>
+          <span class=&quot;pill neutral&quot; data-i18n=&quot;esc.route&quot;>Home → Hospital → Home</span>
+          <span class=&quot;pill good&quot;><svg width=&quot;12&quot; height=&quot;12&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M12 21s-8-4.5-8-11a8 8 0 1116 0c0 6.5-8 11-8 11z&quot;/><circle cx=&quot;12&quot; cy=&quot;10&quot; r=&quot;3&quot;/></svg><span data-i18n=&quot;esc.gps&quot;>GPS-tracked</span></span>
+        </div>
+        <p class=&quot;sub&quot; data-i18n-html=&quot;esc.assoc&quot;>Escort: <b style=&quot;color:var(--ink)&quot;>Ramesh K.</b> · certified in first aid &amp; patient handling · arrives 9:45 AM</p>
+      </div>
+
+      <p class=&quot;section-title&quot; data-i18n=&quot;esc.checklist&quot;>Journey checklist</p>
+      <div class=&quot;card&quot;>
+        <div class=&quot;chk&quot;>
+          <div class=&quot;chk step&quot;><span class=&quot;b&quot;>1</span><span data-i18n=&quot;esc.s1&quot;>Help Amma get dressed &amp; ready at home</span></div>
+          <div class=&quot;chk step&quot;><span class=&quot;b&quot;>2</span><span data-i18n=&quot;esc.s2&quot;>Safe transfer to adapted vehicle</span></div>
+          <div class=&quot;chk step&quot;><span class=&quot;b&quot;>3</span><span data-i18n=&quot;esc.s3&quot;>Accompany through registration &amp; triage</span></div>
+          <div class=&quot;chk step&quot;><span class=&quot;b&quot;>4</span><span data-i18n=&quot;esc.s4&quot;>Take consultation notes for the family</span></div>
+          <div class=&quot;chk step&quot;><span class=&quot;b&quot;>5</span><span data-i18n=&quot;esc.s5&quot;>Assist with X-ray &amp; pharmacy</span></div>
+          <div class=&quot;chk step&quot;><span class=&quot;b&quot;>6</span><span data-i18n=&quot;esc.s6&quot;>Return home &amp; hand over doctor's instructions</span></div>
+        </div>
+      </div>
+
+      <p class=&quot;section-title&quot; data-i18n=&quot;esc.last&quot;>Last visit</p>
+      <div class=&quot;card&quot;>
+        <div class=&quot;between&quot;>
+          <div><h3 style=&quot;font-size:14px&quot; data-i18n=&quot;esc.suture&quot;>Suture review · 2 Aug</h3><p class=&quot;sub&quot; data-i18n=&quot;esc.suturesub&quot;>Sutures removed · wound healing well</p></div>
+          <span class=&quot;pill good&quot;><span class=&quot;dot&quot;></span><span data-i18n=&quot;esc.complete&quot;>Complete</span></span>
+        </div>
+        <button class=&quot;btn ghost&quot; style=&quot;margin-top:12px&quot; id=&quot;visitDocBtn&quot; data-i18n=&quot;esc.viewdoc&quot;>📄  View visit summary &amp; instructions</button>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class=&quot;panel&quot; id=&quot;team&quot; aria-label=&quot;Care team&quot;>
+      <p class=&quot;eyebrow&quot; data-i18n=&quot;team.eyebrow&quot;>Your care team</p>
+      <div class=&quot;card&quot;>
+        <div class=&quot;member&quot;>
+          <div class=&quot;ph&quot; style=&quot;background:#1466C7&quot;>AI</div>
+          <div class=&quot;info&quot;>
+            <div class=&quot;nm&quot;>Dr. Anand Iyer</div>
+            <div class=&quot;rl&quot; data-i18n=&quot;role.surgeon&quot;>Supervising Orthopedic Surgeon</div>
+            <div class=&quot;cr&quot; data-i18n=&quot;cr.surgeon&quot;>MBBS · MS (Ortho) · designs &amp; reviews the care plan</div>
+            <div class=&quot;verified&quot;><svg width=&quot;13&quot; height=&quot;13&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M20 6L9 17l-5-5&quot;/></svg><span data-i18n=&quot;verified&quot;>Background verified</span></div>
+          </div>
+        </div>
+        <div class=&quot;member&quot;>
+          <div class=&quot;ph&quot; style=&quot;background:#2E7DE1&quot;>PV</div>
+          <div class=&quot;info&quot;>
+            <div class=&quot;nm&quot;>Priya Venkat</div>
+            <div class=&quot;rl&quot; data-i18n=&quot;role.physio&quot;>Registered Physiotherapist</div>
+            <div class=&quot;cr&quot; data-i18n=&quot;cr.physio&quot;>MPT · plans home exercise &amp; mobility program</div>
+            <div class=&quot;verified&quot;><svg width=&quot;13&quot; height=&quot;13&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M20 6L9 17l-5-5&quot;/></svg><span data-i18n=&quot;verified&quot;>Background verified</span></div>
+          </div>
+        </div>
+        <div class=&quot;member&quot;>
+          <div class=&quot;ph&quot; style=&quot;background:var(--accent)&quot;>SM</div>
+          <div class=&quot;info&quot;>
+            <div class=&quot;nm&quot;>Sunita M. <span class=&quot;pill good&quot; style=&quot;font-size:9px&quot;><span class=&quot;dot&quot;></span><span data-i18n=&quot;team.onshift&quot;>On shift</span></span></div>
+            <div class=&quot;rl&quot; data-i18n=&quot;role.caretaker&quot;>Orthopedic Caretaker</div>
+            <div class=&quot;cr&quot; data-i18n=&quot;cr.caretaker&quot;>120-hr certified · BLS &amp; First Aid · pressure-care trained</div>
+            <div class=&quot;verified&quot;><svg width=&quot;13&quot; height=&quot;13&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M20 6L9 17l-5-5&quot;/></svg><span data-i18n=&quot;verified&quot;>Background verified</span></div>
+          </div>
+        </div>
+        <div class=&quot;member&quot;>
+          <div class=&quot;ph&quot; style=&quot;background:#5A6E4A&quot;>RK</div>
+          <div class=&quot;info&quot;>
+            <div class=&quot;nm&quot;>Ramesh K.</div>
+            <div class=&quot;rl&quot; data-i18n=&quot;role.escort&quot;>Patient Escort Associate</div>
+            <div class=&quot;cr&quot; data-i18n=&quot;cr.escort&quot;>First aid · hospital navigation · emergency response</div>
+            <div class=&quot;verified&quot;><svg width=&quot;13&quot; height=&quot;13&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M20 6L9 17l-5-5&quot;/></svg><span data-i18n=&quot;verified&quot;>Background verified</span></div>
+          </div>
+        </div>
+        <div class=&quot;member&quot;>
+          <div class=&quot;ph&quot; style=&quot;background:#8A5A2B&quot;>LG</div>
+          <div class=&quot;info&quot;>
+            <div class=&quot;nm&quot;>Lata G.</div>
+            <div class=&quot;rl&quot; data-i18n=&quot;role.coord&quot;>Care Coordinator</div>
+            <div class=&quot;cr&quot; data-i18n=&quot;cr.coord&quot;>GNM · oversees the team &amp; weekly quality visits</div>
+            <div class=&quot;verified&quot;><svg width=&quot;13&quot; height=&quot;13&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M20 6L9 17l-5-5&quot;/></svg><span data-i18n=&quot;verified&quot;>Background verified</span></div>
+          </div>
+        </div>
+      </div>
+      <div class=&quot;microcopy&quot;>
+        <svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;var(--primary)&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z&quot;/></svg>
+        <span data-i18n=&quot;team.micro&quot;>No caretaker is ever changed without your consent first. Every member is police-verified and medically cleared.</span>
+      </div>
+    </section>
+
+    <!-- BILLING -->
+    <section class=&quot;panel&quot; id=&quot;billing&quot; aria-label=&quot;Billing&quot;>
+      <p class=&quot;eyebrow&quot; data-i18n=&quot;bill.eyebrow&quot;>Billing · August 2026</p>
+      <div class=&quot;card&quot;>
+        <div class=&quot;between&quot; style=&quot;margin-bottom:6px&quot;>
+          <div><h3 data-i18n=&quot;bill.pkg&quot;>Comprehensive Care</h3><p class=&quot;sub&quot; data-i18n=&quot;bill.pkgsub&quot;>24-hr caretaker · 4 escorts/mo · physio &amp; nutrition</p></div>
+          <span class=&quot;pill warn&quot; id=&quot;payStatus&quot;><span class=&quot;dot&quot;></span><span data-i18n=&quot;bill.due&quot;>Due</span></span>
+        </div>
+        <div style=&quot;margin-top:8px&quot;>
+          <div class=&quot;line&quot;><span data-i18n=&quot;bill.l1&quot;>Comprehensive package</span><span class=&quot;amt&quot;>₹58,000</span></div>
+          <div class=&quot;line&quot;><span data-i18n=&quot;bill.l2&quot;>Home physiotherapy (8 sessions)</span><span class=&quot;amt&quot;>₹6,400</span></div>
+          <div class=&quot;line disc&quot;><span data-i18n=&quot;bill.l3&quot;>Senior citizen discount (10%)</span><span class=&quot;amt&quot;>−₹6,440</span></div>
+          <div class=&quot;line&quot;><span data-i18n=&quot;bill.l4&quot;>GST (18%)</span><span class=&quot;amt&quot;>₹10,433</span></div>
+          <div class=&quot;line total&quot;><span data-i18n=&quot;bill.total&quot;>Total due</span><span class=&quot;amt&quot;>₹68,393</span></div>
+        </div>
+      </div>
+      <button class=&quot;btn&quot; id=&quot;payBtn&quot; data-i18n=&quot;bill.paynow&quot;>Pay now</button>
+      <button class=&quot;btn ghost&quot; id=&quot;invoiceBtn&quot; data-i18n=&quot;bill.invoice&quot;>Download GST invoice</button>
+      <button class=&quot;btn ghost&quot; data-i18n=&quot;bill.plan&quot;>Set up interest-free monthly plan</button>
+      <div class=&quot;microcopy&quot;>
+        <svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;var(--primary)&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/><path d=&quot;M12 16v-4M12 8h.01&quot;/></svg>
+        <span data-i18n=&quot;bill.micro&quot;>A written estimate was shared before care began — no hidden charges, ever. Your GST invoice supports insurance &amp; tax claims.</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Emergency sheet -->
+  <div class=&quot;overlay&quot; id=&quot;overlay&quot;>
+    <div class=&quot;sheet&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Emergency&quot;>
+      <div class=&quot;grab&quot;></div>
+      <h2><span class=&quot;ring&quot; aria-hidden=&quot;true&quot;>
+        <svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z&quot;/><path d=&quot;M12 9v4M12 17h.01&quot;/></svg>
+      </span><span data-i18n=&quot;em.title&quot;>We're here, right now</span></h2>
+      <p data-i18n=&quot;em.body&quot;>This alerts the on-shift caretaker, the care coordinator, and our 24×7 emergency desk at the same time.</p>
+      <div class=&quot;sla&quot;>
+        <svg width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/><path d=&quot;M12 6v6l4 2&quot;/></svg>
+        <span data-i18n=&quot;em.sla&quot;>Guaranteed response in under 30 minutes</span>
+      </div>
+      <button class=&quot;btn call&quot; id=&quot;callBtn&quot; data-i18n=&quot;em.call&quot;>📞  Call emergency desk</button>
+      <button class=&quot;btn ghost&quot; id=&quot;alertBtn&quot; data-i18n=&quot;em.alert&quot;>Alert care coordinator (Lata G.)</button>
+      <button class=&quot;btn ghost&quot; data-close data-i18n=&quot;cancel&quot; style=&quot;background:transparent;color:var(--ink-soft)&quot;>Cancel</button>
+    </div>
+  </div>
+
+  <!-- Payment sheet -->
+  <div class=&quot;overlay&quot; id=&quot;payOverlay&quot;>
+    <div class=&quot;sheet&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Payment&quot;>
+      <div class=&quot;grab&quot;></div>
+      <h2><span class=&quot;ring pay&quot; aria-hidden=&quot;true&quot;>
+        <svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;1&quot; y=&quot;4&quot; width=&quot;22&quot; height=&quot;16&quot; rx=&quot;2&quot;/><path d=&quot;M1 10h22&quot;/></svg>
+      </span><span data-i18n=&quot;pay.title&quot;>Pay ₹68,393</span></h2>
+      <p data-i18n=&quot;pay.sub&quot;>Choose how you'd like to pay</p>
+      <button class=&quot;payopt&quot; data-pay>
+        <span class=&quot;ic&quot;>₹</span>
+        <span class=&quot;txt&quot;><b>UPI</b><span data-i18n=&quot;pay.upi&quot;>GPay, PhonePe, Paytm</span></span>
+        <span class=&quot;arw&quot;>›</span>
+      </button>
+      <button class=&quot;payopt&quot; data-pay>
+        <span class=&quot;ic&quot;><svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;1&quot; y=&quot;4&quot; width=&quot;22&quot; height=&quot;16&quot; rx=&quot;2&quot;/><path d=&quot;M1 10h22&quot;/></svg></span>
+        <span class=&quot;txt&quot;><b data-i18n=&quot;pay.card&quot;>Credit / Debit card</b><span>Visa · Mastercard · RuPay</span></span>
+        <span class=&quot;arw&quot;>›</span>
+      </button>
+      <button class=&quot;payopt&quot; data-pay>
+        <span class=&quot;ic&quot;><svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M3 21h18M4 10h16M5 10V7l7-4 7 4v3M6 21v-8M18 21v-8M10 21v-8M14 21v-8&quot;/></svg></span>
+        <span class=&quot;txt&quot;><b data-i18n=&quot;pay.nb&quot;>Net-banking</b><span>SBI · HDFC · ICICI · Axis</span></span>
+        <span class=&quot;arw&quot;>›</span>
+      </button>
+      <div class=&quot;securenote&quot;>
+        <svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;var(--good)&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;3&quot; y=&quot;11&quot; width=&quot;18&quot; height=&quot;11&quot; rx=&quot;2&quot;/><path d=&quot;M7 11V7a5 5 0 0110 0v4&quot;/></svg>
+        <span data-i18n=&quot;pay.secure&quot;>Payments are secure. Asthimitra never stores your card details.</span>
+      </div>
+      <button class=&quot;btn ghost&quot; data-close data-i18n=&quot;cancel&quot; style=&quot;background:transparent;color:var(--ink-soft)&quot;>Cancel</button>
+    </div>
+  </div>
+
+  <!-- Bottom nav -->
+  <nav class=&quot;tabbar&quot; aria-label=&quot;Sections&quot;>
+    <button class=&quot;tab active&quot; data-tab=&quot;today&quot;>
+      <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z&quot;/><path d=&quot;M9 22V12h6v10&quot;/></svg>
+      <span data-i18n=&quot;tab.today&quot;>Today</span>
+    </button>
+    <button class=&quot;tab&quot; data-tab=&quot;plan&quot;>
+      <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M9 11l3 3L22 4&quot;/><path d=&quot;M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11&quot;/></svg>
+      <span data-i18n=&quot;tab.plan&quot;>Care Plan</span>
+    </button>
+    <button class=&quot;tab&quot; data-tab=&quot;escorts&quot;>
+      <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M5 17H3V6a1 1 0 011-1h11v12h-3&quot;/><path d=&quot;M15 8h4l3 4v5h-2&quot;/><circle cx=&quot;7.5&quot; cy=&quot;17.5&quot; r=&quot;2&quot;/><circle cx=&quot;16.5&quot; cy=&quot;17.5&quot; r=&quot;2&quot;/></svg>
+      <span data-i18n=&quot;tab.escorts&quot;>Escorts</span>
+    </button>
+    <button class=&quot;tab&quot; data-tab=&quot;team&quot;>
+      <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2&quot;/><circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/><path d=&quot;M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75&quot;/></svg>
+      <span data-i18n=&quot;tab.team&quot;>Team</span>
+    </button>
+    <button class=&quot;tab&quot; data-tab=&quot;billing&quot;>
+      <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;1&quot; y=&quot;4&quot; width=&quot;22&quot; height=&quot;16&quot; rx=&quot;2&quot;/><path d=&quot;M1 10h22&quot;/></svg>
+      <span data-i18n=&quot;tab.billing&quot;>Billing</span>
+    </button>
+  </nav>
+</div>
+
+<script>
+(function(){
+  var I18N = {
+    en:{
+      &quot;pt.name&quot;:&quot;Mrs. Kamala Rao&quot;,&quot;pt.detail&quot;:&quot;68 · Right Total Hip Replacement · Recovery Day 9&quot;,&quot;pt.pkg&quot;:&quot;Comprehensive&quot;,
+      &quot;sos&quot;:&quot;Emergency — reach the care team now&quot;,
+      &quot;tab.today&quot;:&quot;Today&quot;,&quot;tab.plan&quot;:&quot;Care Plan&quot;,&quot;tab.escorts&quot;:&quot;Escorts&quot;,&quot;tab.team&quot;:&quot;Team&quot;,&quot;tab.billing&quot;:&quot;Billing&quot;,
+      &quot;today.eyebrow&quot;:&quot;Today · Fri, 8 Aug&quot;,&quot;today.report&quot;:&quot;Today's report&quot;,&quot;today.updated&quot;:&quot;Updated 11 minutes ago by Sunita M.&quot;,&quot;today.stable&quot;:&quot;Stable&quot;,
+      &quot;v.bp&quot;:&quot;BP&quot;,&quot;v.pulse&quot;:&quot;Pulse&quot;,&quot;v.temp&quot;:&quot;Temp&quot;,
+      &quot;repo.title&quot;:&quot;Repositioning&quot;,&quot;repo.sub&quot;:&quot;2-hour turning · prevents pressure sores&quot;,&quot;repo.next&quot;:&quot;Next 12:00&quot;,
+      &quot;care.title&quot;:&quot;Care given today&quot;,
+      &quot;care.t1&quot;:&quot;Morning medication&quot;,&quot;care.t1s&quot;:&quot;Calcium + Vitamin D, pain relief&quot;,
+      &quot;care.t2&quot;:&quot;Physiotherapy — ankle pumps &amp; quad sets&quot;,&quot;care.t2s&quot;:&quot;Per Dr. Iyer's plan · 2 sets done&quot;,
+      &quot;care.t3&quot;:&quot;Sponge bath &amp; wound dressing check&quot;,&quot;care.t3s&quot;:&quot;Surgical site clean, no redness&quot;,
+      &quot;care.t4&quot;:&quot;Midday meal — high-protein, calcium-rich&quot;,&quot;care.t4s&quot;:&quot;Per nutritionist plan&quot;,
+      &quot;care.t5&quot;:&quot;Afternoon medication&quot;,&quot;care.t5s&quot;:&quot;With reminder to family&quot;,
+      &quot;note.quote&quot;:&quot;“Amma sat up at the edge of the bed on her own today and walked six steps with the walker — a little further than yesterday. She was in good spirits and ate a full breakfast.”&quot;,
+      &quot;note.by&quot;:&quot;Sunita M. · Orthopedic Caretaker · on shift until 8 PM&quot;,
+      &quot;today.rate&quot;:&quot;★  Rate today's visit&quot;,&quot;today.feedmicro&quot;:&quot;Your feedback after every visit helps us keep the care right for Amma.&quot;,
+      &quot;plan.eyebrow&quot;:&quot;Doctor-supervised care plan&quot;,&quot;plan.prog&quot;:&quot;Recovery progress&quot;,&quot;plan.progsub&quot;:&quot;Day 9 of an estimated 6-week plan&quot;,&quot;plan.ontrack&quot;:&quot;On track&quot;,
+      &quot;ms.surgery&quot;:&quot;Surgery&quot;,&quot;ms.bed&quot;:&quot;Bed mobility&quot;,&quot;ms.walker&quot;:&quot;Walker steps&quot;,&quot;ms.stairs&quot;:&quot;Stairs&quot;,&quot;ms.indep&quot;:&quot;Independent&quot;,
+      &quot;plan.appby&quot;:&quot;Plan approved by&quot;,&quot;plan.approved&quot;:&quot;Approved&quot;,
+      &quot;plan.doc&quot;:&quot;<b style=\&quot;color:var(--ink)\&quot;>Dr. Anand Iyer</b>, MBBS · MS (Orthopaedics)<br>Next home review: <b style=\&quot;color:var(--ink)\&quot;>Mon, 25 Aug</b>&quot;,
+      &quot;plan.goals&quot;:&quot;This week's goals&quot;,
+      &quot;g1&quot;:&quot;Walker-assisted walking&quot;,&quot;g1s&quot;:&quot;Increase to 10 steps, twice daily&quot;,
+      &quot;g2&quot;:&quot;Seated hip &amp; knee exercises&quot;,&quot;g2s&quot;:&quot;Physiotherapist-guided, 3× daily&quot;,
+      &quot;g3&quot;:&quot;Bone-health nutrition&quot;,&quot;g3s&quot;:&quot;Calcium + Vitamin D optimised diet&quot;,
+      &quot;g4&quot;:&quot;Pressure-sore prevention&quot;,&quot;g4s&quot;:&quot;2-hour repositioning maintained&quot;,
+      &quot;esc.eyebrow&quot;:&quot;Hospital escort&quot;,&quot;esc.followup&quot;:&quot;Follow-up with Dr. Iyer&quot;,&quot;esc.when&quot;:&quot;Sat, 16 Aug · 10:30 AM · Apollo Ortho OPD, Hyderabad&quot;,&quot;esc.scheduled&quot;:&quot;Scheduled&quot;,
+      &quot;esc.route&quot;:&quot;Home → Hospital → Home&quot;,&quot;esc.gps&quot;:&quot;GPS-tracked&quot;,
+      &quot;esc.assoc&quot;:&quot;Escort: <b style=\&quot;color:var(--ink)\&quot;>Ramesh K.</b> · certified in first aid &amp; patient handling · arrives 9:45 AM&quot;,
+      &quot;esc.checklist&quot;:&quot;Journey checklist&quot;,
+      &quot;esc.s1&quot;:&quot;Help Amma get dressed &amp; ready at home&quot;,&quot;esc.s2&quot;:&quot;Safe transfer to adapted vehicle&quot;,&quot;esc.s3&quot;:&quot;Accompany through registration &amp; triage&quot;,
+      &quot;esc.s4&quot;:&quot;Take consultation notes for the family&quot;,&quot;esc.s5&quot;:&quot;Assist with X-ray &amp; pharmacy&quot;,&quot;esc.s6&quot;:&quot;Return home &amp; hand over doctor's instructions&quot;,
+      &quot;esc.last&quot;:&quot;Last visit&quot;,&quot;esc.suture&quot;:&quot;Suture review · 2 Aug&quot;,&quot;esc.suturesub&quot;:&quot;Sutures removed · wound healing well&quot;,&quot;esc.complete&quot;:&quot;Complete&quot;,&quot;esc.viewdoc&quot;:&quot;📄  View visit summary &amp; instructions&quot;,
+      &quot;team.eyebrow&quot;:&quot;Your care team&quot;,&quot;team.onshift&quot;:&quot;On shift&quot;,&quot;verified&quot;:&quot;Background verified&quot;,
+      &quot;role.surgeon&quot;:&quot;Supervising Orthopedic Surgeon&quot;,&quot;cr.surgeon&quot;:&quot;MBBS · MS (Ortho) · designs &amp; reviews the care plan&quot;,
+      &quot;role.physio&quot;:&quot;Registered Physiotherapist&quot;,&quot;cr.physio&quot;:&quot;MPT · plans home exercise &amp; mobility program&quot;,
+      &quot;role.caretaker&quot;:&quot;Orthopedic Caretaker&quot;,&quot;cr.caretaker&quot;:&quot;120-hr certified · BLS &amp; First Aid · pressure-care trained&quot;,
+      &quot;role.escort&quot;:&quot;Patient Escort Associate&quot;,&quot;cr.escort&quot;:&quot;First aid · hospital navigation · emergency response&quot;,
+      &quot;role.coord&quot;:&quot;Care Coordinator&quot;,&quot;cr.coord&quot;:&quot;GNM · oversees the team &amp; weekly quality visits&quot;,
+      &quot;team.micro&quot;:&quot;No caretaker is ever changed without your consent first. Every member is police-verified and medically cleared.&quot;,
+      &quot;bill.eyebrow&quot;:&quot;Billing · August 2026&quot;,&quot;bill.pkg&quot;:&quot;Comprehensive Care&quot;,&quot;bill.pkgsub&quot;:&quot;24-hr caretaker · 4 escorts/mo · physio &amp; nutrition&quot;,&quot;bill.due&quot;:&quot;Due&quot;,&quot;bill.paid&quot;:&quot;Paid&quot;,
+      &quot;bill.l1&quot;:&quot;Comprehensive package&quot;,&quot;bill.l2&quot;:&quot;Home physiotherapy (8 sessions)&quot;,&quot;bill.l3&quot;:&quot;Senior citizen discount (10%)&quot;,&quot;bill.l4&quot;:&quot;GST (18%)&quot;,&quot;bill.total&quot;:&quot;Total due&quot;,
+      &quot;bill.paynow&quot;:&quot;Pay now&quot;,&quot;bill.invoice&quot;:&quot;Download GST invoice&quot;,&quot;bill.plan&quot;:&quot;Set up interest-free monthly plan&quot;,
+      &quot;bill.micro&quot;:&quot;A written estimate was shared before care began — no hidden charges, ever. Your GST invoice supports insurance &amp; tax claims.&quot;,
+      &quot;em.title&quot;:&quot;We're here, right now&quot;,&quot;em.body&quot;:&quot;This alerts the on-shift caretaker, the care coordinator, and our 24×7 emergency desk at the same time.&quot;,
+      &quot;em.sla&quot;:&quot;Guaranteed response in under 30 minutes&quot;,&quot;em.call&quot;:&quot;📞  Call emergency desk&quot;,&quot;em.alert&quot;:&quot;Alert care coordinator (Lata G.)&quot;,&quot;cancel&quot;:&quot;Cancel&quot;,
+      &quot;pay.title&quot;:&quot;Pay ₹68,393&quot;,&quot;pay.sub&quot;:&quot;Choose how you'd like to pay&quot;,&quot;pay.upi&quot;:&quot;GPay, PhonePe, Paytm&quot;,&quot;pay.card&quot;:&quot;Credit / Debit card&quot;,&quot;pay.nb&quot;:&quot;Net-banking&quot;,&quot;pay.secure&quot;:&quot;Payments are secure. Asthimitra never stores your card details.&quot;,
+      &quot;dyn.feedback&quot;:&quot;★★★★★  Thank you — feedback saved&quot;,&quot;dyn.invoice&quot;:&quot;✓  GST invoice downloaded&quot;,&quot;dyn.visitdoc&quot;:&quot;📄  Summary shared to your inbox&quot;,
+      &quot;dyn.call&quot;:&quot;📞  Connecting… care desk notified&quot;,&quot;dyn.alert&quot;:&quot;✓  Lata G. has been alerted&quot;,&quot;dyn.paid&quot;:&quot;✓  Payment successful — invoice paid&quot;
+    },
+    te:{
+      &quot;pt.name&quot;:&quot;శ్రీమతి కమల రావు&quot;,&quot;pt.detail&quot;:&quot;68 · కుడి తుంటి మార్పిడి శస్త్రచికిత్స · కోలుకునే 9వ రోజు&quot;,&quot;pt.pkg&quot;:&quot;సమగ్ర&quot;,
+      &quot;sos&quot;:&quot;అత్యవసరం — ఇప్పుడే కేర్ టీమ్‌ను సంప్రదించండి&quot;,
+      &quot;tab.today&quot;:&quot;ఈ రోజు&quot;,&quot;tab.plan&quot;:&quot;కేర్ ప్లాన్&quot;,&quot;tab.escorts&quot;:&quot;ఎస్కార్ట్&quot;,&quot;tab.team&quot;:&quot;బృందం&quot;,&quot;tab.billing&quot;:&quot;బిల్లింగ్&quot;,
+      &quot;today.eyebrow&quot;:&quot;ఈ రోజు · శుక్ర, ఆగ 8&quot;,&quot;today.report&quot;:&quot;ఈ రోజు నివేదిక&quot;,&quot;today.updated&quot;:&quot;11 నిమిషాల క్రితం సునీత ఎం. అప్‌డేట్ చేశారు&quot;,&quot;today.stable&quot;:&quot;స్థిరంగా&quot;,
+      &quot;v.bp&quot;:&quot;బీపీ&quot;,&quot;v.pulse&quot;:&quot;పల్స్&quot;,&quot;v.temp&quot;:&quot;ఉష్ణోగ్రత&quot;,
+      &quot;repo.title&quot;:&quot;పొజిషన్ మార్పు&quot;,&quot;repo.sub&quot;:&quot;2 గంటలకోసారి · పడక పుండ్లను నివారిస్తుంది&quot;,&quot;repo.next&quot;:&quot;తర్వాత 12:00&quot;,
+      &quot;care.title&quot;:&quot;ఈ రోజు అందించిన సంరక్షణ&quot;,
+      &quot;care.t1&quot;:&quot;ఉదయం మందులు&quot;,&quot;care.t1s&quot;:&quot;క్యాల్షియం + విటమిన్ డి, నొప్పి ఉపశమనం&quot;,
+      &quot;care.t2&quot;:&quot;ఫిజియోథెరపీ — చీలమండ పంప్స్ &amp; క్వాడ్ సెట్స్&quot;,&quot;care.t2s&quot;:&quot;డా. అయ్యర్ ప్లాన్ ప్రకారం · 2 సెట్లు పూర్తి&quot;,
+      &quot;care.t3&quot;:&quot;స్పాంజ్ స్నానం &amp; గాయం డ్రెస్సింగ్ తనిఖీ&quot;,&quot;care.t3s&quot;:&quot;శస్త్రచికిత్స ప్రదేశం శుభ్రం, ఎర్రదనం లేదు&quot;,
+      &quot;care.t4&quot;:&quot;మధ్యాహ్న భోజనం — అధిక ప్రోటీన్, క్యాల్షియం&quot;,&quot;care.t4s&quot;:&quot;పోషకాహార నిపుణుల ప్లాన్ ప్రకారం&quot;,
+      &quot;care.t5&quot;:&quot;మధ్యాహ్నం మందులు&quot;,&quot;care.t5s&quot;:&quot;కుటుంబానికి రిమైండర్‌తో&quot;,
+      &quot;note.quote&quot;:&quot;“అమ్మ ఈ రోజు తనంతట తానే మంచం అంచున కూర్చున్నారు, వాకర్‌తో ఆరు అడుగులు నడిచారు — నిన్నటి కంటే కొంచెం ఎక్కువ. ఆమె ఉత్సాహంగా ఉన్నారు, పూర్తి అల్పాహారం తిన్నారు.”&quot;,
+      &quot;note.by&quot;:&quot;సునీత ఎం. · ఆర్థోపెడిక్ కేర్‌టేకర్ · రాత్రి 8 వరకు షిఫ్ట్&quot;,
+      &quot;today.rate&quot;:&quot;★  ఈ రోజు సందర్శనను రేట్ చేయండి&quot;,&quot;today.feedmicro&quot;:&quot;ప్రతి సందర్శన తర్వాత మీ అభిప్రాయం అమ్మకు సరైన సంరక్షణ అందించడంలో సహాయపడుతుంది.&quot;,
+      &quot;plan.eyebrow&quot;:&quot;డాక్టర్ పర్యవేక్షణలో కేర్ ప్లాన్&quot;,&quot;plan.prog&quot;:&quot;కోలుకునే పురోగతి&quot;,&quot;plan.progsub&quot;:&quot;అంచనా 6 వారాల ప్లాన్‌లో 9వ రోజు&quot;,&quot;plan.ontrack&quot;:&quot;సవ్యంగా&quot;,
+      &quot;ms.surgery&quot;:&quot;శస్త్రచికిత్స&quot;,&quot;ms.bed&quot;:&quot;మంచంలో కదలిక&quot;,&quot;ms.walker&quot;:&quot;వాకర్ అడుగులు&quot;,&quot;ms.stairs&quot;:&quot;మెట్లు&quot;,&quot;ms.indep&quot;:&quot;స్వతంత్రం&quot;,
+      &quot;plan.appby&quot;:&quot;ప్లాన్‌ను ఆమోదించినవారు&quot;,&quot;plan.approved&quot;:&quot;ఆమోదించబడింది&quot;,
+      &quot;plan.doc&quot;:&quot;<b style=\&quot;color:var(--ink)\&quot;>డా. ఆనంద్ అయ్యర్</b>, MBBS · MS (ఆర్థోపెడిక్స్)<br>తదుపరి ఇంటి సమీక్ష: <b style=\&quot;color:var(--ink)\&quot;>సోమ, ఆగ 25</b>&quot;,
+      &quot;plan.goals&quot;:&quot;ఈ వారం లక్ష్యాలు&quot;,
+      &quot;g1&quot;:&quot;వాకర్ సహాయంతో నడక&quot;,&quot;g1s&quot;:&quot;రోజుకు రెండుసార్లు 10 అడుగులకు పెంచండి&quot;,
+      &quot;g2&quot;:&quot;కూర్చుని తుంటి &amp; మోకాలి వ్యాయామాలు&quot;,&quot;g2s&quot;:&quot;ఫిజియోథెరపిస్ట్ మార్గదర్శకత్వం, రోజుకు 3 సార్లు&quot;,
+      &quot;g3&quot;:&quot;ఎముకల ఆరోగ్య పోషణ&quot;,&quot;g3s&quot;:&quot;క్యాల్షియం + విటమిన్ డి ఆహారం&quot;,
+      &quot;g4&quot;:&quot;పడక పుండ్ల నివారణ&quot;,&quot;g4s&quot;:&quot;2 గంటల పొజిషన్ మార్పు కొనసాగింపు&quot;,
+      &quot;esc.eyebrow&quot;:&quot;ఆసుపత్రి ఎస్కార్ట్&quot;,&quot;esc.followup&quot;:&quot;డా. అయ్యర్‌తో ఫాలో-అప్&quot;,&quot;esc.when&quot;:&quot;శని, ఆగ 16 · ఉ. 10:30 · అపోలో ఆర్థో OPD, హైదరాబాద్&quot;,&quot;esc.scheduled&quot;:&quot;షెడ్యూల్&quot;,
+      &quot;esc.route&quot;:&quot;ఇల్లు → ఆసుపత్రి → ఇల్లు&quot;,&quot;esc.gps&quot;:&quot;GPS ట్రాక్&quot;,
+      &quot;esc.assoc&quot;:&quot;ఎస్కార్ట్: <b style=\&quot;color:var(--ink)\&quot;>రమేష్ కె.</b> · ప్రథమ చికిత్స &amp; రోగి నిర్వహణలో సర్టిఫైడ్ · ఉ. 9:45కి వస్తారు&quot;,
+      &quot;esc.checklist&quot;:&quot;ప్రయాణ చెక్‌లిస్ట్&quot;,
+      &quot;esc.s1&quot;:&quot;అమ్మను ఇంట్లో సిద్ధం చేయడంలో సహాయం&quot;,&quot;esc.s2&quot;:&quot;అనుకూల వాహనానికి సురక్షిత మార్పిడి&quot;,&quot;esc.s3&quot;:&quot;రిజిస్ట్రేషన్ &amp; ట్రయాజ్‌లో తోడు&quot;,
+      &quot;esc.s4&quot;:&quot;కుటుంబం కోసం సంప్రదింపు నోట్స్&quot;,&quot;esc.s5&quot;:&quot;ఎక్స్-రే &amp; ఫార్మసీలో సహాయం&quot;,&quot;esc.s6&quot;:&quot;ఇంటికి తిరిగి &amp; డాక్టర్ సూచనలు అందజేత&quot;,
+      &quot;esc.last&quot;:&quot;చివరి సందర్శన&quot;,&quot;esc.suture&quot;:&quot;కుట్ల సమీక్ష · ఆగ 2&quot;,&quot;esc.suturesub&quot;:&quot;కుట్లు తీసివేయబడ్డాయి · గాయం బాగా మానుతోంది&quot;,&quot;esc.complete&quot;:&quot;పూర్తి&quot;,&quot;esc.viewdoc&quot;:&quot;📄  సందర్శన సారాంశం &amp; సూచనలు చూడండి&quot;,
+      &quot;team.eyebrow&quot;:&quot;మీ కేర్ బృందం&quot;,&quot;team.onshift&quot;:&quot;షిఫ్ట్‌లో&quot;,&quot;verified&quot;:&quot;నేపథ్య ధృవీకరణ&quot;,
+      &quot;role.surgeon&quot;:&quot;పర్యవేక్షక ఆర్థోపెడిక్ సర్జన్&quot;,&quot;cr.surgeon&quot;:&quot;MBBS · MS (ఆర్థో) · కేర్ ప్లాన్ రూపకల్పన &amp; సమీక్ష&quot;,
+      &quot;role.physio&quot;:&quot;రిజిస్టర్డ్ ఫిజియోథెరపిస్ట్&quot;,&quot;cr.physio&quot;:&quot;MPT · ఇంటి వ్యాయామం &amp; చలన కార్యక్రమం&quot;,
+      &quot;role.caretaker&quot;:&quot;ఆర్థోపెడిక్ కేర్‌టేకర్&quot;,&quot;cr.caretaker&quot;:&quot;120-గం సర్టిఫైడ్ · BLS &amp; ప్రథమ చికిత్స · పడక సంరక్షణ&quot;,
+      &quot;role.escort&quot;:&quot;పేషెంట్ ఎస్కార్ట్ అసోసియేట్&quot;,&quot;cr.escort&quot;:&quot;ప్రథమ చికిత్స · ఆసుపత్రి నావిగేషన్ · అత్యవసర స్పందన&quot;,
+      &quot;role.coord&quot;:&quot;కేర్ కోఆర్డినేటర్&quot;,&quot;cr.coord&quot;:&quot;GNM · బృందం పర్యవేక్షణ &amp; వారపు నాణ్యత సందర్శనలు&quot;,
+      &quot;team.micro&quot;:&quot;మీ అనుమతి లేకుండా ఏ కేర్‌టేకర్‌ను మార్చము. ప్రతి సభ్యుడు పోలీస్ ధృవీకరణ &amp; వైద్య పరీక్ష పొందారు.&quot;,
+      &quot;bill.eyebrow&quot;:&quot;బిల్లింగ్ · ఆగస్టు 2026&quot;,&quot;bill.pkg&quot;:&quot;సమగ్ర సంరక్షణ&quot;,&quot;bill.pkgsub&quot;:&quot;24-గం కేర్‌టేకర్ · నెలకు 4 ఎస్కార్ట్‌లు · ఫిజియో &amp; పోషణ&quot;,&quot;bill.due&quot;:&quot;చెల్లించాలి&quot;,&quot;bill.paid&quot;:&quot;చెల్లించబడింది&quot;,
+      &quot;bill.l1&quot;:&quot;సమగ్ర ప్యాకేజీ&quot;,&quot;bill.l2&quot;:&quot;ఇంటి ఫిజియోథెరపీ (8 సెషన్లు)&quot;,&quot;bill.l3&quot;:&quot;సీనియర్ సిటిజన్ డిస్కౌంట్ (10%)&quot;,&quot;bill.l4&quot;:&quot;GST (18%)&quot;,&quot;bill.total&quot;:&quot;మొత్తం చెల్లించాలి&quot;,
+      &quot;bill.paynow&quot;:&quot;ఇప్పుడు చెల్లించండి&quot;,&quot;bill.invoice&quot;:&quot;GST ఇన్‌వాయిస్ డౌన్‌లోడ్&quot;,&quot;bill.plan&quot;:&quot;వడ్డీ లేని నెలవారీ ప్లాన్ ఏర్పాటు&quot;,
+      &quot;bill.micro&quot;:&quot;సంరక్షణ ప్రారంభానికి ముందే వ్రాతపూర్వక అంచనా ఇవ్వబడింది — దాచిన ఛార్జీలు లేవు. మీ GST ఇన్‌వాయిస్ బీమా &amp; పన్ను క్లెయిమ్‌లకు ఉపయోగపడుతుంది.&quot;,
+      &quot;em.title&quot;:&quot;మేము ఇక్కడే ఉన్నాం, ఇప్పుడే&quot;,&quot;em.body&quot;:&quot;ఇది షిఫ్ట్‌లోని కేర్‌టేకర్, కేర్ కోఆర్డినేటర్ మరియు మా 24×7 అత్యవసర డెస్క్‌కు ఒకేసారి హెచ్చరిస్తుంది.&quot;,
+      &quot;em.sla&quot;:&quot;30 నిమిషాల లోపు హామీ స్పందన&quot;,&quot;em.call&quot;:&quot;📞  అత్యవసర డెస్క్‌కు కాల్ చేయండి&quot;,&quot;em.alert&quot;:&quot;కేర్ కోఆర్డినేటర్‌ను హెచ్చరించండి (లత జి.)&quot;,&quot;cancel&quot;:&quot;రద్దు&quot;,
+      &quot;pay.title&quot;:&quot;₹68,393 చెల్లించండి&quot;,&quot;pay.sub&quot;:&quot;చెల్లింపు విధానాన్ని ఎంచుకోండి&quot;,&quot;pay.upi&quot;:&quot;జీపే, ఫోన్‌పే, పేటిఎం&quot;,&quot;pay.card&quot;:&quot;క్రెడిట్ / డెబిట్ కార్డ్&quot;,&quot;pay.nb&quot;:&quot;నెట్ బ్యాంకింగ్&quot;,&quot;pay.secure&quot;:&quot;చెల్లింపులు సురక్షితం. Asthimitra మీ కార్డ్ వివరాలను నిల్వ చేయదు.&quot;,
+      &quot;dyn.feedback&quot;:&quot;★★★★★  ధన్యవాదాలు — అభిప్రాయం సేవ్ చేయబడింది&quot;,&quot;dyn.invoice&quot;:&quot;✓  GST ఇన్‌వాయిస్ డౌన్‌లోడ్ అయింది&quot;,&quot;dyn.visitdoc&quot;:&quot;📄  సారాంశం మీ ఇన్‌బాక్స్‌కు పంపబడింది&quot;,
+      &quot;dyn.call&quot;:&quot;📞  కనెక్ట్ అవుతోంది… డెస్క్‌కు తెలియజేయబడింది&quot;,&quot;dyn.alert&quot;:&quot;✓  లత జి.కి తెలియజేయబడింది&quot;,&quot;dyn.paid&quot;:&quot;✓  చెల్లింపు విజయవంతం — ఇన్‌వాయిస్ చెల్లించబడింది&quot;
+    },
+    hi:{
+      &quot;pt.name&quot;:&quot;श्रीमती कमला राव&quot;,&quot;pt.detail&quot;:&quot;68 · दायाँ कूल्हा प्रत्यारोपण · रिकवरी दिन 9&quot;,&quot;pt.pkg&quot;:&quot;व्यापक&quot;,
+      &quot;sos&quot;:&quot;आपातकाल — अभी देखभाल टीम से संपर्क करें&quot;,
+      &quot;tab.today&quot;:&quot;आज&quot;,&quot;tab.plan&quot;:&quot;देखभाल योजना&quot;,&quot;tab.escorts&quot;:&quot;एस्कॉर्ट&quot;,&quot;tab.team&quot;:&quot;टीम&quot;,&quot;tab.billing&quot;:&quot;बिलिंग&quot;,
+      &quot;today.eyebrow&quot;:&quot;आज · शुक्र, 8 अग&quot;,&quot;today.report&quot;:&quot;आज की रिपोर्ट&quot;,&quot;today.updated&quot;:&quot;11 मिनट पहले सुनीता एम. द्वारा अपडेट&quot;,&quot;today.stable&quot;:&quot;स्थिर&quot;,
+      &quot;v.bp&quot;:&quot;बीपी&quot;,&quot;v.pulse&quot;:&quot;पल्स&quot;,&quot;v.temp&quot;:&quot;तापमान&quot;,
+      &quot;repo.title&quot;:&quot;करवट बदलना&quot;,&quot;repo.sub&quot;:&quot;हर 2 घंटे · दबाव घाव रोकता है&quot;,&quot;repo.next&quot;:&quot;अगला 12:00&quot;,
+      &quot;care.title&quot;:&quot;आज दी गई देखभाल&quot;,
+      &quot;care.t1&quot;:&quot;सुबह की दवा&quot;,&quot;care.t1s&quot;:&quot;कैल्शियम + विटामिन डी, दर्द निवारक&quot;,
+      &quot;care.t2&quot;:&quot;फिजियोथेरेपी — टखना पंप और क्वाड सेट&quot;,&quot;care.t2s&quot;:&quot;डॉ. अय्यर की योजना अनुसार · 2 सेट पूरे&quot;,
+      &quot;care.t3&quot;:&quot;स्पंज स्नान और घाव ड्रेसिंग जाँच&quot;,&quot;care.t3s&quot;:&quot;सर्जरी स्थल साफ, कोई लाली नहीं&quot;,
+      &quot;care.t4&quot;:&quot;दोपहर का भोजन — उच्च प्रोटीन, कैल्शियम युक्त&quot;,&quot;care.t4s&quot;:&quot;पोषण विशेषज्ञ योजना अनुसार&quot;,
+      &quot;care.t5&quot;:&quot;दोपहर की दवा&quot;,&quot;care.t5s&quot;:&quot;परिवार को अनुस्मारक के साथ&quot;,
+      &quot;note.quote&quot;:&quot;“अम्मा आज खुद बिस्तर के किनारे बैठीं और वॉकर से छह कदम चलीं — कल से थोड़ा ज़्यादा। वे अच्छे मन में थीं और पूरा नाश्ता किया।”&quot;,
+      &quot;note.by&quot;:&quot;सुनीता एम. · ऑर्थोपेडिक केयरटेकर · रात 8 बजे तक शिफ्ट&quot;,
+      &quot;today.rate&quot;:&quot;★  आज की विज़िट को रेट करें&quot;,&quot;today.feedmicro&quot;:&quot;हर विज़िट के बाद आपकी प्रतिक्रिया अम्मा की सही देखभाल में मदद करती है।&quot;,
+      &quot;plan.eyebrow&quot;:&quot;डॉक्टर-निगरानी देखभाल योजना&quot;,&quot;plan.prog&quot;:&quot;रिकवरी प्रगति&quot;,&quot;plan.progsub&quot;:&quot;अनुमानित 6-सप्ताह योजना का दिन 9&quot;,&quot;plan.ontrack&quot;:&quot;सही राह पर&quot;,
+      &quot;ms.surgery&quot;:&quot;सर्जरी&quot;,&quot;ms.bed&quot;:&quot;बिस्तर गतिशीलता&quot;,&quot;ms.walker&quot;:&quot;वॉकर कदम&quot;,&quot;ms.stairs&quot;:&quot;सीढ़ियाँ&quot;,&quot;ms.indep&quot;:&quot;स्वतंत्र&quot;,
+      &quot;plan.appby&quot;:&quot;योजना स्वीकृत की&quot;,&quot;plan.approved&quot;:&quot;स्वीकृत&quot;,
+      &quot;plan.doc&quot;:&quot;<b style=\&quot;color:var(--ink)\&quot;>डॉ. आनंद अय्यर</b>, MBBS · MS (ऑर्थोपेडिक्स)<br>अगली गृह समीक्षा: <b style=\&quot;color:var(--ink)\&quot;>सोम, 25 अग</b>&quot;,
+      &quot;plan.goals&quot;:&quot;इस सप्ताह के लक्ष्य&quot;,
+      &quot;g1&quot;:&quot;वॉकर-सहायता चलना&quot;,&quot;g1s&quot;:&quot;दिन में दो बार 10 कदम तक बढ़ाएँ&quot;,
+      &quot;g2&quot;:&quot;बैठकर कूल्हा और घुटना व्यायाम&quot;,&quot;g2s&quot;:&quot;फिजियोथेरेपिस्ट-निर्देशित, दिन में 3 बार&quot;,
+      &quot;g3&quot;:&quot;हड्डी-स्वास्थ्य पोषण&quot;,&quot;g3s&quot;:&quot;कैल्शियम + विटामिन डी आहार&quot;,
+      &quot;g4&quot;:&quot;दबाव घाव रोकथाम&quot;,&quot;g4s&quot;:&quot;हर 2 घंटे करवट जारी&quot;,
+      &quot;esc.eyebrow&quot;:&quot;अस्पताल एस्कॉर्ट&quot;,&quot;esc.followup&quot;:&quot;डॉ. अय्यर के साथ फॉलो-अप&quot;,&quot;esc.when&quot;:&quot;शनि, 16 अग · सुबह 10:30 · अपोलो ऑर्थो OPD, हैदराबाद&quot;,&quot;esc.scheduled&quot;:&quot;निर्धारित&quot;,
+      &quot;esc.route&quot;:&quot;घर → अस्पताल → घर&quot;,&quot;esc.gps&quot;:&quot;GPS ट्रैक&quot;,
+      &quot;esc.assoc&quot;:&quot;एस्कॉर्ट: <b style=\&quot;color:var(--ink)\&quot;>रमेश के.</b> · प्राथमिक चिकित्सा और मरीज़ प्रबंधन प्रमाणित · सुबह 9:45 पहुँचेंगे&quot;,
+      &quot;esc.checklist&quot;:&quot;यात्रा चेकलिस्ट&quot;,
+      &quot;esc.s1&quot;:&quot;अम्मा को घर पर तैयार होने में मदद&quot;,&quot;esc.s2&quot;:&quot;अनुकूलित वाहन में सुरक्षित स्थानांतरण&quot;,&quot;esc.s3&quot;:&quot;पंजीकरण और ट्राइएज में साथ&quot;,
+      &quot;esc.s4&quot;:&quot;परिवार के लिए परामर्श नोट्स&quot;,&quot;esc.s5&quot;:&quot;एक्स-रे और फार्मेसी में सहायता&quot;,&quot;esc.s6&quot;:&quot;घर वापसी और डॉक्टर के निर्देश सौंपना&quot;,
+      &quot;esc.last&quot;:&quot;पिछली विज़िट&quot;,&quot;esc.suture&quot;:&quot;टांके समीक्षा · 2 अग&quot;,&quot;esc.suturesub&quot;:&quot;टांके हटाए · घाव अच्छे से भर रहा&quot;,&quot;esc.complete&quot;:&quot;पूर्ण&quot;,&quot;esc.viewdoc&quot;:&quot;📄  विज़िट सारांश और निर्देश देखें&quot;,
+      &quot;team.eyebrow&quot;:&quot;आपकी देखभाल टीम&quot;,&quot;team.onshift&quot;:&quot;शिफ्ट पर&quot;,&quot;verified&quot;:&quot;पृष्ठभूमि सत्यापित&quot;,
+      &quot;role.surgeon&quot;:&quot;पर्यवेक्षक ऑर्थोपेडिक सर्जन&quot;,&quot;cr.surgeon&quot;:&quot;MBBS · MS (ऑर्थो) · योजना बनाना और समीक्षा&quot;,
+      &quot;role.physio&quot;:&quot;पंजीकृत फिजियोथेरेपिस्ट&quot;,&quot;cr.physio&quot;:&quot;MPT · गृह व्यायाम और गतिशीलता कार्यक्रम&quot;,
+      &quot;role.caretaker&quot;:&quot;ऑर्थोपेडिक केयरटेकर&quot;,&quot;cr.caretaker&quot;:&quot;120-घंटे प्रमाणित · BLS और प्राथमिक चिकित्सा · दबाव देखभाल&quot;,
+      &quot;role.escort&quot;:&quot;मरीज़ एस्कॉर्ट सहयोगी&quot;,&quot;cr.escort&quot;:&quot;प्राथमिक चिकित्सा · अस्पताल नेविगेशन · आपातकालीन प्रतिक्रिया&quot;,
+      &quot;role.coord&quot;:&quot;देखभाल समन्वयक&quot;,&quot;cr.coord&quot;:&quot;GNM · टीम देखरेख और साप्ताहिक गुणवत्ता विज़िट&quot;,
+      &quot;team.micro&quot;:&quot;आपकी सहमति के बिना कोई केयरटेकर नहीं बदला जाता। हर सदस्य पुलिस-सत्यापित और चिकित्सकीय रूप से जाँचा गया है।&quot;,
+      &quot;bill.eyebrow&quot;:&quot;बिलिंग · अगस्त 2026&quot;,&quot;bill.pkg&quot;:&quot;व्यापक देखभाल&quot;,&quot;bill.pkgsub&quot;:&quot;24-घंटे केयरटेकर · 4 एस्कॉर्ट/माह · फिजियो और पोषण&quot;,&quot;bill.due&quot;:&quot;देय&quot;,&quot;bill.paid&quot;:&quot;भुगतान हुआ&quot;,
+      &quot;bill.l1&quot;:&quot;व्यापक पैकेज&quot;,&quot;bill.l2&quot;:&quot;गृह फिजियोथेरेपी (8 सत्र)&quot;,&quot;bill.l3&quot;:&quot;वरिष्ठ नागरिक छूट (10%)&quot;,&quot;bill.l4&quot;:&quot;GST (18%)&quot;,&quot;bill.total&quot;:&quot;कुल देय&quot;,
+      &quot;bill.paynow&quot;:&quot;अभी भुगतान करें&quot;,&quot;bill.invoice&quot;:&quot;GST चालान डाउनलोड&quot;,&quot;bill.plan&quot;:&quot;ब्याज-मुक्त मासिक योजना सेट करें&quot;,
+      &quot;bill.micro&quot;:&quot;देखभाल शुरू होने से पहले लिखित अनुमान दिया गया — कोई छिपा शुल्क नहीं। आपका GST चालान बीमा और कर दावों में मदद करता है।&quot;,
+      &quot;em.title&quot;:&quot;हम यहीं हैं, अभी&quot;,&quot;em.body&quot;:&quot;यह शिफ्ट पर मौजूद केयरटेकर, समन्वयक और हमारे 24×7 आपातकालीन डेस्क को एक साथ सूचित करता है।&quot;,
+      &quot;em.sla&quot;:&quot;30 मिनट से कम में गारंटीड प्रतिक्रिया&quot;,&quot;em.call&quot;:&quot;📞  आपातकालीन डेस्क को कॉल करें&quot;,&quot;em.alert&quot;:&quot;समन्वयक को सूचित करें (लता जी.)&quot;,&quot;cancel&quot;:&quot;रद्द करें&quot;,
+      &quot;pay.title&quot;:&quot;₹68,393 भुगतान करें&quot;,&quot;pay.sub&quot;:&quot;भुगतान का तरीका चुनें&quot;,&quot;pay.upi&quot;:&quot;GPay, PhonePe, Paytm&quot;,&quot;pay.card&quot;:&quot;क्रेडिट / डेबिट कार्ड&quot;,&quot;pay.nb&quot;:&quot;नेट-बैंकिंग&quot;,&quot;pay.secure&quot;:&quot;भुगतान सुरक्षित हैं। Asthimitra आपके कार्ड विवरण संग्रहीत नहीं करता।&quot;,
+      &quot;dyn.feedback&quot;:&quot;★★★★★  धन्यवाद — प्रतिक्रिया सहेजी गई&quot;,&quot;dyn.invoice&quot;:&quot;✓  GST चालान डाउनलोड हुआ&quot;,&quot;dyn.visitdoc&quot;:&quot;📄  सारांश आपके इनबॉक्स में भेजा गया&quot;,
+      &quot;dyn.call&quot;:&quot;📞  कनेक्ट हो रहा… डेस्क सूचित&quot;,&quot;dyn.alert&quot;:&quot;✓  लता जी. को सूचित किया गया&quot;,&quot;dyn.paid&quot;:&quot;✓  भुगतान सफल — चालान भुगतान हुआ&quot;
+    }
+  };
+
+  var lang='en', paid=false;
+  function t(key){return (I18N[lang] &amp;&amp; I18N[lang][key]) || I18N.en[key] || '';}
+
+  function applyLang(l){
+    lang=l;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var v=t(el.getAttribute('data-i18n')); if(v) el.textContent=v;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      var v=t(el.getAttribute('data-i18n-html')); if(v) el.innerHTML=v;
+    });
+    document.querySelectorAll('.langseg button').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-lang')===l);
+    });
+    // keep the &quot;paid&quot; state coherent after a language switch
+    if(paid){ setStatusPaid(); }
+  }
+  document.querySelectorAll('.langseg button').forEach(function(b){
+    b.addEventListener('click',function(){applyLang(b.getAttribute('data-lang'))});
+  });
+
+  // tabs
+  var tabs=document.querySelectorAll('.tab'), panels=document.querySelectorAll('.panel'), screen=document.getElementById('screen');
+  tabs.forEach(function(tb){
+    tb.addEventListener('click',function(){
+      var id=tb.getAttribute('data-tab');
+      tabs.forEach(function(x){x.classList.toggle('active',x===tb)});
+      panels.forEach(function(p){p.classList.toggle('active',p.id===id)});
+      screen.scrollTop=0;
+    });
+  });
+
+  // sheets
+  function open(id){document.getElementById(id).classList.add('open')}
+  function closeAll(){document.querySelectorAll('.overlay').forEach(function(o){o.classList.remove('open')})}
+  document.getElementById('sosBtn').addEventListener('click',function(){open('overlay')});
+  document.getElementById('payBtn').addEventListener('click',function(){if(!paid)open('payOverlay')});
+  document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',closeAll)});
+  document.querySelectorAll('.overlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===o)closeAll()})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+
+  // emergency actions
+  document.getElementById('callBtn').addEventListener('click',function(){this.textContent=t('dyn.call');this.disabled=true;this.removeAttribute('data-i18n')});
+  document.getElementById('alertBtn').addEventListener('click',function(){this.textContent=t('dyn.alert');this.removeAttribute('data-i18n')});
+
+  // today / escort / billing actions
+  document.getElementById('feedbackBtn').addEventListener('click',function(){this.textContent=t('dyn.feedback');this.removeAttribute('data-i18n')});
+  document.getElementById('invoiceBtn').addEventListener('click',function(){this.textContent=t('dyn.invoice');this.removeAttribute('data-i18n')});
+  document.getElementById('visitDocBtn').addEventListener('click',function(){this.textContent=t('dyn.visitdoc');this.removeAttribute('data-i18n')});
+
+  // payment success
+  function setStatusPaid(){
+    var s=document.getElementById('payStatus');
+    s.className='pill good'; s.innerHTML='<span class=&quot;dot&quot;></span><span data-i18n=&quot;bill.paid&quot;>'+t('bill.paid')+'</span>';
+    var pb=document.getElementById('payBtn'); pb.textContent=t('dyn.paid'); pb.disabled=true; pb.removeAttribute('data-i18n');
+  }
+  document.querySelectorAll('[data-pay]').forEach(function(b){
+    b.addEventListener('click',function(){paid=true; setStatusPaid(); closeAll();});
+  });
+
+  // theme cycle: system -> light -> dark
+  var root=document.documentElement, mode='system';
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    mode = mode==='system' ? 'light' : mode==='light' ? 'dark' : 'system';
+    if(mode==='system'){root.removeAttribute('data-theme');this.textContent='◐'}
+    else{root.setAttribute('data-theme',mode);this.textContent=(mode==='light'?'☀':'☾')}
+  });
+})();
+</script>
+"></iframe></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="fbrand">Asthi<b style="color:var(--azure)">mitra</b></div>
+    <p>Doctor-supervised orthopedic home care &amp; hospital escort &middot; Hyderabad &middot; interactive prototype</p>
+  </footer>
+
+  <script>
+    (function(){
+      var root=document.documentElement, mode='system', b=document.getElementById('tg');
+      b.addEventListener('click',function(){
+        mode=mode==='system'?'light':mode==='light'?'dark':'system';
+        if(mode==='system'){root.removeAttribute('data-theme');b.innerHTML='&#9680;';}
+        else{root.setAttribute('data-theme',mode);b.innerHTML=(mode==='light'?'&#9728;':'&#9790;');}
+      });
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+      document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+    })();
+  </script>
 </body>
 </html>
