@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OrthoApp — Project Index</title>
+<style>
+  :root{
+    --bg:#F7F9F6; --surface:#fff; --ink:#182A27; --soft:#5A6A66; --faint:#8A9994;
+    --line:#E2E8E3; --primary:#0E5A54; --primary-ink:#0B4741; --accent:#DC6B4F; --mist:#F0F4F0;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0F1C1A;--surface:#162823;--ink:#EAF1EE;--soft:#A3B6B0;--faint:#6E827C;
+      --line:#274038;--primary:#4FBFB0;--primary-ink:#8FD9CE;--accent:#E88569;--mist:#1E332D;}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:48px 22px 72px}
+  .serif{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+  header{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .glyph{width:46px;height:46px;border-radius:13px;background:var(--primary);color:#fff;
+    display:grid;place-items:center;flex:0 0 auto}
+  h1{font-size:30px;margin:0}
+  h1 b{color:var(--primary);font-weight:600}
+  .lede{color:var(--soft);font-size:16px;margin:8px 0 4px;max-width:60ch}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 34px}
+  .chip{font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;background:var(--mist);color:var(--primary-ink)}
+  .label{font-size:11px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--faint);margin:34px 0 14px}
+  a.card{display:flex;align-items:center;gap:15px;text-decoration:none;color:inherit;
+    background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:17px 18px;margin-bottom:12px;
+    transition:transform .14s ease,border-color .14s ease}
+  a.card:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .ico{width:46px;height:46px;border-radius:13px;flex:0 0 auto;display:grid;place-items:center;font-size:22px;color:#fff}
+  .c-body{flex:1;min-width:0}
+  .c-body b{font-size:16px;display:block}
+  .c-body span{font-size:13px;color:var(--soft)}
+  .go{color:var(--faint);font-size:20px}
+  footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+  code{background:var(--mist);padding:1px 6px;border-radius:6px;font-size:12.5px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="glyph" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.5C1 9.5 2.5 6 6 6c2 0 3.2 1.2 4 2.5C10.8 7.2 12 6 14 6c3.5 0 5 3.5 3.5 6.5C19 16.65 12 21 12 21z"/></svg>
+      </span>
+      <h1 class="serif">Ortho<b>App</b></h1>
+    </header>
+    <p class="lede">Digital operations & family-engagement platform for <strong>OrthoAssist HomeCare</strong> — dignified, doctor-supervised orthopedic home care and safe hospital escort.</p>
+    <div class="chips">
+      <span class="chip">Hyderabad</span>
+      <span class="chip">English · Telugu · Hindi</span>
+      <span class="chip">In-app payments</span>
+      <span class="chip">Offline-first field apps</span>
+    </div>
+
+    <div class="label">Prototypes</div>
+    <a class="card" href="suite.html">
+      <span class="ico" style="background:var(--primary)">🏥</span>
+      <span class="c-body"><b>Multi-role suite</b><span>Launcher → Family (journey) · Doctor (approve plans) · Escort (live trip, offline)</span></span>
+      <span class="go">›</span>
+    </a>
+    <a class="card" href="prototype.html">
+      <span class="ico" style="background:var(--accent)">👪</span>
+      <span class="c-body"><b>Family app — trilingual</b><span>Daily reports, care plan, escorts, GST billing + Pay now · EN / తె / हि</span></span>
+      <span class="go">›</span>
+    </a>
+
+    <div class="label">Documents</div>
+    <a class="card" href="BRD.md">
+      <span class="ico" style="background:#4C7BB0">📋</span>
+      <span class="c-body"><b>Business Requirements Document</b><span>Objectives, scope, personas, 40+ requirements, process flows, risks, v1 decisions</span></span>
+      <span class="go">›</span>
+    </a>
+    <a class="card" href="OrthoApp_Overview.pptx">
+      <span class="ico" style="background:#8A5A2B">📊</span>
+      <span class="c-body"><b>Overview deck (PowerPoint)</b><span>8 brief slides — what / why / what it does / who / how</span></span>
+      <span class="go">›</span>
+    </a>
+    <a class="card" href="OrthoApp.docx">
+      <span class="ico" style="background:#5A6E4A">📄</span>
+      <span class="c-body"><b>Source charter</b><span>The original OrthoAssist HomeCare service brochure</span></span>
+      <span class="go">›</span>
+    </a>
+
+    <footer>
+      Open the <code>.html</code> files directly in a browser. Telugu/Hindi strings await a native-speaker proofread before production.
+    </footer>
+  </div>
+</body>
+</html>
