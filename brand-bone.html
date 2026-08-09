@@ -1,0 +1,164 @@
+<title>Asthimitra — Bone Colour</title>
+<style>
+  :root{
+    --bg:#F4F6FA; --panel:#FFFFFF; --ink:#16202E; --soft:#586576; --faint:#8A95A4;
+    --line:#E3E8F0; --mist:#EEF2F8; --azure:#1466C7;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0B1017; --panel:#141C27; --ink:#EAF0F8; --soft:#9DAABB; --faint:#69768A;
+      --line:#243141; --mist:#1A2431;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B1017; --panel:#141C27; --ink:#EAF0F8; --soft:#9DAABB; --faint:#69768A;
+    --line:#243141; --mist:#1A2431;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.55}
+  .wrap{max-width:900px;margin:0 auto;padding:44px 22px 80px}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--azure)}
+  h1{font-family:var(--serif);font-size:33px;margin:6px 0 6px}
+  h1 b{color:var(--azure);font-weight:600}
+  .lede{color:var(--soft);font-size:15.5px;max-width:66ch;margin:0 0 6px}
+  .sec{font-family:var(--serif);font-size:22px;margin:42px 0 4px}
+  .note{color:var(--soft);font-size:13.5px;margin:0 0 18px}
+
+  .hero{display:flex;align-items:center;gap:22px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px 28px;margin-top:8px;flex-wrap:wrap}
+  .hero svg{width:120px;height:120px}
+  .wm{font-family:var(--serif);font-size:44px;line-height:1;color:var(--ink)}
+  .wm b{font-weight:600;color:var(--azure)}
+  .before{font-size:12px;color:var(--faint);margin-top:10px}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
+  @media(min-width:760px){.grid{grid-template-columns:1fr 1fr 1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative}
+  .card.rec{border-color:var(--azure);box-shadow:0 0 0 1px var(--azure)}
+  .badge{position:absolute;top:12px;right:12px;font-size:9.5px;font-weight:800;letter-spacing:.5px;color:#fff;background:var(--azure);padding:3px 8px;border-radius:999px;z-index:2}
+  .tile{background:#F3F6FB;display:grid;place-items:center;padding:30px 0 24px}
+  .tile svg{width:118px;height:118px}
+  .strip{display:flex;align-items:center;gap:10px;padding:13px 15px 15px}
+  .mini{width:46px;height:46px;border-radius:12px;background:var(--azure);display:grid;place-items:center;flex:0 0 auto}
+  .mini svg{width:30px;height:30px}
+  .meta{flex:1;min-width:0}
+  .meta h3{font-size:14.5px;margin:0 0 2px;font-weight:700}
+  .meta .hex{font-size:11px;color:var(--soft);font-weight:600;font-variant-numeric:tabular-nums}
+  .vibe{font-size:11.5px;color:var(--faint);padding:0 15px 15px;margin-top:-4px}
+
+  .iconrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px}
+  .appicon{width:90px;height:90px;border-radius:21px;display:grid;place-items:center;box-shadow:0 10px 22px -12px rgba(0,0,0,.45)}
+  .appicon svg{width:56px;height:56px}
+  .cap{font-size:10.5px;color:var(--faint);text-align:center;margin-top:6px;font-weight:600}
+  .toggle{position:fixed;top:14px;right:14px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;width:38px;height:38px;font-size:15px;cursor:pointer}
+  .foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);line-height:1.6}
+</style>
+
+<button class="toggle" id="tg" aria-label="Toggle theme">◐</button>
+
+<!-- Bigger, chunkier bone: wider shaft + double-lobed ends that extend past the A legs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="abone" viewBox="0 0 100 100">
+  <path d="M50 20 L28 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M50 20 L72 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <!-- bone -->
+  <path d="M29 57 H71" stroke="var(--a)" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="27" cy="51" r="7.5" fill="var(--a)"/><circle cx="27" cy="63" r="7.5" fill="var(--a)"/>
+  <circle cx="73" cy="51" r="7.5" fill="var(--a)"/><circle cx="73" cy="63" r="7.5" fill="var(--a)"/>
+</symbol></svg>
+
+<div class="wrap">
+  <div class="eyebrow">Concept 1 · Azure locked · bone colour</div>
+  <h1>Asthi<b>mitra</b> — a bolder, darker bone</h1>
+  <p class="lede">Azure “A” stays. The bone is now <b>chunkier and wider</b> — the double-lobed ends push past the legs so it reads unmistakably as a bone. Pick the bone colour that pops best for you.</p>
+
+  <div class="hero" style="--p:#1466C7;--a:#0B7A45">
+    <svg><use href="#abone"/></svg>
+    <div>
+      <span class="wm">Asthi<b>mitra</b></span>
+      <div class="before">Shown with the recommended <b>Deep Emerald</b> bone · azure #1466C7 legs</div>
+    </div>
+  </div>
+
+  <div class="sec">Bone colour options</div>
+  <p class="note">All on the same azure “A”. Big tile = on light; small tile = on azure.</p>
+  <div class="grid">
+
+    <div class="card rec">
+      <span class="badge">PICK</span>
+      <div class="tile" style="--p:#1466C7;--a:#0B7A45"><svg><use href="#abone"/></svg></div>
+      <div class="strip">
+        <span class="mini" style="--p:#FFFFFF;--a:#26C978"><svg><use href="#abone"/></svg></span>
+        <span class="meta"><h3>Deep Emerald</h3><span class="hex">#0B7A45</span></span>
+      </div>
+      <p class="vibe">Keeps the green “hope/healing” story — now dark enough to stand out on azure.</p>
+    </div>
+
+    <div class="card">
+      <div class="tile" style="--p:#1466C7;--a:#1B2430"><svg><use href="#abone"/></svg></div>
+      <div class="strip">
+        <span class="mini" style="--p:#FFFFFF;--a:#1B2430"><svg><use href="#abone"/></svg></span>
+        <span class="meta"><h3>Charcoal Ink</h3><span class="hex">#1B2430</span></span>
+      </div>
+      <p class="vibe">Near-black bone — maximum legibility, most “x-ray / clinical” read.</p>
+    </div>
+
+    <div class="card">
+      <div class="tile" style="--p:#1466C7;--a:#E0930F"><svg><use href="#abone"/></svg></div>
+      <div class="strip">
+        <span class="mini" style="--p:#FFFFFF;--a:#F4B23C"><svg><use href="#abone"/></svg></span>
+        <span class="meta"><h3>Gold Amber</h3><span class="hex">#E0930F</span></span>
+      </div>
+      <p class="vibe">Warm optimistic pop — the most energetic contrast against blue.</p>
+    </div>
+
+    <div class="card">
+      <div class="tile" style="--p:#1466C7;--a:#0A2C52"><svg><use href="#abone"/></svg></div>
+      <div class="strip">
+        <span class="mini" style="--p:#FFFFFF;--a:#5FA0EE"><svg><use href="#abone"/></svg></span>
+        <span class="meta"><h3>Navy Depth</h3><span class="hex">#0A2C52</span></span>
+      </div>
+      <p class="vibe">Tonal, refined, all-blue. Elegant but the quietest contrast.</p>
+    </div>
+
+    <div class="card">
+      <div class="tile" style="--p:#1466C7;--a:#C63B23"><svg><use href="#abone"/></svg></div>
+      <div class="strip">
+        <span class="mini" style="--p:#FFFFFF;--a:#EA5C42"><svg><use href="#abone"/></svg></span>
+        <span class="meta"><h3>Coral Red</h3><span class="hex">#C63B23</span></span>
+      </div>
+      <p class="vibe">Boldest, warmest — high energy, strongest stop-and-look.</p>
+    </div>
+
+    <div class="card">
+      <div class="tile" style="--p:#1466C7;--a:#0A6B74"><svg><use href="#abone"/></svg></div>
+      <div class="strip">
+        <span class="mini" style="--p:#FFFFFF;--a:#39BEC9"><svg><use href="#abone"/></svg></span>
+        <span class="meta"><h3>Pine Teal</h3><span class="hex">#0A6B74</span></span>
+      </div>
+      <p class="vibe">Deep blue-green — calm, healthful, a subtle nod to the old teal.</p>
+    </div>
+  </div>
+
+  <div class="sec">App icons — the top three</div>
+  <div class="iconrow">
+    <div><div class="appicon" style="background:linear-gradient(155deg,#1E7AE0,#0E4FA6)"><svg style="--p:#FFFFFF;--a:#26C978"><use href="#abone"/></svg></div><div class="cap">Emerald</div></div>
+    <div><div class="appicon" style="background:linear-gradient(155deg,#1E7AE0,#0E4FA6)"><svg style="--p:#FFFFFF;--a:#F4B23C"><use href="#abone"/></svg></div><div class="cap">Amber</div></div>
+    <div><div class="appicon" style="background:linear-gradient(155deg,#FFFFFF,#EAF2FC)"><svg style="--p:#1466C7;--a:#1B2430"><use href="#abone"/></svg></div><div class="cap">Charcoal on light</div></div>
+  </div>
+
+  <div class="foot">
+    Colour sketches only. Pick a bone colour and I’ll WCAG-contrast-check it, finalise the mark + favicon, and re-skin both prototype apps in Azure + your bone colour.
+  </div>
+</div>
+
+<script>
+  (function(){
+    var root=document.documentElement, mode='system', b=document.getElementById('tg');
+    b.addEventListener('click',function(){
+      mode=mode==='system'?'light':mode==='light'?'dark':'system';
+      if(mode==='system'){root.removeAttribute('data-theme');b.textContent='◐';}
+      else{root.setAttribute('data-theme',mode);b.textContent=(mode==='light'?'☀':'☾');}
+    });
+  })();
+</script>
