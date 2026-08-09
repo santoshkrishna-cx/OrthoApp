@@ -62,13 +62,13 @@ OrthoAssist closes these gaps with people. Today those people coordinate over ph
 - **Hospital escort management** (home→hospital, hospital→home) with visit documentation
 - **Family portal**: daily reports, care team, schedule, care-plan progress, messaging, billing
 - **Safety & incident management**: emergency escalation, alerts for overdue safety tasks
-- **Service packages, subscriptions, and GST billing** with discounts and payment plans
+- **Service packages, subscriptions, GST billing, and in-app payment collection** with discounts and payment plans
+- **Offline field capability**: caretakers/escorts can log care without connectivity; syncs when back online
 - **Feedback capture** after every visit
 - **Periodic review** workflow (weekly supervisor, monthly physician)
 
 ### 4.2 Out of Scope (v1)
 - Direct integration with hospital EMR/HIS systems
-- In-app payment gateway settlement (invoices generated; collection may be offline in v1)
 - Live turn-by-turn navigation for escort vehicles (GPS *tracking* is in scope; routing is not)
 - Insurance claim adjudication (billing documentation support only)
 - Public marketing website (the brochure itself)
@@ -76,7 +76,8 @@ OrthoAssist closes these gaps with people. Today those people coordinate over ph
 ### 4.3 Assumptions
 - OrthoAssist retains the panel of surgeons, physiotherapists, nurses, and escorts described in the charter.
 - Patients/families have a smartphone or a family member who does (WhatsApp fallback supported).
-- Operates in India; currency INR; GST applicable; NABH guidelines and Indian Nursing Council norms apply.
+- **Launch market is Hyderabad** (currency INR; GST applicable; NABH guidelines and Indian Nursing Council norms apply). Escort logistics, GPS coverage, and hospital coverage are scoped to Hyderabad for v1.
+- **Languages at launch: English, Telugu, and Hindi** — the app and family communications support all three.
 
 ### 4.4 Constraints
 - Patient data is sensitive health data → confidentiality is a hard requirement, not a feature.
@@ -132,6 +133,7 @@ Requirements are grouped by capability. Each is a *business* requirement (the "w
 - **BR-5.2** The platform shall enforce and log a **2-hour repositioning protocol** for pressure-ulcer prevention, alerting when a reposition is overdue.
 - **BR-5.3** The platform shall track scheduled tasks for wound/post-surgical care, **medication administration** (with reminders), physiotherapy assistance, personal hygiene, nutrition/feeding, and medical-equipment operation.
 - **BR-5.4** The platform shall support a **fall-prevention** checklist and record incidents.
+- **BR-5.5** Caretakers and escorts shall be able to **log care while offline** in low-connectivity homes; entries are stored on-device and **synced automatically** when connectivity returns, without data loss and with original timestamps preserved.
 
 ### 6.6 Hospital Escort & Transport
 - **BR-6.1** The platform shall schedule and manage **home→hospital** and **hospital→home** escort journeys, each as a checklist-driven itinerary (dress/ready, transfer, accompany, registration/triage, consultation note-taking, diagnostics, pharmacy, discharge handover).
@@ -154,6 +156,7 @@ Requirements are grouped by capability. Each is a *business* requirement (the "w
 - **BR-9.2** The platform shall generate **GST invoices** for all services and provide written cost estimates *before* service begins ("no hidden charges").
 - **BR-9.3** The platform shall apply discounts: **10% senior-citizen** and **referral** discounts, and support **flexible interest-free monthly plans**.
 - **BR-9.4** The platform shall assist with documentation families need for **insurance reimbursement**.
+- **BR-9.5** The platform shall support **in-app payment collection** — families can pay invoices and package fees within the app (India payment methods: UPI, cards, net-banking) — with receipts issued and payment status reflected on the invoice.
 
 ### 6.10 Quality, Review & Reporting (Operations)
 - **BR-10.1** The platform shall support **weekly supervisor spot-visits** and quality assessments.
@@ -186,8 +189,10 @@ Weekly supervisor visit + monthly physician review → care plan adjusted/versio
 | **Compliance** | NABH-guideline aligned; Indian Nursing Council norms; GST-compliant invoicing. |
 | **Availability** | 24×7 for emergency and escalation paths. |
 | **Reliability** | Safety-task alerts and daily reports must not silently fail. |
+| **Offline-first (field)** | Caretaker/escort logging works without connectivity and syncs on reconnect with no data loss and preserved timestamps (BR-5.5). |
+| **Payments** | PCI-aware in-app payments via India methods (UPI, cards, net-banking); no raw card data stored by OrthoApp (BR-9.5). |
 | **Usability** | Bedside/escort interfaces usable by non-technical field staff; family interface usable by anxious, non-technical relatives, including seniors. |
-| **Accessibility** | Large-type, high-contrast, simple language; multilingual-ready for Indian users. |
+| **Localization** | Full app + family communications in **English, Telugu, and Hindi** at launch; large-type, high-contrast, simple language. |
 | **Traceability** | Every care act, consent, escalation, and staff change is timestamped and attributable. |
 | **Dignity by design** | Consent prompts and privacy protections are built into care-logging flows, not optional. |
 
@@ -206,12 +211,20 @@ Weekly supervisor visit + monthly physician review → care plan adjusted/versio
 
 ---
 
-## 10. Open Questions for Business Review
-1. Target values for KPIs (family engagement %, CSAT, enquiry→care time).
-2. Is in-app payment collection required in v1, or invoice-only?
-3. Geographic launch scope (cities/regions) — affects escort logistics and GPS.
-4. Which languages must v1 support at launch?
-5. Does v1 need staff mobile offline capability for low-connectivity homes?
+## 10. Decisions Resolved (v1)
+*(These were open questions in the draft; resolved with the business on 2026-08-08.)*
+
+| # | Decision | Impact |
+|---|----------|--------|
+| D1 | **KPI set (Section 3) is accepted as the v1 starting set.** Numeric targets to be calibrated against the first baseline of live data. | KPIs are locked; thresholds tuned post-launch. |
+| D2 | **In-app payment collection is IN scope for v1** (UPI, cards, net-banking). | Added BR-9.5; Payments NFR added; removed from Out of Scope. |
+| D3 | **Launch market is Hyderabad.** | Escort logistics, GPS, and hospital coverage scoped to Hyderabad (§4.3). |
+| D4 | **Launch languages: English, Telugu, Hindi.** | Localization NFR; all family-facing comms in three languages (§4.3, §8). |
+| D5 | **Offline field capability is mandatory.** | Added BR-5.5 and Offline-first NFR. |
+
+### Remaining to confirm
+- Numeric KPI thresholds (D1) once a baseline exists.
+- Preferred India payment provider/gateway for D2 (a TRD-level choice, but note any commercial preference).
 
 ---
 
