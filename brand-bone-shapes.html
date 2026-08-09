@@ -1,0 +1,184 @@
+<title>Asthimitra — Bone Shape</title>
+<style>
+  :root{
+    --bg:#F4F6FA; --panel:#FFFFFF; --ink:#16202E; --soft:#586576; --faint:#8A95A4;
+    --line:#E3E8F0; --mist:#EEF2F8; --azure:#1466C7; --amber:#E0930F;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0B1017; --panel:#141C27; --ink:#EAF0F8; --soft:#9DAABB; --faint:#69768A;
+      --line:#243141; --mist:#1A2431;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B1017; --panel:#141C27; --ink:#EAF0F8; --soft:#9DAABB; --faint:#69768A;
+    --line:#243141; --mist:#1A2431;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.55}
+  .wrap{max-width:900px;margin:0 auto;padding:44px 22px 80px}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--azure)}
+  h1{font-family:var(--serif);font-size:33px;margin:6px 0 6px}
+  h1 b{color:var(--azure);font-weight:600}
+  .lede{color:var(--soft);font-size:15.5px;max-width:66ch;margin:0 0 6px}
+  .sec{font-family:var(--serif);font-size:22px;margin:42px 0 4px}
+  .note{color:var(--soft);font-size:13.5px;margin:0 0 18px}
+
+  .hero{display:flex;align-items:center;gap:22px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px 28px;margin-top:8px;flex-wrap:wrap}
+  .hero svg{width:120px;height:120px}
+  .wm{font-family:var(--serif);font-size:44px;line-height:1;color:var(--ink)}
+  .wm b{font-weight:600;color:var(--azure)}
+  .before{font-size:12px;color:var(--faint);margin-top:8px}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
+  @media(min-width:760px){.grid{grid-template-columns:1fr 1fr 1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative}
+  .card.rec{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber)}
+  .badge{position:absolute;top:12px;right:12px;font-size:9.5px;font-weight:800;letter-spacing:.5px;color:#3a2500;background:var(--amber);padding:3px 8px;border-radius:999px;z-index:2}
+  .tile{background:#F3F6FB;display:grid;place-items:center;padding:28px 0 22px}
+  .tile svg{width:118px;height:118px}
+  .strip{display:flex;align-items:center;gap:10px;padding:13px 15px 4px}
+  .mini{width:44px;height:44px;border-radius:12px;background:var(--azure);display:grid;place-items:center;flex:0 0 auto}
+  .mini svg{width:29px;height:29px}
+  .meta h3{font-size:14.5px;margin:0;font-weight:700}
+  .meta .n{font-size:10.5px;color:var(--faint);font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+  .vibe{font-size:11.8px;color:var(--soft);padding:6px 15px 15px;margin:0}
+
+  .iconrow{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px}
+  .appicon{width:90px;height:90px;border-radius:21px;display:grid;place-items:center;box-shadow:0 10px 22px -12px rgba(0,0,0,.45);background:linear-gradient(155deg,#1E7AE0,#0E4FA6)}
+  .appicon svg{width:56px;height:56px}
+  .cap{font-size:10.5px;color:var(--faint);text-align:center;margin-top:6px;font-weight:600}
+  .toggle{position:fixed;top:14px;right:14px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;width:38px;height:38px;font-size:15px;cursor:pointer}
+  .foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);line-height:1.6}
+</style>
+
+<button class="toggle" id="tg" aria-label="Toggle theme">◐</button>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- shared legs are repeated in each symbol; bone differs -->
+  <!-- 1 Classic: double-lobe -->
+  <symbol id="s1" viewBox="0 0 100 100">
+    <path d="M50 20 L28 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M50 20 L72 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M29 57 H71" stroke="var(--a)" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="27" cy="51" r="7.5" fill="var(--a)"/><circle cx="27" cy="63" r="7.5" fill="var(--a)"/>
+    <circle cx="73" cy="51" r="7.5" fill="var(--a)"/><circle cx="73" cy="63" r="7.5" fill="var(--a)"/>
+  </symbol>
+  <!-- 2 Barbell: single round cap -->
+  <symbol id="s2" viewBox="0 0 100 100">
+    <path d="M50 20 L28 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M50 20 L72 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M30 57 H70" stroke="var(--a)" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="28" cy="57" r="10" fill="var(--a)"/><circle cx="72" cy="57" r="10" fill="var(--a)"/>
+  </symbol>
+  <!-- 3 Chunky: oversized knobs, short shaft -->
+  <symbol id="s3" viewBox="0 0 100 100">
+    <path d="M50 20 L28 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M50 20 L72 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M32 57 H68" stroke="var(--a)" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="31" cy="50" r="9" fill="var(--a)"/><circle cx="31" cy="64" r="9" fill="var(--a)"/>
+    <circle cx="69" cy="50" r="9" fill="var(--a)"/><circle cx="69" cy="64" r="9" fill="var(--a)"/>
+  </symbol>
+  <!-- 4 Slim & wide: thin shaft, small knobs, wider span -->
+  <symbol id="s4" viewBox="0 0 100 100">
+    <path d="M50 20 L28 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M50 20 L72 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M25 57 H75" stroke="var(--a)" stroke-width="6.5" stroke-linecap="round"/>
+    <circle cx="23" cy="53" r="5.5" fill="var(--a)"/><circle cx="23" cy="61" r="5.5" fill="var(--a)"/>
+    <circle cx="77" cy="53" r="5.5" fill="var(--a)"/><circle cx="77" cy="61" r="5.5" fill="var(--a)"/>
+  </symbol>
+  <!-- 5 Geometric: rounded-square flared ends (I-beam bone) -->
+  <symbol id="s5" viewBox="0 0 100 100">
+    <path d="M50 20 L28 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M50 20 L72 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M31 57 H69" stroke="var(--a)" stroke-width="9" stroke-linecap="butt"/>
+    <rect x="21" y="46" width="12.5" height="22" rx="4.5" fill="var(--a)"/>
+    <rect x="66.5" y="46" width="12.5" height="22" rx="4.5" fill="var(--a)"/>
+  </symbol>
+  <!-- 6 Capsule: minimal rounded bar, no knobs -->
+  <symbol id="s6" viewBox="0 0 100 100">
+    <path d="M50 20 L28 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M50 20 L72 82" stroke="var(--p,#1466C7)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M29 57 H71" stroke="var(--a)" stroke-width="16" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <div class="eyebrow">Concept 1 · Azure + Gold Amber · bone shape</div>
+  <h1>Asthi<b>mitra</b> — the bone, six ways</h1>
+  <p class="lede">Colours are settled: azure “A”, amber bone. These six vary only the <b>bone’s shape and weight</b> — from anatomically bony to clean and geometric.</p>
+
+  <div class="hero" style="--p:#1466C7;--a:#E0930F">
+    <svg><use href="#s3"/></svg>
+    <div>
+      <span class="wm">Asthi<b>mitra</b></span>
+      <div class="before">Shown with the recommended <b>Chunky</b> bone</div>
+    </div>
+  </div>
+
+  <div class="sec">Shape options</div>
+  <p class="note">Big tile = on light; small tile = on azure.</p>
+  <div class="grid">
+
+    <div class="card">
+      <div class="tile" style="--p:#1466C7;--a:#E0930F"><svg><use href="#s1"/></svg></div>
+      <div class="strip"><span class="mini" style="--p:#FFFFFF;--a:#F4B23C"><svg><use href="#s1"/></svg></span><span class="meta"><div class="n">Option 1</div><h3>Classic</h3></span></div>
+      <p class="vibe">Balanced double-lobe dumbbell — the standard, unmistakable bone.</p>
+    </div>
+
+    <div class="card">
+      <div class="tile" style="--p:#1466C7;--a:#E0930F"><svg><use href="#s2"/></svg></div>
+      <div class="strip"><span class="mini" style="--p:#FFFFFF;--a:#F4B23C"><svg><use href="#s2"/></svg></span><span class="meta"><div class="n">Option 2</div><h3>Barbell</h3></span></div>
+      <p class="vibe">Single round cap each end — simpler, more modern, a touch of “strength”.</p>
+    </div>
+
+    <div class="card rec">
+      <span class="badge">PICK</span>
+      <div class="tile" style="--p:#1466C7;--a:#E0930F"><svg><use href="#s3"/></svg></div>
+      <div class="strip"><span class="mini" style="--p:#FFFFFF;--a:#F4B23C"><svg><use href="#s3"/></svg></span><span class="meta"><div class="n">Option 3</div><h3>Chunky</h3></span></div>
+      <p class="vibe">Oversized knobs, short thick shaft — boldest and most legible; friendly.</p>
+    </div>
+
+    <div class="card">
+      <div class="tile" style="--p:#1466C7;--a:#E0930F"><svg><use href="#s4"/></svg></div>
+      <div class="strip"><span class="mini" style="--p:#FFFFFF;--a:#F4B23C"><svg><use href="#s4"/></svg></span><span class="meta"><div class="n">Option 4</div><h3>Slim &amp; wide</h3></span></div>
+      <p class="vibe">Thin shaft, small tidy knobs, wider span — elegant and premium.</p>
+    </div>
+
+    <div class="card">
+      <div class="tile" style="--p:#1466C7;--a:#E0930F"><svg><use href="#s5"/></svg></div>
+      <div class="strip"><span class="mini" style="--p:#FFFFFF;--a:#F4B23C"><svg><use href="#s5"/></svg></span><span class="meta"><div class="n">Option 5</div><h3>Geometric</h3></span></div>
+      <p class="vibe">Rounded-square flared ends — an “I-beam” bone; structural, engineered feel.</p>
+    </div>
+
+    <div class="card">
+      <div class="tile" style="--p:#1466C7;--a:#E0930F"><svg><use href="#s6"/></svg></div>
+      <div class="strip"><span class="mini" style="--p:#FFFFFF;--a:#F4B23C"><svg><use href="#s6"/></svg></span><span class="meta"><div class="n">Option 6</div><h3>Capsule</h3></span></div>
+      <p class="vibe">A plain rounded bar, no knobs — most abstract; reads as a crossbar/pill.</p>
+    </div>
+  </div>
+
+  <div class="sec">On a home screen — the top three</div>
+  <div class="iconrow">
+    <div><div class="appicon"><svg style="--p:#FFFFFF;--a:#F4B23C"><use href="#s3"/></svg></div><div class="cap">Chunky</div></div>
+    <div><div class="appicon"><svg style="--p:#FFFFFF;--a:#F4B23C"><use href="#s1"/></svg></div><div class="cap">Classic</div></div>
+    <div><div class="appicon"><svg style="--p:#FFFFFF;--a:#F4B23C"><use href="#s5"/></svg></div><div class="cap">Geometric</div></div>
+  </div>
+
+  <div class="foot">
+    Shape sketches only. Name a shape and I’ll finalise the vector (optical spacing + a true favicon) and re-skin both prototype apps and the deck in Azure&nbsp;+&nbsp;Gold Amber with this bone.
+  </div>
+</div>
+
+<script>
+  (function(){
+    var root=document.documentElement, mode='system', b=document.getElementById('tg');
+    b.addEventListener('click',function(){
+      mode=mode==='system'?'light':mode==='light'?'dark':'system';
+      if(mode==='system'){root.removeAttribute('data-theme');b.textContent='◐';}
+      else{root.setAttribute('data-theme',mode);b.textContent=(mode==='light'?'☀':'☾');}
+    });
+  })();
+</script>
