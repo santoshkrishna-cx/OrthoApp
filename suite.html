@@ -78,11 +78,17 @@
   .view.active{display:flex}
 
   /* ---------- Launcher ---------- */
-  #launcher{padding:8px 22px 30px;justify-content:center;gap:8px;background:linear-gradient(180deg,var(--surface-2),transparent 55%)}
-  .launch-brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-size:26px;color:var(--ink)}
+  #launcher{padding:20px 20px 24px;justify-content:flex-start;gap:6px;overflow-y:auto;background:linear-gradient(180deg,var(--surface-2),transparent 45%)}
+  .launch-brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:24px;color:var(--ink)}
   .launch-brand .glyph{width:42px;height:42px;border-radius:13px;background:var(--primary);color:#fff;display:grid;place-items:center;box-shadow:0 10px 22px -10px var(--primary)}
   .launch-brand b{color:var(--primary);font-weight:600}
-  .launch-sub{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin:10px 0 22px}
+  .launch-sub{font-size:13px;color:var(--ink-soft);line-height:1.45;margin:8px 0 16px}
+  .rolegrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+  .roletile{display:flex;flex-direction:column;align-items:flex-start;gap:7px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 13px;cursor:pointer;text-align:left;font-family:var(--sans);color:var(--ink);transition:transform .14s ease,border-color .14s ease}
+  .roletile:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .roletile .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:21px;color:#fff}
+  .roletile b{font-size:14px;font-weight:650;line-height:1.15}
+  .roletile span{font-size:11px;color:var(--ink-soft);line-height:1.3}
   .launch-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.3px;color:var(--ink-faint);margin-bottom:12px}
   .rolecard{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:12px;cursor:pointer;font-family:var(--sans);color:var(--ink);transition:transform .15s ease,border-color .15s ease}
   .rolecard:hover{transform:translateY(-2px);border-color:var(--accent)}
@@ -311,53 +317,20 @@
     <div class="launch-brand"><span class="glyph" aria-hidden="true">
       <svg width="24" height="24" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M50 20 L28 82" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M50 20 L72 82" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M32 57 H68" stroke="#F4B23C" stroke-width="12" stroke-linecap="round"/><circle cx="31" cy="50" r="9" fill="#F4B23C"/><circle cx="31" cy="64" r="9" fill="#F4B23C"/><circle cx="69" cy="50" r="9" fill="#F4B23C"/><circle cx="69" cy="64" r="9" fill="#F4B23C"/></svg>
     </span>Asthi<b>mitra</b></div>
-    <p class="launch-sub">Doctor-supervised orthopedic home care & hospital escort in Hyderabad. Choose your view.</p>
-    <div class="launch-label">Open an app</div>
+    <p class="launch-sub">Doctor-supervised orthopedic home care & hospital escort, Hyderabad. Tap a role.</p>
 
-    <button class="rolecard" data-role="familyApp">
-      <span class="ico" style="background:#E0930F">👪</span>
-      <span class="rc"><b>Family</b><span>Follow your loved one's recovery, day by day</span></span>
-      <span class="go">›</span>
-    </button>
-    <button class="rolecard" data-role="doctorApp">
-      <span class="ico" style="background:#4C7BB0">🩺</span>
-      <span class="rc"><b>Doctor</b><span>Supervise patients, approve care plans, review</span></span>
-      <span class="go">›</span>
-    </button>
-    <button class="rolecard" data-role="escortApp">
-      <span class="ico" style="background:#E07A3E">🚑</span>
-      <span class="rc"><b>Escort</b><span>Guide patients safely to and from hospital</span></span>
-      <span class="go">›</span>
-    </button>
+    <div class="rolegrid">
+      <button class="roletile" data-role="familyApp"><span class="ico" style="background:#E0930F">👪</span><b>Family</b><span>Track recovery daily</span></button>
+      <button class="roletile" data-role="doctorApp"><span class="ico" style="background:#4C7BB0">🩺</span><b>Doctor</b><span>Approve &amp; review plans</span></button>
+      <button class="roletile" data-role="escortApp"><span class="ico" style="background:#E07A3E">🚑</span><b>Escort</b><span>Safe hospital trips</span></button>
+      <button class="roletile" data-role="coordApp"><span class="ico" style="background:#0E9488">🗂️</span><b>Coordinator</b><span>Intake, roster, quality</span></button>
+      <button class="roletile" data-role="physioApp"><span class="ico" style="background:#2AA775">🤸</span><b>Physiotherapist</b><span>Exercise plans &amp; logs</span></button>
+      <button class="roletile" data-role="nurseApp"><span class="ico" style="background:#C0508A">💉</span><b>Home Nurse</b><span>Meds, wounds, IV</span></button>
+      <button class="roletile" data-role="nutriApp"><span class="ico" style="background:#7A9E2E">🥗</span><b>Nutritionist</b><span>Bone-health diets</span></button>
+      <button class="roletile" data-role="adminApp"><span class="ico" style="background:#6B5BD2">📊</span><b>Admin</b><span>KPIs, staff, billing</span></button>
+    </div>
 
-    <div class="launch-label" style="margin-top:22px">Care team &amp; operations</div>
-    <button class="rolecard" data-role="coordApp">
-      <span class="ico" style="background:#0E9488">🗂️</span>
-      <span class="rc"><b>Care Coordinator</b><span>Intake, team roster, alerts &amp; quality</span></span>
-      <span class="go">›</span>
-    </button>
-    <button class="rolecard" data-role="physioApp">
-      <span class="ico" style="background:#2AA775">🤸</span>
-      <span class="rc"><b>Physiotherapist</b><span>Home exercise plans &amp; session logs</span></span>
-      <span class="go">›</span>
-    </button>
-    <button class="rolecard" data-role="nurseApp">
-      <span class="ico" style="background:#C0508A">💉</span>
-      <span class="rc"><b>Home Nurse</b><span>Clinical visits, meds, wound &amp; IV care</span></span>
-      <span class="go">›</span>
-    </button>
-    <button class="rolecard" data-role="nutriApp">
-      <span class="ico" style="background:#7A9E2E">🥗</span>
-      <span class="rc"><b>Nutritionist</b><span>Bone-health diet plans</span></span>
-      <span class="go">›</span>
-    </button>
-    <button class="rolecard" data-role="adminApp">
-      <span class="ico" style="background:#6B5BD2">📊</span>
-      <span class="rc"><b>Operations / Admin</b><span>KPIs, staff compliance &amp; billing</span></span>
-      <span class="go">›</span>
-    </button>
-
-    <div class="launch-foot">Prototype · English. The family app also exists in English / Telugu / Hindi in a separate build.</div>
+    <div class="launch-foot">Prototype · English. The family app also exists in EN / తె / हि in a separate build.</div>
   </section>
 
   <!-- ==================== FAMILY APP ==================== -->
