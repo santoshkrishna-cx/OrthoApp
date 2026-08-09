@@ -1,6 +1,6 @@
-# OrthoApp
+# Asthimitra
 
-**Digital operations & family-engagement platform for OrthoAssist HomeCare Services** — dignified, doctor-supervised orthopedic home care and safe hospital escort (launch market: Hyderabad).
+**Digital operations & family-engagement platform for Asthimitra HomeCare Services** — dignified, doctor-supervised orthopedic home care and safe hospital escort (launch market: Hyderabad).
 
 This repo holds the founding artifacts: the source charter, a Business Requirements Document, interactive prototypes, and an overview deck.
 
@@ -10,12 +10,12 @@ This repo holds the founding artifacts: the source charter, a Business Requireme
 
 | File | What it is |
 |------|-----------|
-| [`OrthoApp.docx`](OrthoApp.docx) | **Source charter** — the original OrthoAssist HomeCare service brochure everything is derived from |
+| [`OrthoApp.docx`](OrthoApp.docx) | **Source charter** — the original Asthimitra HomeCare service brochure everything is derived from |
 | [`BRD.md`](BRD.md) | **Business Requirements Document** — objectives, scope, personas, 40+ business requirements, process flows, NFRs, risks, and resolved v1 decisions |
 | [`prototype.html`](prototype.html) | **Family app prototype** — trilingual (English / Telugu / Hindi), in-app payments |
 | [`suite.html`](suite.html) | **Multi-role suite** — a launcher into three apps: Family (full journey), Doctor (supervise & approve), Escort (live trip, checklist, offline-first) |
 | [`index.html`](index.html) | **Landing page** — links to the prototypes and docs |
-| [`OrthoApp_Overview.pptx`](OrthoApp_Overview.pptx) | **Overview deck** — brief, 8 slides: what / why / what it does / who / how |
+| [`Asthimitra_Overview.pptx`](Asthimitra_Overview.pptx) | **Overview deck** — brief, 8 slides: what / why / what it does / who / how |
 
 > The prototypes are self-contained HTML files — open them directly in a browser, or view them as hosted Claude artifacts (links below).
 
@@ -23,7 +23,7 @@ This repo holds the founding artifacts: the source charter, a Business Requireme
 
 ## 🎯 What it is, in one line
 
-OrthoApp turns an enquiry into a **doctor-approved care plan**, sends **verified caretakers and escorts**, records **every act of care** (even offline), and keeps the **family continuously informed** — while enforcing the safety and quality promises the service makes.
+Asthimitra turns an enquiry into a **doctor-approved care plan**, sends **verified caretakers and escorts**, records **every act of care** (even offline), and keeps the **family continuously informed** — while enforcing the safety and quality promises the service makes.
 
 ## 🧭 How it works — the recovery journey
 

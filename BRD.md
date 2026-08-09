@@ -1,9 +1,9 @@
 # Business Requirements Document (BRD)
-## OrthoApp — Digital Operations & Family Engagement Platform for OrthoAssist HomeCare Services
+## Asthimitra — Digital Operations & Family Engagement Platform for Asthimitra HomeCare Services
 
 | | |
 |---|---|
-| **Document owner** | OrthoAssist HomeCare Services |
+| **Document owner** | Asthimitra HomeCare Services |
 | **Version** | 1.0 (Draft) |
 | **Date** | 2026-08-08 |
 | **Source of record** | `OrthoApp.docx` (service charter / brochure) |
@@ -13,9 +13,9 @@
 
 ## 1. Executive Summary
 
-OrthoAssist HomeCare Services delivers doctor-supervised, in-home caretaking and safe hospital escort for orthopedic patients — the bedridden, the post-surgical, the elderly, and anyone whose mobility has been changed by injury or disease. The service already promises families that *"daily progress reports are shared through our app."*
+Asthimitra HomeCare Services delivers doctor-supervised, in-home caretaking and safe hospital escort for orthopedic patients — the bedridden, the post-surgical, the elderly, and anyone whose mobility has been changed by injury or disease. The service already promises families that *"daily progress reports are shared through our app."*
 
-**OrthoApp** is that platform. It is the digital backbone that runs the business end-to-end: it captures leads, turns them into doctor-designed care plans, matches and schedules verified caretakers and escorts, records every act of care at the bedside, and keeps families continuously informed with the transparency the brand promises. It also enforces the safety, compliance, and dignity standards the brochure commits to — the 2-hour repositioning protocol, the <30-minute emergency response, HIPAA-aligned confidentiality, and NABH-aligned quality.
+**Asthimitra** is that platform. It is the digital backbone that runs the business end-to-end: it captures leads, turns them into doctor-designed care plans, matches and schedules verified caretakers and escorts, records every act of care at the bedside, and keeps families continuously informed with the transparency the brand promises. It also enforces the safety, compliance, and dignity standards the brochure commits to — the 2-hour repositioning protocol, the <30-minute emergency response, HIPAA-aligned confidentiality, and NABH-aligned quality.
 
 This BRD defines *what the business needs the platform to do and why*. It is deliberately solution-agnostic on technology; implementation detail belongs in a downstream TRD.
 
@@ -28,9 +28,9 @@ Families caring for orthopedic patients face two gaps the brochure identifies ex
 1. **A clinical-skill gap at home** — safe transfers, pressure-sore prevention, wound care, and complication detection are trained skills, not skills that "love can substitute for."
 2. **A continuity gap between hospital and home** — appointments are missed, discharge instructions are lost, and unaccompanied travel is unsafe for immobile patients.
 
-OrthoAssist closes these gaps with people. Today those people coordinate over phone calls, paper notes, and WhatsApp — which does not scale, does not create an auditable record of care, and does not give families a single trustworthy view of their loved one's recovery.
+Asthimitra closes these gaps with people. Today those people coordinate over phone calls, paper notes, and WhatsApp — which does not scale, does not create an auditable record of care, and does not give families a single trustworthy view of their loved one's recovery.
 
-**The problem OrthoApp solves:** operating a distributed, clinically-supervised, dignity-first care service *reliably and transparently at scale*, while proving that every safety and quality promise was actually kept.
+**The problem Asthimitra solves:** operating a distributed, clinically-supervised, dignity-first care service *reliably and transparently at scale*, while proving that every safety and quality promise was actually kept.
 
 ---
 
@@ -74,7 +74,7 @@ OrthoAssist closes these gaps with people. Today those people coordinate over ph
 - Public marketing website (the brochure itself)
 
 ### 4.3 Assumptions
-- OrthoAssist retains the panel of surgeons, physiotherapists, nurses, and escorts described in the charter.
+- Asthimitra retains the panel of surgeons, physiotherapists, nurses, and escorts described in the charter.
 - Patients/families have a smartphone or a family member who does (WhatsApp fallback supported).
 - **Launch market is Hyderabad** (currency INR; GST applicable; NABH guidelines and Indian Nursing Council norms apply). Escort logistics, GPS coverage, and hospital coverage are scoped to Hyderabad for v1.
 - **Languages at launch: English, Telugu, and Hindi** — the app and family communications support all three.
@@ -88,7 +88,7 @@ OrthoAssist closes these gaps with people. Today those people coordinate over ph
 
 ## 5. Stakeholders & User Personas
 
-| Persona | Role in the business | Primary needs from OrthoApp |
+| Persona | Role in the business | Primary needs from Asthimitra |
 |---------|---------------------|------------------------------|
 | **Patient** | The person recovering | Dignity, consent, comfort; a voice in their own care |
 | **Family member / decision-maker** | Pays, worries, decides | One trustworthy view of the patient's day; reassurance; transparent cost |
@@ -190,7 +190,7 @@ Weekly supervisor visit + monthly physician review → care plan adjusted/versio
 | **Availability** | 24×7 for emergency and escalation paths. |
 | **Reliability** | Safety-task alerts and daily reports must not silently fail. |
 | **Offline-first (field)** | Caretaker/escort logging works without connectivity and syncs on reconnect with no data loss and preserved timestamps (BR-5.5). |
-| **Payments** | PCI-aware in-app payments via India methods (UPI, cards, net-banking); no raw card data stored by OrthoApp (BR-9.5). |
+| **Payments** | PCI-aware in-app payments via India methods (UPI, cards, net-banking); no raw card data stored by Asthimitra (BR-9.5). |
 | **Usability** | Bedside/escort interfaces usable by non-technical field staff; family interface usable by anxious, non-technical relatives, including seniors. |
 | **Localization** | Full app + family communications in **English, Telugu, and Hindi** at launch; large-type, high-contrast, simple language. |
 | **Traceability** | Every care act, consent, escalation, and staff change is timestamped and attributable. |
@@ -238,4 +238,4 @@ Weekly supervisor visit + monthly physician review → care plan adjusted/versio
 
 ---
 
-*Derived from the OrthoAssist HomeCare service charter (`OrthoApp.docx`). This BRD captures business requirements only; technical design is deferred to a TRD.*
+*Derived from the Asthimitra HomeCare service charter (`OrthoApp.docx`). This BRD captures business requirements only; technical design is deferred to a TRD.*
