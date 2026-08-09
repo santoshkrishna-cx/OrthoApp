@@ -1,0 +1,786 @@
+<title>OrthoApp — Role Suite</title>
+<style>
+  :root{
+    --ground:#DCE4E0; --ground-2:#EAEFEB;
+    --bg:#F7F9F6; --surface:#FFFFFF; --surface-2:#F0F4F0;
+    --ink:#182A27; --ink-soft:#5A6A66; --ink-faint:#8A9994;
+    --line:#E2E8E3;
+    --primary:#0E5A54; --primary-ink:#0B4741; --primary-soft:#D8E8E5;
+    --accent:#DC6B4F;
+    --good:#2E7D5B; --good-soft:#DBEFE4;
+    --warn:#B9821A; --warn-soft:#F6EACE;
+    --crit:#C0392B; --crit-soft:#F6DED9;
+    --accent-soft:color-mix(in srgb, var(--accent) 16%, var(--surface));
+    --shadow:0 24px 60px -20px rgba(14,52,48,.45), 0 8px 20px -12px rgba(14,52,48,.25);
+    --radius:20px;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#08110F; --ground-2:#0C1917;
+      --bg:#0F1C1A; --surface:#162823; --surface-2:#1E332D;
+      --ink:#EAF1EE; --ink-soft:#A3B6B0; --ink-faint:#6E827C;
+      --line:#274038;
+      --primary:#4FBFB0; --primary-ink:#8FD9CE; --primary-soft:#123C37;
+      --accent:#E88569;
+      --good:#5CC08C; --good-soft:#153229;
+      --warn:#E0B056; --warn-soft:#33290F;
+      --crit:#E4685C; --crit-soft:#38201C;
+      --shadow:0 24px 60px -20px rgba(0,0,0,.7), 0 8px 20px -12px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#08110F; --ground-2:#0C1917;
+    --bg:#0F1C1A; --surface:#162823; --surface-2:#1E332D;
+    --ink:#EAF1EE; --ink-soft:#A3B6B0; --ink-faint:#6E827C;
+    --line:#274038;
+    --primary:#4FBFB0; --primary-ink:#8FD9CE; --primary-soft:#123C37;
+    --accent:#E88569;
+    --good:#5CC08C; --good-soft:#153229;
+    --warn:#E0B056; --warn-soft:#33290F;
+    --crit:#E4685C; --crit-soft:#38201C;
+    --shadow:0 24px 60px -20px rgba(0,0,0,.7), 0 8px 20px -12px rgba(0,0,0,.5);
+  }
+
+  /* per-app accent identity */
+  .app-family{--accent:#DC6B4F}
+  .app-doctor{--accent:#4C7BB0}
+  .app-escort{--accent:#E07A3E}
+  :root[data-theme="dark"] .app-family,@media (prefers-color-scheme:dark){}
+  .app-family,.app-doctor,.app-escort{--accent-soft:color-mix(in srgb, var(--accent) 16%, var(--surface))}
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:var(--sans); color:var(--ink);
+    background:radial-gradient(120% 80% at 50% -10%, var(--ground-2), transparent 60%), var(--ground);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center; gap:16px;
+    padding:28px 16px 44px; -webkit-font-smoothing:antialiased;
+  }
+  .caption{text-align:center;max-width:440px;color:var(--ink-soft)}
+  .caption .mark{font-family:var(--serif);font-size:22px;color:var(--ink)}
+  .caption .mark b{color:var(--primary);font-weight:600}
+  .caption p{margin:6px 0 0;font-size:13px;line-height:1.5}
+
+  .phone{width:100%;max-width:412px;height:860px;max-height:90vh;background:var(--bg);border-radius:44px;box-shadow:var(--shadow);position:relative;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
+  .statusbar{height:44px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font-size:13px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;z-index:2}
+  .statusbar .dots{display:flex;gap:5px;align-items:center}
+  .statusbar .dots span{width:6px;height:6px;border-radius:50%;background:var(--ink-soft)}
+  .statusbar .dots .bat{width:22px;height:11px;border:1.5px solid var(--ink-soft);border-radius:3px;position:relative}
+  .statusbar .dots .bat::after{content:"";position:absolute;inset:2px;right:6px;background:var(--good);border-radius:1px}
+
+  .view{flex:1 1 auto;min-height:0;flex-direction:column}
+  .view:not(.active){display:none}
+  .view.active{display:flex}
+
+  /* ---------- Launcher ---------- */
+  #launcher{padding:8px 22px 30px;justify-content:center;gap:8px;background:linear-gradient(180deg,var(--surface-2),transparent 55%)}
+  .launch-brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-size:26px;color:var(--ink)}
+  .launch-brand .glyph{width:42px;height:42px;border-radius:13px;background:var(--primary);color:#fff;display:grid;place-items:center;box-shadow:0 10px 22px -10px var(--primary)}
+  .launch-brand b{color:var(--primary);font-weight:600}
+  .launch-sub{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin:10px 0 22px}
+  .launch-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.3px;color:var(--ink-faint);margin-bottom:12px}
+  .rolecard{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:12px;cursor:pointer;font-family:var(--sans);color:var(--ink);transition:transform .15s ease,border-color .15s ease}
+  .rolecard:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .rolecard .ico{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;color:#fff;flex:0 0 auto;font-size:24px}
+  .rolecard .rc{flex:1;min-width:0}
+  .rolecard .rc b{font-size:16.5px;font-weight:650;display:block}
+  .rolecard .rc span{font-size:12.5px;color:var(--ink-soft);line-height:1.4}
+  .rolecard .go{color:var(--ink-faint);font-size:20px}
+  .launch-foot{font-size:11px;color:var(--ink-faint);text-align:center;margin-top:8px;line-height:1.5}
+
+  /* ---------- App shell ---------- */
+  .appbar{flex:0 0 auto;padding:6px 18px 15px;color:#fff;background:linear-gradient(180deg,var(--primary),var(--primary-ink));border-bottom-left-radius:26px;border-bottom-right-radius:26px}
+  .appbar .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .homebtn{appearance:none;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--sans);display:inline-flex;align-items:center;gap:5px}
+  .homebtn:hover{background:rgba(255,255,255,.2)}
+  .rolechip{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;background:rgba(255,255,255,.18);padding:5px 10px;border-radius:999px}
+  .theme-toggle{appearance:none;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;width:30px;height:30px;font-size:14px;cursor:pointer;font-family:var(--sans)}
+  .theme-toggle:hover{background:rgba(255,255,255,.2)}
+  .controls{display:flex;align-items:center;gap:7px}
+
+  .idrow{margin-top:14px;display:flex;align-items:center;gap:13px}
+  .avatar{width:52px;height:52px;border-radius:16px;flex:0 0 auto;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:20px;font-weight:600}
+  .idrow .who{flex:1;min-width:0}
+  .idrow .who h1{margin:0;font-size:18px;font-weight:650}
+  .idrow .who p{margin:2px 0 0;font-size:12.5px;color:rgba(255,255,255,.82)}
+  .idrow .stat{text-align:right;font-size:11px;color:rgba(255,255,255,.85)}
+  .idrow .stat b{display:block;font-size:20px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+
+  .sos{margin-top:13px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:var(--crit);border:none;cursor:pointer;font-family:var(--sans);font-weight:700;font-size:13.5px;padding:12px;border-radius:14px;box-shadow:0 6px 16px -8px rgba(0,0,0,.35)}
+  .sos .pulse{width:9px;height:9px;border-radius:50%;background:var(--crit);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(192,57,43,.55)}70%{box-shadow:0 0 0 10px rgba(192,57,43,0)}100%{box-shadow:0 0 0 0 rgba(192,57,43,0)}}
+
+  .conn{margin-top:12px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.14);border-radius:12px;padding:8px 12px;font-size:12px;font-weight:600}
+  .conn .st{display:flex;align-items:center;gap:7px}
+  .conn .st .d{width:9px;height:9px;border-radius:50%;background:#7CE0B0}
+  .conn.off .st .d{background:#F0C36B}
+  .conn button{appearance:none;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--sans)}
+
+  .screen{flex:1 1 auto;overflow-y:auto;overflow-x:hidden;padding:16px 16px 92px;scroll-behavior:smooth}
+  .panel{display:none;animation:fade .28s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--ink-faint);margin:2px 0 10px}
+  .section-title{font-family:var(--serif);font-size:19px;font-weight:600;margin:22px 4px 10px;color:var(--ink);text-wrap:balance}
+  .section-title:first-child{margin-top:4px}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:13px}
+  .card h3{margin:0 0 3px;font-size:15px;font-weight:650}
+  .card .sub{margin:0;font-size:12.5px;color:var(--ink-soft);line-height:1.45}
+  .between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px;letter-spacing:.2px;white-space:nowrap}
+  .pill.good{background:var(--good-soft);color:var(--good)}
+  .pill.warn{background:var(--warn-soft);color:var(--warn)}
+  .pill.crit{background:var(--crit-soft);color:var(--crit)}
+  .pill.info{background:var(--primary-soft);color:var(--primary-ink)}
+  .pill.neutral{background:var(--surface-2);color:var(--ink-soft)}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+
+  .vitals{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:4px}
+  .vital{background:var(--surface-2);border-radius:14px;padding:11px 8px;text-align:center}
+  .vital .v{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .vital .u{font-size:9.5px;color:var(--ink-faint);font-weight:600}
+  .vital .l{font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-soft);margin-top:3px;font-weight:700}
+
+  .timeline{display:flex;align-items:flex-start;margin-top:6px;padding:2px}
+  .slot{flex:1;text-align:center;position:relative}
+  .slot .node{width:26px;height:26px;border-radius:50%;margin:0 auto;display:grid;place-items:center;font-size:12px;font-weight:700;position:relative;z-index:1;border:2px solid var(--surface)}
+  .slot.done .node{background:var(--good);color:#fff}
+  .slot.now .node{background:var(--accent);color:#fff;box-shadow:0 0 0 4px var(--accent-soft)}
+  .slot.next .node{background:var(--surface-2);color:var(--ink-faint);border:2px dashed var(--line)}
+  .slot::before{content:"";position:absolute;top:12px;left:-50%;width:100%;height:2px;background:var(--good)}
+  .slot:first-child::before{display:none}
+  .slot.next::before,.slot.now::before{background:var(--line)}
+  .slot .t{font-size:10px;color:var(--ink-soft);margin-top:5px;font-variant-numeric:tabular-nums;font-weight:600}
+
+  .tasks{display:flex;flex-direction:column;gap:2px;margin-top:4px}
+  .task{display:flex;align-items:center;gap:11px;padding:9px 2px;border-bottom:1px solid var(--line)}
+  .task:last-child{border-bottom:none}
+  .task .ck{width:22px;height:22px;border-radius:7px;flex:0 0 auto;display:grid;place-items:center;font-size:12px;font-weight:800}
+  .task .ck.done{background:var(--good);color:#fff}
+  .task .ck.due{background:var(--surface-2);border:2px solid var(--line);color:transparent}
+  .task .tx{flex:1;min-width:0}
+  .task .tx b{font-size:13.5px;font-weight:600;display:block}
+  .task .tx span{font-size:11.5px;color:var(--ink-soft)}
+  .task .time{font-size:11px;font-weight:700;color:var(--ink-faint);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .note{background:var(--accent-soft);border-radius:var(--radius);padding:16px;margin-bottom:13px}
+  .note .quote{font-family:var(--serif);font-size:14.5px;line-height:1.55;color:var(--ink);font-style:italic}
+  .note .by{display:flex;align-items:center;gap:8px;margin-top:11px;font-size:12px;color:var(--ink-soft)}
+  .note .by .ic{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:11px;font-family:var(--sans)}
+
+  .track{height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin:12px 0 6px}
+  .track > i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:999px;transition:width .35s ease}
+  .milestones{display:flex;justify-content:space-between;margin-top:6px}
+  .milestones .m{font-size:10px;text-align:center;color:var(--ink-faint);font-weight:600;flex:1}
+  .milestones .m.reached{color:var(--primary)}
+  .milestones .m.here{color:var(--accent);font-weight:800}
+
+  /* vertical journey stepper */
+  .stepper{position:relative;margin:4px 0 0}
+  .jstep{display:flex;gap:13px;padding-bottom:18px;position:relative}
+  .jstep:last-child{padding-bottom:0}
+  .jstep::before{content:"";position:absolute;left:14px;top:28px;bottom:-2px;width:2px;background:var(--line)}
+  .jstep:last-child::before{display:none}
+  .jstep.done::before{background:var(--good)}
+  .jbadge{width:30px;height:30px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;font-size:13px;font-weight:800;z-index:1;border:2px solid var(--surface)}
+  .jstep.done .jbadge{background:var(--good);color:#fff}
+  .jstep.now .jbadge{background:var(--accent);color:#fff;box-shadow:0 0 0 4px var(--accent-soft)}
+  .jstep.todo .jbadge{background:var(--surface-2);color:var(--ink-faint);border:2px dashed var(--line)}
+  .jbody{flex:1;min-width:0;padding-top:3px}
+  .jbody b{font-size:14px;font-weight:650;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .jbody p{margin:3px 0 0;font-size:12px;color:var(--ink-soft);line-height:1.45}
+
+  .member{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}
+  .member:last-child{border-bottom:none}
+  .member .ph{width:44px;height:44px;border-radius:13px;flex:0 0 auto;display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:16px;color:#fff}
+  .member .info{flex:1;min-width:0}
+  .member .info .nm{font-size:14px;font-weight:650;display:flex;align-items:center;flex-wrap:wrap;gap:5px}
+  .member .info .rl{font-size:11.5px;color:var(--primary);font-weight:600}
+  .member .info .cr{font-size:11px;color:var(--ink-soft);margin-top:3px;line-height:1.4}
+  .verified{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;color:var(--good);margin-top:5px}
+
+  /* patient rows (doctor) */
+  .prow{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:12px 2px;cursor:pointer;font-family:var(--sans);color:var(--ink)}
+  .prow:last-child{border-bottom:none}
+  .prow .pi{width:40px;height:40px;border-radius:12px;flex:0 0 auto;display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:15px;color:#fff;background:var(--primary)}
+  .prow .pd{flex:1;min-width:0}
+  .prow .pd b{font-size:14px;font-weight:650;display:block}
+  .prow .pd span{font-size:11.5px;color:var(--ink-soft)}
+
+  /* sparkline */
+  .spark{display:flex;align-items:flex-end;gap:12px;margin-top:6px}
+  .spark svg{flex:1}
+  .spark .val{text-align:right}
+  .spark .val b{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .spark .val span{display:block;font-size:10px;color:var(--ink-faint);font-weight:600}
+
+  /* escort checklist (interactive) */
+  .chk{display:flex;flex-direction:column;gap:1px;margin-top:6px}
+  .cstep{display:flex;gap:11px;align-items:center;padding:11px 2px;cursor:pointer;border-bottom:1px solid var(--line)}
+  .cstep:last-child{border-bottom:none}
+  .cstep .b{width:24px;height:24px;border-radius:8px;flex:0 0 auto;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--surface-2);border:2px solid var(--line);color:transparent;transition:.15s}
+  .cstep.done .b{background:var(--good);color:#fff;border-color:var(--good)}
+  .cstep span{font-size:13px;color:var(--ink-soft)}
+  .cstep.done span{color:var(--ink);text-decoration:line-through;text-decoration-color:var(--ink-faint)}
+
+  .notes{width:100%;min-height:82px;resize:vertical;background:var(--surface-2);border:1px solid var(--line);border-radius:13px;padding:12px;font-family:var(--sans);font-size:13px;color:var(--ink);margin-top:4px}
+  .notes:focus{outline:2px solid var(--accent);outline-offset:1px}
+
+  .gps{background:var(--surface-2);border-radius:14px;padding:0;overflow:hidden;margin-top:4px;border:1px solid var(--line)}
+  .gps .map{height:118px;position:relative;background:
+    linear-gradient(0deg,transparent 96%,var(--line) 96%) 0 0/100% 24px,
+    linear-gradient(90deg,transparent 96%,var(--line) 96%) 0 0/24px 100%,
+    var(--surface)}
+  .gps .route{position:absolute;left:14%;top:70%;right:18%;height:3px;background:var(--accent);border-radius:3px;transform-origin:left;box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%, transparent)}
+  .gps .pin{position:absolute;width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--surface);top:calc(70% - 7px)}
+  .gps .pin.a{left:12%} .gps .pin.b{right:16%;background:var(--primary)}
+  .gps .car{position:absolute;top:calc(70% - 9px);left:38%;font-size:15px}
+  .gps .lbl{padding:11px 13px;display:flex;align-items:center;justify-content:space-between;font-size:12px}
+  .gps .lbl b{font-weight:650;color:var(--ink)}
+  .gps .lbl span{color:var(--ink-soft)}
+
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+  .line .amt{font-variant-numeric:tabular-nums;font-weight:600}
+  .line.disc{color:var(--good)}
+  .line.total{border-bottom:none;font-weight:700;font-size:16px;padding-top:14px}
+  .line.total .amt{color:var(--primary)}
+
+  .btn{width:100%;border:none;cursor:pointer;font-family:var(--sans);font-weight:650;font-size:13.5px;padding:13px;border-radius:13px;background:var(--primary);color:#fff;margin-top:8px}
+  .btn.accent{background:var(--accent)}
+  .btn.ghost{background:var(--surface-2);color:var(--ink)}
+  .btn.call{background:var(--crit)}
+  .btn:hover{filter:brightness(1.05)}
+  .btn:disabled{opacity:.7;cursor:default;filter:none}
+  .btnrow{display:flex;gap:9px}
+  .btnrow .btn{flex:1}
+
+  .microcopy{font-size:11.5px;color:var(--ink-faint);line-height:1.5;margin:8px 4px 0;display:flex;gap:7px}
+  .microcopy svg{flex:0 0 auto;margin-top:1px}
+
+  .tabbar{flex:0 0 auto;height:76px;background:var(--surface);border-top:1px solid var(--line);display:flex;align-items:stretch;padding:8px 4px 18px}
+  .tab{flex:1;background:none;border:none;cursor:pointer;font-family:var(--sans);display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:center;color:var(--ink-faint);font-size:9.5px;font-weight:600;padding:2px}
+  .tab svg{width:22px;height:22px}
+  .tab.active{color:var(--primary)}
+
+  /* sheets */
+  .overlay{position:absolute;inset:0;background:rgba(10,20,18,.55);backdrop-filter:blur(3px);display:none;align-items:flex-end;z-index:60}
+  .overlay.open{display:flex}
+  .sheet{width:100%;background:var(--surface);border-top-left-radius:28px;border-top-right-radius:28px;padding:22px 20px 30px;animation:rise .3s cubic-bezier(.2,.8,.2,1)}
+  @keyframes rise{from{transform:translateY(100%)}to{transform:none}}
+  .sheet .grab{width:38px;height:4px;border-radius:999px;background:var(--line);margin:0 auto 16px}
+  .sheet h2{font-family:var(--serif);font-size:20px;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  .sheet h2 .ring{width:34px;height:34px;border-radius:50%;background:var(--crit-soft);color:var(--crit);display:grid;place-items:center}
+  .sheet h2 .ring.pay{background:var(--primary-soft);color:var(--primary-ink)}
+  .sheet p{font-size:13px;color:var(--ink-soft);line-height:1.55;margin:0 0 4px}
+  .sheet .sla{background:var(--crit-soft);color:var(--crit);font-weight:700;font-size:12.5px;padding:11px 13px;border-radius:12px;margin:14px 0;display:flex;align-items:center;gap:9px}
+  .payopt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:9px;cursor:pointer;font-family:var(--sans);color:var(--ink)}
+  .payopt:hover{border-color:var(--primary)}
+  .payopt .ic{width:38px;height:38px;border-radius:11px;background:var(--primary-soft);color:var(--primary-ink);display:grid;place-items:center;flex:0 0 auto}
+  .payopt .txt{flex:1;min-width:0}
+  .payopt .txt b{font-size:14px;font-weight:650;display:block}
+  .payopt .txt span{font-size:11.5px;color:var(--ink-soft)}
+  .securenote{display:flex;gap:7px;align-items:flex-start;font-size:11.5px;color:var(--ink-faint);line-height:1.5;margin-top:14px}
+
+  .toast{position:absolute;left:16px;right:16px;bottom:88px;background:var(--ink);color:var(--bg);border-radius:12px;padding:12px 14px;font-size:12.5px;font-weight:600;text-align:center;z-index:70;opacity:0;transform:translateY(10px);pointer-events:none;transition:.25s}
+  .toast.show{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div class="caption">
+  <div class="mark">Ortho<b>App</b> · Role Suite</div>
+  <p>One platform, three apps. Pick a role to enter its app — Family, Doctor, or Escort. Use ⌂ to switch roles anytime.</p>
+</div>
+
+<div class="phone" role="application" aria-label="OrthoApp multi-role prototype">
+  <div class="statusbar">
+    <span>9:41</span>
+    <span class="dots"><span></span><span></span><span></span><span class="bat"></span></span>
+  </div>
+
+  <!-- ==================== LAUNCHER ==================== -->
+  <section class="view active" id="launcher">
+    <div class="launch-brand"><span class="glyph" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.5C1 9.5 2.5 6 6 6c2 0 3.2 1.2 4 2.5C10.8 7.2 12 6 14 6c3.5 0 5 3.5 3.5 6.5C19 16.65 12 21 12 21z"/></svg>
+    </span>Ortho<b>App</b></div>
+    <p class="launch-sub">Doctor-supervised orthopedic home care & hospital escort in Hyderabad. Choose your view.</p>
+    <div class="launch-label">Open an app</div>
+
+    <button class="rolecard" data-role="familyApp">
+      <span class="ico" style="background:#DC6B4F">👪</span>
+      <span class="rc"><b>Family</b><span>Follow your loved one's recovery, day by day</span></span>
+      <span class="go">›</span>
+    </button>
+    <button class="rolecard" data-role="doctorApp">
+      <span class="ico" style="background:#4C7BB0">🩺</span>
+      <span class="rc"><b>Doctor</b><span>Supervise patients, approve care plans, review</span></span>
+      <span class="go">›</span>
+    </button>
+    <button class="rolecard" data-role="escortApp">
+      <span class="ico" style="background:#E07A3E">🚑</span>
+      <span class="rc"><b>Escort</b><span>Guide patients safely to and from hospital</span></span>
+      <span class="go">›</span>
+    </button>
+
+    <div class="launch-foot">Prototype · English. The family app also exists in English / Telugu / Hindi in a separate build.</div>
+  </section>
+
+  <!-- ==================== FAMILY APP ==================== -->
+  <div class="view app app-family" id="familyApp">
+    <header class="appbar">
+      <div class="row1">
+        <button class="homebtn" data-home>⌂ Roles</button>
+        <div class="controls"><span class="rolechip">Family view</span><button class="theme-toggle" data-theme-btn>◐</button></div>
+      </div>
+      <div class="idrow">
+        <div class="avatar">KR</div>
+        <div class="who"><h1>Mrs. Kamala Rao</h1><p>68 · Right Total Hip Replacement · Day 9</p></div>
+        <span class="pill neutral" style="background:rgba(255,255,255,.18);color:#fff">Comprehensive</span>
+      </div>
+      <button class="sos" data-open="emSheet"><span class="pulse"></span>Emergency — reach the care team now</button>
+    </header>
+    <main class="screen">
+      <!-- Journey -->
+      <section class="panel active" data-panel="f-journey">
+        <p class="eyebrow">Recovery journey</p>
+        <div class="card">
+          <div class="stepper">
+            <div class="jstep done"><div class="jbadge">✓</div><div class="jbody"><b>Enquiry & home assessment</b><p>Free assessment on 28 Jul · needs & home environment reviewed</p></div></div>
+            <div class="jstep done"><div class="jbadge">✓</div><div class="jbody"><b>Doctor consultation & care plan <span class="pill good" style="font-size:9px"><span class="dot"></span>Approved</span></b><p>Dr. Anand Iyer designed & approved the plan on 30 Jul</p></div></div>
+            <div class="jstep done"><div class="jbadge">✓</div><div class="jbody"><b>Team assigned & briefed</b><p>5-member verified team matched · briefed on plan & preferences</p></div></div>
+            <div class="jstep now"><div class="jbadge">4</div><div class="jbody"><b>Care delivery & monitoring <span class="pill warn" style="font-size:9px">Active · Day 9</span></b><p>Daily reports, 2-hour repositioning, physio & escorts underway</p></div></div>
+            <div class="jstep todo"><div class="jbadge">5</div><div class="jbody"><b>Review & transition</b><p>Next physician review 25 Aug · plan to assisted independence</p></div></div>
+          </div>
+        </div>
+
+        <p class="section-title">Your care team</p>
+        <div class="card">
+          <div class="member"><div class="ph" style="background:#0E5A54">AI</div><div class="info"><div class="nm">Dr. Anand Iyer</div><div class="rl">Supervising Orthopedic Surgeon</div><div class="verified">✓ Background verified</div></div></div>
+          <div class="member"><div class="ph" style="background:#1C7A6E">PV</div><div class="info"><div class="nm">Priya Venkat</div><div class="rl">Registered Physiotherapist</div><div class="verified">✓ Background verified</div></div></div>
+          <div class="member"><div class="ph" style="background:var(--accent)">SM</div><div class="info"><div class="nm">Sunita M. <span class="pill good" style="font-size:9px"><span class="dot"></span>On shift</span></div><div class="rl">Orthopedic Caretaker</div><div class="verified">✓ Background verified</div></div></div>
+          <div class="member"><div class="ph" style="background:#5A6E4A">RK</div><div class="info"><div class="nm">Ramesh K.</div><div class="rl">Patient Escort Associate</div><div class="verified">✓ Background verified</div></div></div>
+        </div>
+        <div class="microcopy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>No caretaker is changed without your consent first.</span></div>
+      </section>
+
+      <!-- Today -->
+      <section class="panel" data-panel="f-today">
+        <p class="eyebrow">Today · Fri, 8 Aug</p>
+        <div class="card">
+          <div class="between" style="margin-bottom:12px"><div><h3>Today's report</h3><p class="sub">Updated 11 minutes ago by Sunita M.</p></div><span class="pill good"><span class="dot"></span>Stable</span></div>
+          <div class="vitals">
+            <div class="vital"><div class="v">118/76</div><div class="u">mmHg</div><div class="l">BP</div></div>
+            <div class="vital"><div class="v">72</div><div class="u">bpm</div><div class="l">Pulse</div></div>
+            <div class="vital"><div class="v">98</div><div class="u">%</div><div class="l">SpO₂</div></div>
+            <div class="vital"><div class="v">98.4</div><div class="u">°F</div><div class="l">Temp</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="between"><div><h3>Repositioning</h3><p class="sub">2-hour turning · prevents pressure sores</p></div><span class="pill info"><span class="dot"></span>Next 12:00</span></div>
+          <div class="timeline">
+            <div class="slot done"><div class="node">✓</div><div class="t">06:00</div></div>
+            <div class="slot done"><div class="node">✓</div><div class="t">08:00</div></div>
+            <div class="slot now"><div class="node">✓</div><div class="t">10:00</div></div>
+            <div class="slot next"><div class="node">·</div><div class="t">12:00</div></div>
+            <div class="slot next"><div class="node">·</div><div class="t">14:00</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:8px">Care given today</h3>
+          <div class="tasks">
+            <div class="task"><div class="ck done">✓</div><div class="tx"><b>Morning medication</b><span>Calcium + Vitamin D, pain relief</span></div><div class="time">08:00</div></div>
+            <div class="task"><div class="ck done">✓</div><div class="tx"><b>Physiotherapy — ankle pumps & quad sets</b><span>Per Dr. Iyer's plan · 2 sets done</span></div><div class="time">09:30</div></div>
+            <div class="task"><div class="ck done">✓</div><div class="tx"><b>Sponge bath & wound dressing check</b><span>Surgical site clean, no redness</span></div><div class="time">10:15</div></div>
+            <div class="task"><div class="ck due">·</div><div class="tx"><b>Midday meal — high-protein, calcium-rich</b><span>Per nutritionist plan</span></div><div class="time">13:00</div></div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="quote">“Amma sat up at the edge of the bed on her own today and walked six steps with the walker — a little further than yesterday. She ate a full breakfast and was in good spirits.”</div>
+          <div class="by"><span class="ic">SM</span>Sunita M. · Orthopedic Caretaker · on shift until 8 PM</div>
+        </div>
+        <button class="btn ghost" data-once="★★★★★  Thank you — feedback saved">★  Rate today's visit</button>
+      </section>
+
+      <!-- Plan -->
+      <section class="panel" data-panel="f-plan">
+        <p class="eyebrow">Doctor-supervised care plan</p>
+        <div class="card">
+          <div class="between"><div><h3>Recovery progress</h3><p class="sub">Day 9 of an estimated 6-week plan</p></div><span class="pill good"><span class="dot"></span>On track</span></div>
+          <div class="track"><i style="width:34%"></i></div>
+          <div class="milestones"><div class="m reached">Surgery</div><div class="m reached">Bed mobility</div><div class="m here">Walker steps</div><div class="m">Stairs</div><div class="m">Independent</div></div>
+        </div>
+        <p class="section-title">This week's goals</p>
+        <div class="card">
+          <div class="tasks">
+            <div class="task"><div class="ck done">✓</div><div class="tx"><b>Walker-assisted walking</b><span>Increase to 10 steps, twice daily</span></div></div>
+            <div class="task"><div class="ck done">✓</div><div class="tx"><b>Seated hip & knee exercises</b><span>Physiotherapist-guided, 3× daily</span></div></div>
+            <div class="task"><div class="ck due">·</div><div class="tx"><b>Bone-health nutrition</b><span>Calcium + Vitamin D optimised diet</span></div></div>
+            <div class="task"><div class="ck due">·</div><div class="tx"><b>Pressure-sore prevention</b><span>2-hour repositioning maintained</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Escorts -->
+      <section class="panel" data-panel="f-escorts">
+        <p class="eyebrow">Hospital escort</p>
+        <div class="card">
+          <div class="between" style="margin-bottom:10px"><div><h3>Follow-up with Dr. Iyer</h3><p class="sub">Sat, 16 Aug · 10:30 AM · Apollo Ortho OPD, Hyderabad</p></div><span class="pill info"><span class="dot"></span>Scheduled</span></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px"><span class="pill neutral">Home → Hospital → Home</span><span class="pill good">◍ GPS-tracked</span></div>
+          <p class="sub">Escort: <b style="color:var(--ink)">Ramesh K.</b> · arrives 9:45 AM</p>
+        </div>
+        <p class="section-title">Last visit</p>
+        <div class="card">
+          <div class="between"><div><h3 style="font-size:14px">Suture review · 2 Aug</h3><p class="sub">Sutures removed · wound healing well</p></div><span class="pill good"><span class="dot"></span>Complete</span></div>
+          <button class="btn ghost" data-once="📄  Summary shared to your inbox" style="margin-top:12px">📄  View visit summary</button>
+        </div>
+      </section>
+
+      <!-- Billing -->
+      <section class="panel" data-panel="f-billing">
+        <p class="eyebrow">Billing · August 2026</p>
+        <div class="card">
+          <div class="between" style="margin-bottom:6px"><div><h3>Comprehensive Care</h3><p class="sub">24-hr caretaker · 4 escorts/mo · physio & nutrition</p></div><span class="pill warn" id="f-payStatus"><span class="dot"></span>Due</span></div>
+          <div style="margin-top:8px">
+            <div class="line"><span>Comprehensive package</span><span class="amt">₹58,000</span></div>
+            <div class="line"><span>Home physiotherapy (8 sessions)</span><span class="amt">₹6,400</span></div>
+            <div class="line disc"><span>Senior citizen discount (10%)</span><span class="amt">−₹6,440</span></div>
+            <div class="line"><span>GST (18%)</span><span class="amt">₹10,433</span></div>
+            <div class="line total"><span>Total due</span><span class="amt">₹68,393</span></div>
+          </div>
+        </div>
+        <button class="btn" id="f-payBtn" data-open="paySheet">Pay now</button>
+        <button class="btn ghost" data-once="✓  GST invoice downloaded">Download GST invoice</button>
+        <div class="microcopy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>A written estimate was shared before care began — no hidden charges.</span></div>
+      </section>
+    </main>
+    <nav class="tabbar">
+      <button class="tab active" data-goto="f-journey"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Journey</button>
+      <button class="tab" data-goto="f-today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>Today</button>
+      <button class="tab" data-goto="f-plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Plan</button>
+      <button class="tab" data-goto="f-escorts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3V6a1 1 0 011-1h11v12h-3"/><path d="M15 8h4l3 4v5h-2"/><circle cx="7.5" cy="17.5" r="2"/><circle cx="16.5" cy="17.5" r="2"/></svg>Escorts</button>
+      <button class="tab" data-goto="f-billing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>Billing</button>
+    </nav>
+  </div>
+
+  <!-- ==================== DOCTOR APP ==================== -->
+  <div class="view app app-doctor" id="doctorApp">
+    <header class="appbar">
+      <div class="row1">
+        <button class="homebtn" data-home>⌂ Roles</button>
+        <div class="controls"><span class="rolechip">Doctor view</span><button class="theme-toggle" data-theme-btn>◐</button></div>
+      </div>
+      <div class="idrow">
+        <div class="avatar">AI</div>
+        <div class="who"><h1>Dr. Anand Iyer</h1><p>MBBS · MS (Orthopaedics) · Supervising Surgeon</p></div>
+        <div class="stat"><b>5</b>patients</div>
+      </div>
+    </header>
+    <main class="screen">
+      <!-- Patients -->
+      <section class="panel active" data-panel="d-patients">
+        <p class="eyebrow">Patients under supervision</p>
+        <div class="card" style="padding:6px 16px">
+          <button class="prow" data-goto="d-detail"><div class="pi" style="background:#0E5A54">KR</div><div class="pd"><b>Kamala Rao · 68</b><span>Right THR · Day 9</span></div><span class="pill good"><span class="dot"></span>Stable</span></button>
+          <button class="prow" data-goto="d-detail"><div class="pi" style="background:#C0392B">VR</div><div class="pd"><b>Venkat Reddy · 74</b><span>Femur fracture · Day 4</span></div><span class="pill crit"><span class="dot"></span>Attention</span></button>
+          <button class="prow" data-goto="d-detail"><div class="pi" style="background:#1C7A6E">FB</div><div class="pd"><b>Fatima Begum · 66</b><span>TKR (knee) · Day 15</span></div><span class="pill good"><span class="dot"></span>Stable</span></button>
+          <button class="prow" data-goto="d-approvals"><div class="pi" style="background:#8A5A2B">AR</div><div class="pd"><b>Arjun Rao · 52</b><span>Spinal fusion · Day 2</span></div><span class="pill warn"><span class="dot"></span>Plan pending</span></button>
+          <button class="prow" data-goto="d-detail"><div class="pi" style="background:#5A6E4A">LD</div><div class="pd"><b>Lakshmi Devi · 71</b><span>Osteoporosis · conservative</span></div><span class="pill good"><span class="dot"></span>Stable</span></button>
+        </div>
+      </section>
+
+      <!-- Patient detail -->
+      <section class="panel" data-panel="d-detail">
+        <p class="eyebrow">Kamala Rao · Right THR · Day 9</p>
+        <div class="card">
+          <h3 style="margin-bottom:6px">Clinical summary</h3>
+          <p class="sub">Total hip replacement (right), 30 Jul. Uncemented prosthesis. No post-op complications. Weight-bearing as tolerated with walker. On calcium/Vit-D + analgesia.</p>
+        </div>
+        <div class="card">
+          <div class="between"><h3>Vitals trend · systolic BP</h3><span class="pill good"><span class="dot"></span>Normal</span></div>
+          <div class="spark">
+            <svg viewBox="0 0 120 40" preserveAspectRatio="none" height="40"><polyline fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="2,26 22,22 42,28 62,20 82,24 102,18 118,19"/></svg>
+            <div class="val"><b>118</b><span>mmHg today</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:6px">Active care plan</h3>
+          <div class="tasks">
+            <div class="task"><div class="ck done">✓</div><div class="tx"><b>Caretaking</b><span>24-hr · repositioning 2-hourly · wound care</span></div></div>
+            <div class="task"><div class="ck done">✓</div><div class="tx"><b>Physiotherapy</b><span>Walker gait + quad sets, 3× daily</span></div></div>
+            <div class="task"><div class="ck done">✓</div><div class="tx"><b>Nutrition</b><span>High-protein, calcium-rich</span></div></div>
+            <div class="task"><div class="ck done">✓</div><div class="tx"><b>Escort</b><span>4 hospital visits / month</span></div></div>
+          </div>
+        </div>
+        <div class="btnrow">
+          <button class="btn ghost" data-goto="d-patients">‹ All patients</button>
+          <button class="btn accent" data-once="✓  Care plan updated & versioned">Adjust plan</button>
+        </div>
+      </section>
+
+      <!-- Approvals -->
+      <section class="panel" data-panel="d-approvals">
+        <p class="eyebrow">Care plans awaiting approval</p>
+        <div class="microcopy" style="margin:0 4px 12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg><span>Care cannot begin until a supervising physician approves the plan.</span></div>
+        <div class="card" id="d-approvalCard">
+          <div class="between" style="margin-bottom:8px"><div><h3>Arjun Rao · 52</h3><p class="sub">Spinal fusion (L4–L5) · post-op Day 2</p></div><span class="pill warn" id="d-apStatus"><span class="dot"></span>Pending</span></div>
+          <div class="tasks">
+            <div class="task"><div class="ck done">✓</div><div class="tx"><b>Caretaking</b><span>24-hr · log-roll transfers · brace care</span></div></div>
+            <div class="task"><div class="ck done">✓</div><div class="tx"><b>Physiotherapy</b><span>Isometric core, no flexion — from Day 5</span></div></div>
+            <div class="task"><div class="ck done">✓</div><div class="tx"><b>Escort</b><span>2 visits / month</span></div></div>
+          </div>
+          <div class="btnrow" id="d-apActions">
+            <button class="btn ghost" data-once="Change request sent to coordinator">Request changes</button>
+            <button class="btn accent" id="d-approveBtn">Approve plan</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Schedule -->
+      <section class="panel" data-panel="d-schedule">
+        <p class="eyebrow">Upcoming reviews</p>
+        <div class="card">
+          <div class="tasks">
+            <div class="task"><div class="ck due" style="background:var(--primary-soft);border-color:var(--primary);color:var(--primary-ink)">25</div><div class="tx"><b>Home review · Kamala Rao</b><span>Mon 25 Aug · 11:00 AM · monthly plan review</span></div></div>
+            <div class="task"><div class="ck due" style="background:var(--primary-soft);border-color:var(--primary);color:var(--primary-ink)">27</div><div class="tx"><b>Teleconsult · Fatima Begum</b><span>Wed 27 Aug · 4:00 PM · progress check</span></div></div>
+            <div class="task"><div class="ck due" style="background:var(--primary-soft);border-color:var(--primary);color:var(--primary-ink)">29</div><div class="tx"><b>Home review · Venkat Reddy</b><span>Fri 29 Aug · 10:00 AM · BP follow-up</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Alerts -->
+      <section class="panel" data-panel="d-alerts">
+        <p class="eyebrow">Clinical alerts</p>
+        <div class="card"><div class="between"><div><h3 style="font-size:14px">Venkat Reddy — BP 150/95</h3><p class="sub">Flagged by caretaker · 2 hours ago</p></div><span class="pill crit"><span class="dot"></span>Review</span></div></div>
+        <div class="card"><div class="between"><div><h3 style="font-size:14px">Kamala Rao — reposition logged late</h3><p class="sub">One 04:00 turn logged 22 min late, yesterday</p></div><span class="pill warn"><span class="dot"></span>Note</span></div></div>
+        <div class="card"><div class="between"><div><h3 style="font-size:14px">Arjun Rao — plan awaiting approval</h3><p class="sub">Submitted by coordinator · Day 2 post-op</p></div><button class="pill info" data-goto="d-approvals" style="border:none;cursor:pointer">Open ›</button></div></div>
+      </section>
+    </main>
+    <nav class="tabbar">
+      <button class="tab active" data-goto="d-patients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>Patients</button>
+      <button class="tab" data-goto="d-approvals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Approvals</button>
+      <button class="tab" data-goto="d-schedule"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Schedule</button>
+      <button class="tab" data-goto="d-alerts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>Alerts</button>
+    </nav>
+  </div>
+
+  <!-- ==================== ESCORT APP ==================== -->
+  <div class="view app app-escort" id="escortApp">
+    <header class="appbar">
+      <div class="row1">
+        <button class="homebtn" data-home>⌂ Roles</button>
+        <div class="controls"><span class="rolechip">Escort view</span><button class="theme-toggle" data-theme-btn>◐</button></div>
+      </div>
+      <div class="idrow">
+        <div class="avatar">RK</div>
+        <div class="who"><h1>Ramesh K.</h1><p>Patient Escort Associate · Hyderabad</p></div>
+        <div class="stat"><b>2</b>trips today</div>
+      </div>
+      <div class="conn" id="e-conn">
+        <span class="st"><span class="d"></span><span id="e-connText">Online · syncing live</span></span>
+        <button id="e-connBtn">Go offline</button>
+      </div>
+    </header>
+    <main class="screen">
+      <!-- Schedule -->
+      <section class="panel active" data-panel="e-schedule">
+        <p class="eyebrow">Today · Fri, 8 Aug</p>
+        <button class="card" style="width:100%;text-align:left;border:none;cursor:pointer" data-goto="e-active">
+          <div class="between"><div><h3>Kamala Rao</h3><p class="sub">10:30 AM · Apollo Ortho OPD · follow-up</p></div><span class="pill warn"><span class="dot"></span>Next</span></div>
+          <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><span class="pill neutral">Home → Hospital → Home</span><span class="pill info">Pickup 9:45</span></div>
+        </button>
+        <div class="card">
+          <div class="between"><div><h3>Fatima Begum</h3><p class="sub">3:00 PM · Yashoda Diagnostics · X-ray</p></div><span class="pill neutral"><span class="dot"></span>Later</span></div>
+          <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><span class="pill neutral">Home → Centre → Home</span><span class="pill neutral">Pickup 2:20</span></div>
+        </div>
+        <button class="btn call" data-open="emSheet">Report an emergency</button>
+      </section>
+
+      <!-- Active trip -->
+      <section class="panel" data-panel="e-active">
+        <p class="eyebrow">Active trip · Kamala Rao</p>
+        <div class="gps">
+          <div class="map"><div class="route"></div><div class="pin a"></div><div class="pin b"></div><div class="car">🚑</div></div>
+          <div class="lbl"><b>En route to Apollo Ortho, Hyderabad</b><span>ETA 10:15</span></div>
+        </div>
+        <div class="btnrow" style="margin-top:10px">
+          <button class="btn ghost" data-log="✓  Checked in: arrived at home">Arrived at home</button>
+          <button class="btn ghost" data-log="✓  Checked in: arrived at hospital">At hospital</button>
+        </div>
+
+        <p class="section-title">Journey checklist <span class="pill neutral" id="e-progress" style="font-family:var(--sans)">0 / 6</span></p>
+        <div class="card">
+          <div class="chk" id="e-chk">
+            <div class="cstep"><span class="b">✓</span><span>Help patient get dressed & ready at home</span></div>
+            <div class="cstep"><span class="b">✓</span><span>Safe transfer to adapted vehicle</span></div>
+            <div class="cstep"><span class="b">✓</span><span>Accompany through registration & triage</span></div>
+            <div class="cstep"><span class="b">✓</span><span>Take consultation notes for the family</span></div>
+            <div class="cstep"><span class="b">✓</span><span>Assist with X-ray & pharmacy</span></div>
+            <div class="cstep"><span class="b">✓</span><span>Return home & hand over doctor's instructions</span></div>
+          </div>
+        </div>
+
+        <p class="section-title">Consultation notes for family</p>
+        <textarea class="notes" id="e-notes" placeholder="e.g. Dr. Iyer advised continuing walker use; next X-ray in 3 weeks; add calcium supplement…"></textarea>
+        <button class="btn accent" data-log="✓  Notes saved & shared with family">Save & share notes</button>
+        <button class="btn" id="e-complete" data-log="✓  Escort completed · synced to care record">Complete escort</button>
+      </section>
+
+      <!-- History -->
+      <section class="panel" data-panel="e-history">
+        <p class="eyebrow">Past escorts</p>
+        <div class="card"><div class="between"><div><h3 style="font-size:14px">Kamala Rao · Suture review</h3><p class="sub">2 Aug · Apollo Ortho OPD</p></div><span class="pill good"><span class="dot"></span>Completed</span></div><button class="btn ghost" data-once="📄  Visit record opened" style="margin-top:10px">📄  Visit record</button></div>
+        <div class="card"><div class="between"><div><h3 style="font-size:14px">Venkat Reddy · MRI scan</h3><p class="sub">28 Jul · Yashoda Diagnostics</p></div><span class="pill good"><span class="dot"></span>Completed</span></div></div>
+      </section>
+    </main>
+    <nav class="tabbar">
+      <button class="tab active" data-goto="e-schedule"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Today</button>
+      <button class="tab" data-goto="e-active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3V6a1 1 0 011-1h11v12h-3"/><path d="M15 8h4l3 4v5h-2"/><circle cx="7.5" cy="17.5" r="2"/><circle cx="16.5" cy="17.5" r="2"/></svg>Active trip</button>
+      <button class="tab" data-goto="e-history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 106 5.3L3 8"/><path d="M12 7v5l4 2"/></svg>History</button>
+    </nav>
+  </div>
+
+  <!-- ===== Shared sheets ===== -->
+  <div class="overlay" id="emSheet">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Emergency">
+      <div class="grab"></div>
+      <h2><span class="ring">⚠</span>We're here, right now</h2>
+      <p>This alerts the on-shift caretaker, the care coordinator, and our 24×7 emergency desk at the same time.</p>
+      <div class="sla">⏱  Guaranteed response in under 30 minutes</div>
+      <button class="btn call" data-once="📞  Connecting… desk notified">📞  Call emergency desk</button>
+      <button class="btn ghost" data-once="✓  Coordinator Lata G. alerted">Alert care coordinator</button>
+      <button class="btn ghost" data-close style="background:transparent;color:var(--ink-soft)">Cancel</button>
+    </div>
+  </div>
+
+  <div class="overlay" id="paySheet">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Payment">
+      <div class="grab"></div>
+      <h2><span class="ring pay">₹</span>Pay ₹68,393</h2>
+      <p>Choose how you'd like to pay</p>
+      <button class="payopt" data-pay><span class="ic">₹</span><span class="txt"><b>UPI</b><span>GPay, PhonePe, Paytm</span></span><span>›</span></button>
+      <button class="payopt" data-pay><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></span><span class="txt"><b>Credit / Debit card</b><span>Visa · Mastercard · RuPay</span></span><span>›</span></button>
+      <button class="payopt" data-pay><span class="ic">🏦</span><span class="txt"><b>Net-banking</b><span>SBI · HDFC · ICICI · Axis</span></span><span>›</span></button>
+      <div class="securenote">🔒 Payments are secure. OrthoApp never stores your card details.</div>
+      <button class="btn ghost" data-close style="background:transparent;color:var(--ink-soft)">Cancel</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+(function(){
+  var phone=document.querySelector('.phone');
+
+  // ---- role switching ----
+  function show(id){
+    document.querySelectorAll('.view').forEach(function(v){v.classList.toggle('active',v.id===id)});
+    var sc=document.querySelector('#'+id+' .screen'); if(sc)sc.scrollTop=0;
+  }
+  document.querySelectorAll('[data-role]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-role'))})});
+  document.querySelectorAll('[data-home]').forEach(function(b){b.addEventListener('click',function(){closeAll();show('launcher')})});
+
+  // ---- tab / goto navigation (scoped to current app) ----
+  document.querySelectorAll('[data-goto]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var target=b.getAttribute('data-goto');
+      var app=b.closest('.app'); if(!app)return;
+      app.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.getAttribute('data-panel')===target)});
+      // sync tabbar highlight if this target is a tab
+      var tabForTarget=app.querySelector('.tabbar .tab[data-goto="'+target+'"]');
+      app.querySelectorAll('.tabbar .tab').forEach(function(t){t.classList.toggle('active',t===tabForTarget)});
+      var sc=app.querySelector('.screen'); if(sc)sc.scrollTop=0;
+    });
+  });
+
+  // ---- toast ----
+  var toast=document.getElementById('toast'), toastTimer;
+  function say(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(function(){toast.classList.remove('show')},2200)}
+
+  // ---- sheets ----
+  function closeAll(){document.querySelectorAll('.overlay').forEach(function(o){o.classList.remove('open')})}
+  document.querySelectorAll('[data-open]').forEach(function(b){b.addEventListener('click',function(){var t=document.getElementById(b.getAttribute('data-open'));if(t)t.classList.add('open')})});
+  document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',closeAll)});
+  document.querySelectorAll('.overlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===o)closeAll()})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+
+  // ---- one-shot buttons (change label once) ----
+  document.querySelectorAll('[data-once]').forEach(function(b){
+    b.addEventListener('click',function(){this.textContent=this.getAttribute('data-once');this.disabled=true;this.removeAttribute('data-once');closeAll();});
+  });
+
+  // ---- escort: connectivity (offline-first demo) ----
+  var offline=false, queued=0;
+  var conn=document.getElementById('e-conn'), connText=document.getElementById('e-connText'), connBtn=document.getElementById('e-connBtn');
+  if(connBtn){
+    connBtn.addEventListener('click',function(){
+      offline=!offline;
+      conn.classList.toggle('off',offline);
+      if(offline){connText.textContent='Offline · logging on device';connBtn.textContent='Sync now';}
+      else{
+        if(queued>0){say('✓  Synced '+queued+' update'+(queued>1?'s':'')+' to the care record');queued=0;}
+        connText.textContent='Online · syncing live';connBtn.textContent='Go offline';
+      }
+    });
+  }
+  // escort log actions respect offline state
+  document.querySelectorAll('[data-log]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var msg=b.getAttribute('data-log');
+      if(offline){queued++;say('Saved on device · will sync ('+queued+' queued)');}
+      else{say(msg);}
+    });
+  });
+
+  // ---- escort: checklist ----
+  var chk=document.getElementById('e-chk'), prog=document.getElementById('e-progress');
+  if(chk){
+    var steps=chk.querySelectorAll('.cstep');
+    function refresh(){
+      var done=chk.querySelectorAll('.cstep.done').length;
+      prog.textContent=done+' / '+steps.length;
+      prog.className='pill '+(done===steps.length?'good':'neutral');
+    }
+    steps.forEach(function(s){s.addEventListener('click',function(){
+      s.classList.toggle('done');
+      refresh();
+      if(offline){queued++;say('Saved on device · will sync ('+queued+' queued)');}
+    })});
+    refresh();
+  }
+
+  // ---- family: payment ----
+  document.querySelectorAll('[data-pay]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var s=document.getElementById('f-payStatus'); s.className='pill good'; s.innerHTML='<span class="dot"></span>Paid';
+      var pb=document.getElementById('f-payBtn'); pb.textContent='✓  Payment successful — invoice paid'; pb.disabled=true; pb.removeAttribute('data-open');
+      closeAll(); say('✓  Payment successful — invoice paid');
+    });
+  });
+
+  // ---- doctor: approve plan ----
+  var ab=document.getElementById('d-approveBtn');
+  if(ab){ab.addEventListener('click',function(){
+    document.getElementById('d-apStatus').className='pill good';
+    document.getElementById('d-apStatus').innerHTML='<span class="dot"></span>Approved';
+    document.getElementById('d-apActions').innerHTML='<div class="microcopy" style="margin-top:4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--good)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Plan approved — care can now begin. Team assignment unlocked.</span></div>';
+    say('✓  Care plan approved for Arjun Rao');
+  })}
+
+  // ---- theme toggle (any app) ----
+  var root=document.documentElement, mode='system';
+  document.querySelectorAll('[data-theme-btn]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      mode = mode==='system' ? 'light' : mode==='light' ? 'dark' : 'system';
+      if(mode==='system'){root.removeAttribute('data-theme');}
+      else{root.setAttribute('data-theme',mode);}
+      var g=mode==='system'?'◐':(mode==='light'?'☀':'☾');
+      document.querySelectorAll('[data-theme-btn]').forEach(function(x){x.textContent=g});
+    });
+  });
+})();
+</script>
