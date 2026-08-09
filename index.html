@@ -17,7 +17,7 @@
   *{box-sizing:border-box}
   body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
     color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:760px;margin:0 auto;padding:48px 22px 72px}
+  .wrap{max-width:820px;margin:0 auto;padding:48px 22px 72px}
   .serif{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
   header{display:flex;align-items:center;gap:14px;margin-bottom:6px}
   .glyph{width:46px;height:46px;border-radius:13px;background:var(--primary);color:#fff;
@@ -25,19 +25,18 @@
   h1{font-size:30px;margin:0}
   h1 b{color:var(--primary);font-weight:600}
   .lede{color:var(--soft);font-size:16px;margin:8px 0 4px;max-width:60ch}
-  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 34px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 30px}
   .chip{font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;background:var(--mist);color:var(--primary-ink)}
-  .label{font-size:11px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--faint);margin:34px 0 14px}
-  a.card{display:flex;align-items:center;gap:15px;text-decoration:none;color:inherit;
-    background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:17px 18px;margin-bottom:12px;
+  .label{font-size:11px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--faint);margin:30px 0 13px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  a.tile{display:flex;flex-direction:column;gap:9px;text-decoration:none;color:inherit;
+    background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;
     transition:transform .14s ease,border-color .14s ease}
-  a.card:hover{transform:translateY(-2px);border-color:var(--accent)}
-  .ico{width:46px;height:46px;border-radius:13px;flex:0 0 auto;display:grid;place-items:center;font-size:22px;color:#fff}
-  .c-body{flex:1;min-width:0}
-  .c-body b{font-size:16px;display:block}
-  .c-body span{font-size:13px;color:var(--soft)}
-  .go{color:var(--faint);font-size:20px}
-  footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+  a.tile:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .ico{width:46px;height:46px;border-radius:13px;flex:0 0 auto;display:grid;place-items:center;font-size:23px;color:#fff}
+  .tile b{font-size:15.5px;line-height:1.2}
+  .tile span{font-size:12.5px;color:var(--soft);line-height:1.4}
+  footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
   code{background:var(--mist);padding:1px 6px;border-radius:6px;font-size:12.5px}
 </style>
 </head>
@@ -58,39 +57,23 @@
     </div>
 
     <div class="label">Prototypes</div>
-    <a class="card" href="suite.html">
-      <span class="ico" style="background:var(--primary)">🏥</span>
-      <span class="c-body"><b>Multi-role suite</b><span>Launcher → Family (journey) · Doctor (approve plans) · Escort (live trip, offline)</span></span>
-      <span class="go">›</span>
-    </a>
-    <a class="card" href="prototype.html">
-      <span class="ico" style="background:var(--accent)">👪</span>
-      <span class="c-body"><b>Family app — trilingual</b><span>Daily reports, care plan, escorts, GST billing + Pay now · EN / తె / हि</span></span>
-      <span class="go">›</span>
-    </a>
+    <div class="grid">
+      <a class="tile" href="suite.html"><span class="ico" style="background:var(--primary)">🏥</span><b>Multi-role suite</b><span>8 role apps in one launcher — Family, Doctor, Escort, Coordinator, Physio, Nurse, Nutritionist, Admin</span></a>
+      <a class="tile" href="prototype.html"><span class="ico" style="background:var(--accent)">👪</span><b>Family app — trilingual</b><span>Daily reports, care plan, escorts, GST billing + Pay now · EN / తె / हि</span></a>
+    </div>
 
-    <a class="card" href="brand.html">
-      <span class="ico" style="background:#1466C7">🦴</span>
-      <span class="c-body"><b>Logo directions</b><span>3 logomark concepts, wordmark, colour variants & app icons</span></span>
-      <span class="go">›</span>
-    </a>
+    <div class="label">Brand</div>
+    <div class="grid">
+      <a class="tile" href="brand.html"><span class="ico" style="background:#1466C7">🦴</span><b>Logo directions</b><span>Concepts, wordmark, colour variants & app icons</span></a>
+      <a class="tile" href="brand-bone-shapes.html"><span class="ico" style="background:#E0930F">🅰️</span><b>Final logo &amp; colours</b><span>Azure A-Bone, gold-amber, chunky bone</span></a>
+    </div>
 
     <div class="label">Documents</div>
-    <a class="card" href="BRD.md">
-      <span class="ico" style="background:#4C7BB0">📋</span>
-      <span class="c-body"><b>Business Requirements Document</b><span>Objectives, scope, personas, 40+ requirements, process flows, risks, v1 decisions</span></span>
-      <span class="go">›</span>
-    </a>
-    <a class="card" href="Asthimitra_Overview.pptx">
-      <span class="ico" style="background:#8A5A2B">📊</span>
-      <span class="c-body"><b>Overview deck (PowerPoint)</b><span>8 brief slides — what / why / what it does / who / how</span></span>
-      <span class="go">›</span>
-    </a>
-    <a class="card" href="OrthoApp.docx">
-      <span class="ico" style="background:#5A6E4A">📄</span>
-      <span class="c-body"><b>Source charter</b><span>The original Asthimitra HomeCare service brochure</span></span>
-      <span class="go">›</span>
-    </a>
+    <div class="grid">
+      <a class="tile" href="BRD.md"><span class="ico" style="background:#4C7BB0">📋</span><b>Business Requirements</b><span>Objectives, scope, personas, 40+ requirements, v1 decisions</span></a>
+      <a class="tile" href="Asthimitra_Overview.pptx"><span class="ico" style="background:#8A5A2B">📊</span><b>Overview deck</b><span>8 brief slides — what / why / who / how</span></a>
+      <a class="tile" href="OrthoApp.docx"><span class="ico" style="background:#5A6E4A">📄</span><b>Source charter</b><span>The original service brochure</span></a>
+    </div>
 
     <footer>
       Open the <code>.html</code> files directly in a browser. Telugu/Hindi strings await a native-speaker proofread before production.
