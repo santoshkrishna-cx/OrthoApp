@@ -15,7 +15,6 @@
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,sans-serif;
   }
-  :root:not([data-theme="light"]){}
   @media (prefers-color-scheme:dark){
     :root:not([data-theme="light"]){
       --ground:#08110F; --ground-2:#0C1917;
@@ -54,12 +53,8 @@
     padding:32px 16px 48px;
     -webkit-font-smoothing:antialiased;
   }
-  .tagline{
-    text-align:center; max-width:420px; color:var(--ink-soft);
-  }
-  .tagline .mark{
-    font-family:var(--serif); font-size:22px; color:var(--ink); letter-spacing:.2px;
-  }
+  .tagline{text-align:center; max-width:430px; color:var(--ink-soft)}
+  .tagline .mark{font-family:var(--serif); font-size:22px; color:var(--ink); letter-spacing:.2px}
   .tagline .mark b{color:var(--primary); font-weight:600}
   .tagline p{margin:6px 0 0; font-size:13px; line-height:1.5}
 
@@ -86,42 +81,39 @@
     background:linear-gradient(180deg, var(--primary), var(--primary-ink));
     color:#fff; border-bottom-left-radius:26px; border-bottom-right-radius:26px;
   }
-  .appbar .row1{display:flex; align-items:center; justify-content:space-between}
+  .appbar .row1{display:flex; align-items:center; justify-content:space-between; gap:8px}
   .brand{display:flex; align-items:center; gap:9px; font-family:var(--serif); font-size:19px; letter-spacing:.2px}
-  .brand .glyph{
-    width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.16);
-    display:grid;place-items:center;color:#fff;
+  .brand .glyph{width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.16);display:grid;place-items:center;color:#fff}
+  .controls{display:flex; align-items:center; gap:7px}
+  .langseg{display:flex; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.24); border-radius:999px; padding:2px; gap:1px}
+  .langseg button{
+    appearance:none; border:none; background:none; color:rgba(255,255,255,.72); cursor:pointer;
+    font-family:var(--sans); font-size:11px; font-weight:700; padding:5px 9px; border-radius:999px; line-height:1;
   }
+  .langseg button.active{background:#fff; color:var(--primary-ink)}
   .theme-toggle{
     appearance:none;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);
-    color:#fff;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer;
-    font-family:var(--sans);
+    color:#fff;border-radius:999px;width:30px;height:30px;font-size:14px;cursor:pointer;font-family:var(--sans);
   }
   .theme-toggle:hover{background:rgba(255,255,255,.2)}
 
-  .patient{
-    margin-top:14px; display:flex; align-items:center; gap:13px;
-  }
+  .patient{margin-top:14px; display:flex; align-items:center; gap:13px}
   .avatar{
-    width:52px;height:52px;border-radius:16px;flex:0 0 auto;
-    background:var(--accent); color:#fff; display:grid;place-items:center;
-    font-family:var(--serif); font-size:20px; font-weight:600;
+    width:52px;height:52px;border-radius:16px;flex:0 0 auto;background:var(--accent); color:#fff;
+    display:grid;place-items:center;font-family:var(--serif); font-size:20px; font-weight:600;
     box-shadow:0 6px 14px -6px rgba(220,107,79,.7);
   }
   .patient .who{flex:1;min-width:0}
   .patient .who h1{margin:0;font-size:18px;font-weight:650;letter-spacing:.1px}
   .patient .who p{margin:2px 0 0;font-size:12.5px;color:rgba(255,255,255,.82)}
-  .patient .pkg{
-    font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;
-    background:rgba(255,255,255,.18);padding:5px 9px;border-radius:999px;white-space:nowrap;
-  }
+  .patient .pkg{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;background:rgba(255,255,255,.18);padding:5px 9px;border-radius:999px;white-space:nowrap}
   .sos{
     margin-top:13px; width:100%; display:flex;align-items:center;justify-content:center;gap:8px;
     background:#fff; color:var(--crit); border:none; cursor:pointer;
     font-family:var(--sans); font-weight:700; font-size:13.5px; letter-spacing:.3px;
     padding:12px; border-radius:14px; box-shadow:0 6px 16px -8px rgba(0,0,0,.35);
   }
-  .sos .pulse{width:9px;height:9px;border-radius:50%;background:var(--crit);box-shadow:0 0 0 0 rgba(192,57,43,.6);animation:pulse 2s infinite}
+  .sos .pulse{width:9px;height:9px;border-radius:50%;background:var(--crit);animation:pulse 2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(192,57,43,.55)}70%{box-shadow:0 0 0 10px rgba(192,57,43,0)}100%{box-shadow:0 0 0 0 rgba(192,57,43,0)}}
 
   /* ---- Scroll body ---- */
@@ -134,13 +126,9 @@
   .section-title{font-family:var(--serif);font-size:19px;font-weight:600;margin:22px 4px 10px;color:var(--ink);text-wrap:balance}
   .section-title:first-child{margin-top:4px}
 
-  .card{
-    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    padding:16px; margin-bottom:13px;
-  }
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:16px; margin-bottom:13px}
   .card h3{margin:0 0 3px;font-size:15px;font-weight:650}
   .card .sub{margin:0;font-size:12.5px;color:var(--ink-soft);line-height:1.45}
-
   .between{display:flex;align-items:center;justify-content:space-between;gap:10px}
 
   .pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px;letter-spacing:.2px}
@@ -148,22 +136,18 @@
   .pill.warn{background:var(--warn-soft);color:var(--warn)}
   .pill.crit{background:var(--crit-soft);color:var(--crit)}
   .pill.info{background:var(--primary-soft);color:var(--primary-ink)}
+  .pill.neutral{background:var(--surface-2);color:var(--ink-soft)}
   .pill .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
 
-  /* vitals */
   .vitals{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:4px}
   .vital{background:var(--surface-2);border-radius:14px;padding:11px 8px;text-align:center}
   .vital .v{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
   .vital .u{font-size:9.5px;color:var(--ink-faint);font-weight:600}
   .vital .l{font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-soft);margin-top:3px;font-weight:700}
 
-  /* reposition timeline */
   .timeline{display:flex;gap:0;align-items:flex-start;margin-top:6px;padding:2px}
   .slot{flex:1;text-align:center;position:relative}
-  .slot .node{
-    width:26px;height:26px;border-radius:50%;margin:0 auto;display:grid;place-items:center;
-    font-size:12px;font-weight:700;position:relative;z-index:1;border:2px solid var(--surface);
-  }
+  .slot .node{width:26px;height:26px;border-radius:50%;margin:0 auto;display:grid;place-items:center;font-size:12px;font-weight:700;position:relative;z-index:1;border:2px solid var(--surface)}
   .slot.done .node{background:var(--good);color:#fff}
   .slot.now .node{background:var(--accent);color:#fff;box-shadow:0 0 0 4px var(--accent-soft)}
   .slot.next .node{background:var(--surface-2);color:var(--ink-faint);border:2px dashed var(--line)}
@@ -172,7 +156,6 @@
   .slot.next::before,.slot.now::before{background:var(--line)}
   .slot .t{font-size:10px;color:var(--ink-soft);margin-top:5px;font-variant-numeric:tabular-nums;font-weight:600}
 
-  /* task list */
   .tasks{display:flex;flex-direction:column;gap:2px;margin-top:4px}
   .task{display:flex;align-items:center;gap:11px;padding:9px 2px;border-bottom:1px solid var(--line)}
   .task:last-child{border-bottom:none}
@@ -184,16 +167,11 @@
   .task .tx span{font-size:11.5px;color:var(--ink-soft)}
   .task .time{font-size:11px;font-weight:700;color:var(--ink-faint);font-variant-numeric:tabular-nums;white-space:nowrap}
 
-  /* caretaker note */
-  .note{
-    background:var(--accent-soft); border:1px solid transparent; border-radius:var(--radius);
-    padding:16px; margin-bottom:13px; position:relative;
-  }
+  .note{background:var(--accent-soft); border-radius:var(--radius); padding:16px; margin-bottom:13px}
   .note .quote{font-family:var(--serif);font-size:14.5px;line-height:1.55;color:var(--ink);font-style:italic}
   .note .by{display:flex;align-items:center;gap:8px;margin-top:11px;font-size:12px;color:var(--ink-soft)}
   .note .by .ic{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:11px;font-style:normal;font-family:var(--sans)}
 
-  /* progress */
   .track{height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin:12px 0 6px}
   .track > i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:999px}
   .milestones{display:flex;justify-content:space-between;margin-top:6px}
@@ -201,84 +179,67 @@
   .milestones .m.reached{color:var(--primary)}
   .milestones .m.here{color:var(--accent);font-weight:800}
 
-  /* team */
   .member{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}
   .member:last-child{border-bottom:none}
   .member .ph{width:44px;height:44px;border-radius:13px;flex:0 0 auto;display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:16px;color:#fff}
   .member .info{flex:1;min-width:0}
-  .member .info .nm{font-size:14px;font-weight:650}
+  .member .info .nm{font-size:14px;font-weight:650;display:flex;align-items:center;flex-wrap:wrap;gap:5px}
   .member .info .rl{font-size:11.5px;color:var(--primary);font-weight:600}
   .member .info .cr{font-size:11px;color:var(--ink-soft);margin-top:3px;line-height:1.4}
   .verified{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;color:var(--good);margin-top:5px}
 
-  /* escort checklist */
   .chk{display:flex;flex-direction:column;gap:1px;margin-top:6px}
   .chk .step{display:flex;gap:11px;align-items:center;padding:8px 0}
-  .chk .step .b{width:18px;height:18px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;font-size:10px;font-weight:800}
-  .chk .step.done .b{background:var(--good);color:#fff}
-  .chk .step.pending .b{background:var(--surface-2);border:2px solid var(--line);color:var(--ink-faint);font-weight:700}
-  .chk .step span{font-size:13px}
-  .chk .step.pending span{color:var(--ink-soft)}
+  .chk .step .b{width:18px;height:18px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;font-size:10px;font-weight:800;background:var(--surface-2);border:2px solid var(--line);color:var(--ink-faint)}
+  .chk .step span{font-size:13px;color:var(--ink-soft)}
 
-  /* billing */
   .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}
   .line .amt{font-variant-numeric:tabular-nums;font-weight:600}
   .line.disc{color:var(--good)}
   .line.total{border-bottom:none;font-weight:700;font-size:16px;padding-top:14px}
   .line.total .amt{color:var(--primary)}
 
-  .btn{
-    width:100%;border:none;cursor:pointer;font-family:var(--sans);font-weight:650;font-size:13.5px;
-    padding:13px;border-radius:13px;background:var(--primary);color:#fff;margin-top:6px;
-  }
+  .btn{width:100%;border:none;cursor:pointer;font-family:var(--sans);font-weight:650;font-size:13.5px;padding:13px;border-radius:13px;background:var(--primary);color:#fff;margin-top:6px}
   .btn.ghost{background:var(--surface-2);color:var(--ink)}
   .btn:hover{filter:brightness(1.05)}
+  .btn:disabled{opacity:.7;cursor:default;filter:none}
 
   .microcopy{font-size:11.5px;color:var(--ink-faint);line-height:1.5;margin:8px 4px 0;display:flex;gap:7px}
   .microcopy svg{flex:0 0 auto;margin-top:1px}
 
-  /* ---- Bottom nav ---- */
-  .tabbar{
-    position:absolute;left:0;right:0;bottom:0;height:76px;
-    background:var(--surface);border-top:1px solid var(--line);
-    display:flex;align-items:stretch;padding:8px 6px 18px;
-    backdrop-filter:blur(8px);
-  }
-  .tab{
-    flex:1;background:none;border:none;cursor:pointer;font-family:var(--sans);
-    display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:center;
-    color:var(--ink-faint);font-size:10px;font-weight:600;padding:2px;
-  }
+  .tabbar{position:absolute;left:0;right:0;bottom:0;height:76px;background:var(--surface);border-top:1px solid var(--line);display:flex;align-items:stretch;padding:8px 6px 18px}
+  .tab{flex:1;background:none;border:none;cursor:pointer;font-family:var(--sans);display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:center;color:var(--ink-faint);font-size:10px;font-weight:600;padding:2px}
   .tab svg{width:23px;height:23px}
   .tab.active{color:var(--primary)}
-  .tab.active svg{transform:translateY(-1px)}
 
-  /* ---- Emergency modal ---- */
-  .overlay{
-    position:absolute;inset:0;background:rgba(10,20,18,.55);backdrop-filter:blur(3px);
-    display:none;align-items:flex-end;z-index:50;
-  }
+  /* ---- Sheets ---- */
+  .overlay{position:absolute;inset:0;background:rgba(10,20,18,.55);backdrop-filter:blur(3px);display:none;align-items:flex-end;z-index:50}
   .overlay.open{display:flex}
-  .sheet{
-    width:100%;background:var(--surface);border-top-left-radius:28px;border-top-right-radius:28px;
-    padding:22px 20px 30px;animation:rise .3s cubic-bezier(.2,.8,.2,1);
-  }
+  .sheet{width:100%;background:var(--surface);border-top-left-radius:28px;border-top-right-radius:28px;padding:22px 20px 30px;animation:rise .3s cubic-bezier(.2,.8,.2,1)}
   @keyframes rise{from{transform:translateY(100%)}to{transform:none}}
   .sheet .grab{width:38px;height:4px;border-radius:999px;background:var(--line);margin:0 auto 16px}
   .sheet h2{font-family:var(--serif);font-size:20px;margin:0 0 4px;display:flex;align-items:center;gap:9px}
   .sheet h2 .ring{width:34px;height:34px;border-radius:50%;background:var(--crit-soft);color:var(--crit);display:grid;place-items:center}
+  .sheet h2 .ring.pay{background:var(--primary-soft);color:var(--primary-ink)}
   .sheet p{font-size:13px;color:var(--ink-soft);line-height:1.55;margin:0 0 4px}
   .sheet .sla{background:var(--crit-soft);color:var(--crit);font-weight:700;font-size:12.5px;padding:11px 13px;border-radius:12px;margin:14px 0;display:flex;align-items:center;gap:9px}
   .btn.call{background:var(--crit)}
 
-  @media (prefers-reduced-motion:reduce){
-    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  }
+  .payopt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:9px;cursor:pointer;font-family:var(--sans);color:var(--ink)}
+  .payopt:hover{border-color:var(--primary)}
+  .payopt .ic{width:38px;height:38px;border-radius:11px;background:var(--primary-soft);color:var(--primary-ink);display:grid;place-items:center;flex:0 0 auto}
+  .payopt .txt{flex:1;min-width:0}
+  .payopt .txt b{font-size:14px;font-weight:650;display:block}
+  .payopt .txt span{font-size:11.5px;color:var(--ink-soft)}
+  .payopt .arw{color:var(--ink-faint)}
+  .securenote{display:flex;gap:7px;align-items:flex-start;font-size:11.5px;color:var(--ink-faint);line-height:1.5;margin-top:14px}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 
 <div class="tagline">
   <div class="mark">Ortho<b>App</b></div>
-  <p>The family's window into doctor-supervised orthopedic home care — a working prototype. Tap the tabs; try the emergency button.</p>
+  <p>The family's window into doctor-supervised orthopedic home care in Hyderabad. Try the tabs, the language switch (EN / తె / हि), the emergency button, and Pay now on Billing.</p>
 </div>
 
 <div class="phone" role="application" aria-label="OrthoApp family companion prototype">
@@ -292,20 +253,27 @@
       <div class="brand"><span class="glyph" aria-hidden="true">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.5C1 9.5 2.5 6 6 6c2 0 3.2 1.2 4 2.5C10.8 7.2 12 6 14 6c3.5 0 5 3.5 3.5 6.5C19 16.65 12 21 12 21z"/></svg>
       </span>OrthoApp</div>
-      <button class="theme-toggle" id="themeBtn" aria-label="Toggle colour theme">◐ Theme</button>
+      <div class="controls">
+        <div class="langseg" role="group" aria-label="Language">
+          <button data-lang="en" class="active">EN</button>
+          <button data-lang="te">తె</button>
+          <button data-lang="hi">हि</button>
+        </div>
+        <button class="theme-toggle" id="themeBtn" aria-label="Toggle colour theme">◐</button>
+      </div>
     </div>
 
     <div class="patient">
       <div class="avatar" aria-hidden="true">KR</div>
       <div class="who">
-        <h1>Mrs. Kamala Rao</h1>
-        <p>68 · Right Total Hip Replacement · Recovery Day 9</p>
+        <h1 data-i18n="pt.name">Mrs. Kamala Rao</h1>
+        <p data-i18n="pt.detail">68 · Right Total Hip Replacement · Recovery Day 9</p>
       </div>
-      <span class="pkg">Comprehensive</span>
+      <span class="pkg" data-i18n="pt.pkg">Comprehensive</span>
     </div>
 
     <button class="sos" id="sosBtn">
-      <span class="pulse" aria-hidden="true"></span> Emergency — reach the care team now
+      <span class="pulse" aria-hidden="true"></span><span data-i18n="sos">Emergency — reach the care team now</span>
     </button>
   </header>
 
@@ -313,25 +281,25 @@
 
     <!-- TODAY -->
     <section class="panel active" id="today" aria-label="Today">
-      <p class="eyebrow">Today · Fri, 8 Aug</p>
+      <p class="eyebrow" data-i18n="today.eyebrow">Today · Fri, 8 Aug</p>
 
       <div class="card">
         <div class="between" style="margin-bottom:12px">
-          <div><h3>Today's report</h3><p class="sub">Updated 11 minutes ago by Sunita M.</p></div>
-          <span class="pill good"><span class="dot"></span>Stable</span>
+          <div><h3 data-i18n="today.report">Today's report</h3><p class="sub" data-i18n="today.updated">Updated 11 minutes ago by Sunita M.</p></div>
+          <span class="pill good"><span class="dot"></span><span data-i18n="today.stable">Stable</span></span>
         </div>
         <div class="vitals">
-          <div class="vital"><div class="v">118/76</div><div class="u">mmHg</div><div class="l">BP</div></div>
-          <div class="vital"><div class="v">72</div><div class="u">bpm</div><div class="l">Pulse</div></div>
+          <div class="vital"><div class="v">118/76</div><div class="u">mmHg</div><div class="l" data-i18n="v.bp">BP</div></div>
+          <div class="vital"><div class="v">72</div><div class="u">bpm</div><div class="l" data-i18n="v.pulse">Pulse</div></div>
           <div class="vital"><div class="v">98</div><div class="u">%</div><div class="l">SpO₂</div></div>
-          <div class="vital"><div class="v">98.4</div><div class="u">°F</div><div class="l">Temp</div></div>
+          <div class="vital"><div class="v">98.4</div><div class="u">°F</div><div class="l" data-i18n="v.temp">Temp</div></div>
         </div>
       </div>
 
       <div class="card">
         <div class="between">
-          <div><h3>Repositioning</h3><p class="sub">2-hour turning · prevents pressure sores</p></div>
-          <span class="pill info"><span class="dot"></span>Next 12:00</span>
+          <div><h3 data-i18n="repo.title">Repositioning</h3><p class="sub" data-i18n="repo.sub">2-hour turning · prevents pressure sores</p></div>
+          <span class="pill info"><span class="dot"></span><span data-i18n="repo.next">Next 12:00</span></span>
         </div>
         <div class="timeline" role="list" aria-label="Repositioning schedule">
           <div class="slot done" role="listitem"><div class="node">✓</div><div class="t">06:00</div></div>
@@ -343,183 +311,184 @@
       </div>
 
       <div class="card">
-        <h3 style="margin-bottom:8px">Care given today</h3>
+        <h3 style="margin-bottom:8px" data-i18n="care.title">Care given today</h3>
         <div class="tasks">
-          <div class="task"><div class="ck done">✓</div><div class="tx"><b>Morning medication</b><span>Calcium + Vitamin D, pain relief</span></div><div class="time">08:00</div></div>
-          <div class="task"><div class="ck done">✓</div><div class="tx"><b>Physiotherapy — ankle pumps & quad sets</b><span>Per Dr. Iyer's plan · 2 sets done</span></div><div class="time">09:30</div></div>
-          <div class="task"><div class="ck done">✓</div><div class="tx"><b>Sponge bath & wound dressing check</b><span>Surgical site clean, no redness</span></div><div class="time">10:15</div></div>
-          <div class="task"><div class="ck due">·</div><div class="tx"><b>Midday meal — high-protein, calcium-rich</b><span>Per nutritionist plan</span></div><div class="time">13:00</div></div>
-          <div class="task"><div class="ck due">·</div><div class="tx"><b>Afternoon medication</b><span>With reminder to family</span></div><div class="time">14:00</div></div>
+          <div class="task"><div class="ck done">✓</div><div class="tx"><b data-i18n="care.t1">Morning medication</b><span data-i18n="care.t1s">Calcium + Vitamin D, pain relief</span></div><div class="time">08:00</div></div>
+          <div class="task"><div class="ck done">✓</div><div class="tx"><b data-i18n="care.t2">Physiotherapy — ankle pumps & quad sets</b><span data-i18n="care.t2s">Per Dr. Iyer's plan · 2 sets done</span></div><div class="time">09:30</div></div>
+          <div class="task"><div class="ck done">✓</div><div class="tx"><b data-i18n="care.t3">Sponge bath & wound dressing check</b><span data-i18n="care.t3s">Surgical site clean, no redness</span></div><div class="time">10:15</div></div>
+          <div class="task"><div class="ck due">·</div><div class="tx"><b data-i18n="care.t4">Midday meal — high-protein, calcium-rich</b><span data-i18n="care.t4s">Per nutritionist plan</span></div><div class="time">13:00</div></div>
+          <div class="task"><div class="ck due">·</div><div class="tx"><b data-i18n="care.t5">Afternoon medication</b><span data-i18n="care.t5s">With reminder to family</span></div><div class="time">14:00</div></div>
         </div>
       </div>
 
       <div class="note">
-        <div class="quote">"Amma sat up at the edge of the bed on her own today and walked six steps with the walker — a little further than yesterday. She was in good spirits and ate a full breakfast."</div>
-        <div class="by"><span class="ic">SM</span> Sunita M. · Orthopedic Caretaker · on shift until 8 PM</div>
+        <div class="quote" data-i18n="note.quote">"Amma sat up at the edge of the bed on her own today and walked six steps with the walker — a little further than yesterday. She was in good spirits and ate a full breakfast."</div>
+        <div class="by"><span class="ic">SM</span><span data-i18n="note.by">Sunita M. · Orthopedic Caretaker · on shift until 8 PM</span></div>
       </div>
 
-      <button class="btn ghost" id="feedbackBtn">★  Rate today's visit</button>
+      <button class="btn ghost" id="feedbackBtn" data-i18n="today.rate">★  Rate today's visit</button>
       <div class="microcopy">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--good)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-        Your feedback after every visit helps us keep the care right for Amma.
+        <span data-i18n="today.feedmicro">Your feedback after every visit helps us keep the care right for Amma.</span>
       </div>
     </section>
 
     <!-- CARE PLAN -->
     <section class="panel" id="plan" aria-label="Care plan">
-      <p class="eyebrow">Doctor-supervised care plan</p>
+      <p class="eyebrow" data-i18n="plan.eyebrow">Doctor-supervised care plan</p>
 
       <div class="card">
         <div class="between">
-          <div><h3>Recovery progress</h3><p class="sub">Day 9 of an estimated 6-week plan</p></div>
-          <span class="pill good"><span class="dot"></span>On track</span>
+          <div><h3 data-i18n="plan.prog">Recovery progress</h3><p class="sub" data-i18n="plan.progsub">Day 9 of an estimated 6-week plan</p></div>
+          <span class="pill good"><span class="dot"></span><span data-i18n="plan.ontrack">On track</span></span>
         </div>
         <div class="track"><i style="width:34%"></i></div>
         <div class="milestones">
-          <div class="m reached">Surgery</div>
-          <div class="m reached">Bed mobility</div>
-          <div class="m here">Walker steps</div>
-          <div class="m">Stairs</div>
-          <div class="m">Independent</div>
+          <div class="m reached" data-i18n="ms.surgery">Surgery</div>
+          <div class="m reached" data-i18n="ms.bed">Bed mobility</div>
+          <div class="m here" data-i18n="ms.walker">Walker steps</div>
+          <div class="m" data-i18n="ms.stairs">Stairs</div>
+          <div class="m" data-i18n="ms.indep">Independent</div>
         </div>
       </div>
 
       <div class="card">
         <div class="between" style="margin-bottom:6px">
-          <h3>Plan approved by</h3>
+          <h3 data-i18n="plan.appby">Plan approved by</h3>
           <span class="verified" style="font-size:11px">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Approved
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="plan.approved">Approved</span>
           </span>
         </div>
-        <p class="sub"><b style="color:var(--ink)">Dr. Anand Iyer</b>, MBBS · MS (Orthopaedics)<br>Next home review: <b style="color:var(--ink)">Mon, 25 Aug</b></p>
+        <p class="sub" data-i18n-html="plan.doc"><b style="color:var(--ink)">Dr. Anand Iyer</b>, MBBS · MS (Orthopaedics)<br>Next home review: <b style="color:var(--ink)">Mon, 25 Aug</b></p>
       </div>
 
-      <p class="section-title">This week's goals</p>
+      <p class="section-title" data-i18n="plan.goals">This week's goals</p>
       <div class="card">
         <div class="tasks">
-          <div class="task"><div class="ck done">✓</div><div class="tx"><b>Walker-assisted walking</b><span>Increase to 10 steps, twice daily</span></div></div>
-          <div class="task"><div class="ck done">✓</div><div class="tx"><b>Seated hip & knee exercises</b><span>Physiotherapist-guided, 3× daily</span></div></div>
-          <div class="task"><div class="ck due">·</div><div class="tx"><b>Bone-health nutrition</b><span>Calcium + Vitamin D optimised diet</span></div></div>
-          <div class="task"><div class="ck due">·</div><div class="tx"><b>Pressure-sore prevention</b><span>2-hour repositioning maintained</span></div></div>
+          <div class="task"><div class="ck done">✓</div><div class="tx"><b data-i18n="g1">Walker-assisted walking</b><span data-i18n="g1s">Increase to 10 steps, twice daily</span></div></div>
+          <div class="task"><div class="ck done">✓</div><div class="tx"><b data-i18n="g2">Seated hip & knee exercises</b><span data-i18n="g2s">Physiotherapist-guided, 3× daily</span></div></div>
+          <div class="task"><div class="ck due">·</div><div class="tx"><b data-i18n="g3">Bone-health nutrition</b><span data-i18n="g3s">Calcium + Vitamin D optimised diet</span></div></div>
+          <div class="task"><div class="ck due">·</div><div class="tx"><b data-i18n="g4">Pressure-sore prevention</b><span data-i18n="g4s">2-hour repositioning maintained</span></div></div>
         </div>
       </div>
     </section>
 
     <!-- ESCORTS -->
     <section class="panel" id="escorts" aria-label="Hospital escorts">
-      <p class="eyebrow">Hospital escort</p>
+      <p class="eyebrow" data-i18n="esc.eyebrow">Hospital escort</p>
 
       <div class="card">
         <div class="between" style="margin-bottom:10px">
-          <div><h3>Follow-up with Dr. Iyer</h3><p class="sub">Sat, 16 Aug · 10:30 AM · Apollo Ortho OPD</p></div>
-          <span class="pill info"><span class="dot"></span>Scheduled</span>
+          <div><h3 data-i18n="esc.followup">Follow-up with Dr. Iyer</h3><p class="sub" data-i18n="esc.when">Sat, 16 Aug · 10:30 AM · Apollo Ortho OPD, Hyderabad</p></div>
+          <span class="pill info"><span class="dot"></span><span data-i18n="esc.scheduled">Scheduled</span></span>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
-          <span class="pill" style="background:var(--surface-2);color:var(--ink-soft)">Home → Hospital → Home</span>
-          <span class="pill good"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-8-4.5-8-11a8 8 0 1116 0c0 6.5-8 11-8 11z"/><circle cx="12" cy="10" r="3"/></svg> GPS-tracked</span>
+          <span class="pill neutral" data-i18n="esc.route">Home → Hospital → Home</span>
+          <span class="pill good"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-8-4.5-8-11a8 8 0 1116 0c0 6.5-8 11-8 11z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="esc.gps">GPS-tracked</span></span>
         </div>
-        <p class="sub">Escort: <b style="color:var(--ink)">Ramesh K.</b> · certified in first aid & patient handling · arrives 9:45 AM</p>
+        <p class="sub" data-i18n-html="esc.assoc">Escort: <b style="color:var(--ink)">Ramesh K.</b> · certified in first aid & patient handling · arrives 9:45 AM</p>
       </div>
 
-      <p class="section-title">Journey checklist</p>
+      <p class="section-title" data-i18n="esc.checklist">Journey checklist</p>
       <div class="card">
         <div class="chk">
-          <div class="chk step pending"><span class="b">1</span><span>Help Amma get dressed & ready at home</span></div>
-          <div class="chk step pending"><span class="b">2</span><span>Safe transfer to adapted vehicle</span></div>
-          <div class="chk step pending"><span class="b">3</span><span>Accompany through registration & triage</span></div>
-          <div class="chk step pending"><span class="b">4</span><span>Take consultation notes for the family</span></div>
-          <div class="chk step pending"><span class="b">5</span><span>Assist with X-ray & pharmacy</span></div>
-          <div class="chk step pending"><span class="b">6</span><span>Return home & hand over doctor's instructions</span></div>
+          <div class="chk step"><span class="b">1</span><span data-i18n="esc.s1">Help Amma get dressed & ready at home</span></div>
+          <div class="chk step"><span class="b">2</span><span data-i18n="esc.s2">Safe transfer to adapted vehicle</span></div>
+          <div class="chk step"><span class="b">3</span><span data-i18n="esc.s3">Accompany through registration & triage</span></div>
+          <div class="chk step"><span class="b">4</span><span data-i18n="esc.s4">Take consultation notes for the family</span></div>
+          <div class="chk step"><span class="b">5</span><span data-i18n="esc.s5">Assist with X-ray & pharmacy</span></div>
+          <div class="chk step"><span class="b">6</span><span data-i18n="esc.s6">Return home & hand over doctor's instructions</span></div>
         </div>
       </div>
 
-      <p class="section-title">Last visit</p>
+      <p class="section-title" data-i18n="esc.last">Last visit</p>
       <div class="card">
         <div class="between">
-          <div><h3 style="font-size:14px">Suture review · 2 Aug</h3><p class="sub">Sutures removed · wound healing well</p></div>
-          <span class="pill good"><span class="dot"></span>Complete</span>
+          <div><h3 style="font-size:14px" data-i18n="esc.suture">Suture review · 2 Aug</h3><p class="sub" data-i18n="esc.suturesub">Sutures removed · wound healing well</p></div>
+          <span class="pill good"><span class="dot"></span><span data-i18n="esc.complete">Complete</span></span>
         </div>
-        <button class="btn ghost" style="margin-top:12px" id="visitDocBtn">📄  View visit summary & instructions</button>
+        <button class="btn ghost" style="margin-top:12px" id="visitDocBtn" data-i18n="esc.viewdoc">📄  View visit summary & instructions</button>
       </div>
     </section>
 
     <!-- TEAM -->
     <section class="panel" id="team" aria-label="Care team">
-      <p class="eyebrow">Your care team</p>
+      <p class="eyebrow" data-i18n="team.eyebrow">Your care team</p>
       <div class="card">
         <div class="member">
           <div class="ph" style="background:#0E5A54">AI</div>
           <div class="info">
             <div class="nm">Dr. Anand Iyer</div>
-            <div class="rl">Supervising Orthopedic Surgeon</div>
-            <div class="cr">MBBS · MS (Ortho) · designs & reviews the care plan</div>
-            <div class="verified"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Background verified</div>
+            <div class="rl" data-i18n="role.surgeon">Supervising Orthopedic Surgeon</div>
+            <div class="cr" data-i18n="cr.surgeon">MBBS · MS (Ortho) · designs & reviews the care plan</div>
+            <div class="verified"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="verified">Background verified</span></div>
           </div>
         </div>
         <div class="member">
           <div class="ph" style="background:#1C7A6E">PV</div>
           <div class="info">
             <div class="nm">Priya Venkat</div>
-            <div class="rl">Registered Physiotherapist</div>
-            <div class="cr">MPT · plans home exercise & mobility program</div>
-            <div class="verified"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Background verified</div>
+            <div class="rl" data-i18n="role.physio">Registered Physiotherapist</div>
+            <div class="cr" data-i18n="cr.physio">MPT · plans home exercise & mobility program</div>
+            <div class="verified"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="verified">Background verified</span></div>
           </div>
         </div>
         <div class="member">
           <div class="ph" style="background:var(--accent)">SM</div>
           <div class="info">
-            <div class="nm">Sunita M. <span class="pill good" style="margin-left:4px;font-size:9px"><span class="dot"></span>On shift</span></div>
-            <div class="rl">Orthopedic Caretaker</div>
-            <div class="cr">120-hr certified · BLS & First Aid · pressure-care trained</div>
-            <div class="verified"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Background verified</div>
+            <div class="nm">Sunita M. <span class="pill good" style="font-size:9px"><span class="dot"></span><span data-i18n="team.onshift">On shift</span></span></div>
+            <div class="rl" data-i18n="role.caretaker">Orthopedic Caretaker</div>
+            <div class="cr" data-i18n="cr.caretaker">120-hr certified · BLS & First Aid · pressure-care trained</div>
+            <div class="verified"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="verified">Background verified</span></div>
           </div>
         </div>
         <div class="member">
           <div class="ph" style="background:#5A6E4A">RK</div>
           <div class="info">
             <div class="nm">Ramesh K.</div>
-            <div class="rl">Patient Escort Associate</div>
-            <div class="cr">First aid · hospital navigation · emergency response</div>
-            <div class="verified"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Background verified</div>
+            <div class="rl" data-i18n="role.escort">Patient Escort Associate</div>
+            <div class="cr" data-i18n="cr.escort">First aid · hospital navigation · emergency response</div>
+            <div class="verified"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="verified">Background verified</span></div>
           </div>
         </div>
         <div class="member">
           <div class="ph" style="background:#8A5A2B">LG</div>
           <div class="info">
             <div class="nm">Lata G.</div>
-            <div class="rl">Care Coordinator</div>
-            <div class="cr">GNM · oversees the team & weekly quality visits</div>
-            <div class="verified"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Background verified</div>
+            <div class="rl" data-i18n="role.coord">Care Coordinator</div>
+            <div class="cr" data-i18n="cr.coord">GNM · oversees the team & weekly quality visits</div>
+            <div class="verified"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="verified">Background verified</span></div>
           </div>
         </div>
       </div>
       <div class="microcopy">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        No caretaker is ever changed without your consent first. Every member is police-verified and medically cleared.
+        <span data-i18n="team.micro">No caretaker is ever changed without your consent first. Every member is police-verified and medically cleared.</span>
       </div>
     </section>
 
     <!-- BILLING -->
     <section class="panel" id="billing" aria-label="Billing">
-      <p class="eyebrow">Billing · August 2026</p>
+      <p class="eyebrow" data-i18n="bill.eyebrow">Billing · August 2026</p>
       <div class="card">
         <div class="between" style="margin-bottom:6px">
-          <div><h3>Comprehensive Care</h3><p class="sub">24-hr caretaker · 4 escorts/mo · physio & nutrition</p></div>
-          <span class="pill info">Monthly</span>
+          <div><h3 data-i18n="bill.pkg">Comprehensive Care</h3><p class="sub" data-i18n="bill.pkgsub">24-hr caretaker · 4 escorts/mo · physio & nutrition</p></div>
+          <span class="pill warn" id="payStatus"><span class="dot"></span><span data-i18n="bill.due">Due</span></span>
         </div>
         <div style="margin-top:8px">
-          <div class="line"><span>Comprehensive package</span><span class="amt">₹58,000</span></div>
-          <div class="line"><span>Home physiotherapy (8 sessions)</span><span class="amt">₹6,400</span></div>
-          <div class="line disc"><span>Senior citizen discount (10%)</span><span class="amt">−₹6,440</span></div>
-          <div class="line"><span>GST (18%)</span><span class="amt">₹10,433</span></div>
-          <div class="line total"><span>Total due</span><span class="amt">₹68,393</span></div>
+          <div class="line"><span data-i18n="bill.l1">Comprehensive package</span><span class="amt">₹58,000</span></div>
+          <div class="line"><span data-i18n="bill.l2">Home physiotherapy (8 sessions)</span><span class="amt">₹6,400</span></div>
+          <div class="line disc"><span data-i18n="bill.l3">Senior citizen discount (10%)</span><span class="amt">−₹6,440</span></div>
+          <div class="line"><span data-i18n="bill.l4">GST (18%)</span><span class="amt">₹10,433</span></div>
+          <div class="line total"><span data-i18n="bill.total">Total due</span><span class="amt">₹68,393</span></div>
         </div>
       </div>
-      <button class="btn" id="invoiceBtn">Download GST invoice</button>
-      <button class="btn ghost">Set up interest-free monthly plan</button>
+      <button class="btn" id="payBtn" data-i18n="bill.paynow">Pay now</button>
+      <button class="btn ghost" id="invoiceBtn" data-i18n="bill.invoice">Download GST invoice</button>
+      <button class="btn ghost" data-i18n="bill.plan">Set up interest-free monthly plan</button>
       <div class="microcopy">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        A written estimate was shared before care began — no hidden charges, ever. Your GST invoice supports insurance & tax claims.
+        <span data-i18n="bill.micro">A written estimate was shared before care began — no hidden charges, ever. Your GST invoice supports insurance & tax claims.</span>
       </div>
     </section>
 
@@ -531,15 +500,46 @@
       <div class="grab"></div>
       <h2><span class="ring" aria-hidden="true">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-      </span>We're here, right now</h2>
-      <p>This alerts the on-shift caretaker, the care coordinator, and our 24×7 emergency desk at the same time.</p>
+      </span><span data-i18n="em.title">We're here, right now</span></h2>
+      <p data-i18n="em.body">This alerts the on-shift caretaker, the care coordinator, and our 24×7 emergency desk at the same time.</p>
       <div class="sla">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Guaranteed response in under 30 minutes
+        <span data-i18n="em.sla">Guaranteed response in under 30 minutes</span>
       </div>
-      <button class="btn call" id="callBtn">📞  Call emergency desk</button>
-      <button class="btn ghost" id="alertBtn">Alert care coordinator (Lata G.)</button>
-      <button class="btn ghost" id="closeSheet" style="background:transparent;color:var(--ink-soft)">Cancel</button>
+      <button class="btn call" id="callBtn" data-i18n="em.call">📞  Call emergency desk</button>
+      <button class="btn ghost" id="alertBtn" data-i18n="em.alert">Alert care coordinator (Lata G.)</button>
+      <button class="btn ghost" data-close data-i18n="cancel" style="background:transparent;color:var(--ink-soft)">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Payment sheet -->
+  <div class="overlay" id="payOverlay">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Payment">
+      <div class="grab"></div>
+      <h2><span class="ring pay" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+      </span><span data-i18n="pay.title">Pay ₹68,393</span></h2>
+      <p data-i18n="pay.sub">Choose how you'd like to pay</p>
+      <button class="payopt" data-pay>
+        <span class="ic">₹</span>
+        <span class="txt"><b>UPI</b><span data-i18n="pay.upi">GPay, PhonePe, Paytm</span></span>
+        <span class="arw">›</span>
+      </button>
+      <button class="payopt" data-pay>
+        <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></span>
+        <span class="txt"><b data-i18n="pay.card">Credit / Debit card</b><span>Visa · Mastercard · RuPay</span></span>
+        <span class="arw">›</span>
+      </button>
+      <button class="payopt" data-pay>
+        <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 10h16M5 10V7l7-4 7 4v3M6 21v-8M18 21v-8M10 21v-8M14 21v-8"/></svg></span>
+        <span class="txt"><b data-i18n="pay.nb">Net-banking</b><span>SBI · HDFC · ICICI · Axis</span></span>
+        <span class="arw">›</span>
+      </button>
+      <div class="securenote">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--good)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        <span data-i18n="pay.secure">Payments are secure. OrthoApp never stores your card details.</span>
+      </div>
+      <button class="btn ghost" data-close data-i18n="cancel" style="background:transparent;color:var(--ink-soft)">Cancel</button>
     </div>
   </div>
 
@@ -547,62 +547,245 @@
   <nav class="tabbar" aria-label="Sections">
     <button class="tab active" data-tab="today">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
-      Today
+      <span data-i18n="tab.today">Today</span>
     </button>
     <button class="tab" data-tab="plan">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-      Care Plan
+      <span data-i18n="tab.plan">Care Plan</span>
     </button>
     <button class="tab" data-tab="escorts">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3V6a1 1 0 011-1h11v12h-3"/><path d="M15 8h4l3 4v5h-2"/><circle cx="7.5" cy="17.5" r="2"/><circle cx="16.5" cy="17.5" r="2"/></svg>
-      Escorts
+      <span data-i18n="tab.escorts">Escorts</span>
     </button>
     <button class="tab" data-tab="team">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-      Team
+      <span data-i18n="tab.team">Team</span>
     </button>
     <button class="tab" data-tab="billing">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
-      Billing
+      <span data-i18n="tab.billing">Billing</span>
     </button>
   </nav>
 </div>
 
 <script>
-  (function(){
-    var tabs=document.querySelectorAll('.tab');
-    var panels=document.querySelectorAll('.panel');
-    var screen=document.getElementById('screen');
-    tabs.forEach(function(t){
-      t.addEventListener('click',function(){
-        var id=t.getAttribute('data-tab');
-        tabs.forEach(function(x){x.classList.toggle('active',x===t)});
-        panels.forEach(function(p){p.classList.toggle('active',p.id===id)});
-        screen.scrollTop=0;
-      });
+(function(){
+  var I18N = {
+    en:{
+      "pt.name":"Mrs. Kamala Rao","pt.detail":"68 · Right Total Hip Replacement · Recovery Day 9","pt.pkg":"Comprehensive",
+      "sos":"Emergency — reach the care team now",
+      "tab.today":"Today","tab.plan":"Care Plan","tab.escorts":"Escorts","tab.team":"Team","tab.billing":"Billing",
+      "today.eyebrow":"Today · Fri, 8 Aug","today.report":"Today's report","today.updated":"Updated 11 minutes ago by Sunita M.","today.stable":"Stable",
+      "v.bp":"BP","v.pulse":"Pulse","v.temp":"Temp",
+      "repo.title":"Repositioning","repo.sub":"2-hour turning · prevents pressure sores","repo.next":"Next 12:00",
+      "care.title":"Care given today",
+      "care.t1":"Morning medication","care.t1s":"Calcium + Vitamin D, pain relief",
+      "care.t2":"Physiotherapy — ankle pumps & quad sets","care.t2s":"Per Dr. Iyer's plan · 2 sets done",
+      "care.t3":"Sponge bath & wound dressing check","care.t3s":"Surgical site clean, no redness",
+      "care.t4":"Midday meal — high-protein, calcium-rich","care.t4s":"Per nutritionist plan",
+      "care.t5":"Afternoon medication","care.t5s":"With reminder to family",
+      "note.quote":"“Amma sat up at the edge of the bed on her own today and walked six steps with the walker — a little further than yesterday. She was in good spirits and ate a full breakfast.”",
+      "note.by":"Sunita M. · Orthopedic Caretaker · on shift until 8 PM",
+      "today.rate":"★  Rate today's visit","today.feedmicro":"Your feedback after every visit helps us keep the care right for Amma.",
+      "plan.eyebrow":"Doctor-supervised care plan","plan.prog":"Recovery progress","plan.progsub":"Day 9 of an estimated 6-week plan","plan.ontrack":"On track",
+      "ms.surgery":"Surgery","ms.bed":"Bed mobility","ms.walker":"Walker steps","ms.stairs":"Stairs","ms.indep":"Independent",
+      "plan.appby":"Plan approved by","plan.approved":"Approved",
+      "plan.doc":"<b style=\"color:var(--ink)\">Dr. Anand Iyer</b>, MBBS · MS (Orthopaedics)<br>Next home review: <b style=\"color:var(--ink)\">Mon, 25 Aug</b>",
+      "plan.goals":"This week's goals",
+      "g1":"Walker-assisted walking","g1s":"Increase to 10 steps, twice daily",
+      "g2":"Seated hip & knee exercises","g2s":"Physiotherapist-guided, 3× daily",
+      "g3":"Bone-health nutrition","g3s":"Calcium + Vitamin D optimised diet",
+      "g4":"Pressure-sore prevention","g4s":"2-hour repositioning maintained",
+      "esc.eyebrow":"Hospital escort","esc.followup":"Follow-up with Dr. Iyer","esc.when":"Sat, 16 Aug · 10:30 AM · Apollo Ortho OPD, Hyderabad","esc.scheduled":"Scheduled",
+      "esc.route":"Home → Hospital → Home","esc.gps":"GPS-tracked",
+      "esc.assoc":"Escort: <b style=\"color:var(--ink)\">Ramesh K.</b> · certified in first aid & patient handling · arrives 9:45 AM",
+      "esc.checklist":"Journey checklist",
+      "esc.s1":"Help Amma get dressed & ready at home","esc.s2":"Safe transfer to adapted vehicle","esc.s3":"Accompany through registration & triage",
+      "esc.s4":"Take consultation notes for the family","esc.s5":"Assist with X-ray & pharmacy","esc.s6":"Return home & hand over doctor's instructions",
+      "esc.last":"Last visit","esc.suture":"Suture review · 2 Aug","esc.suturesub":"Sutures removed · wound healing well","esc.complete":"Complete","esc.viewdoc":"📄  View visit summary & instructions",
+      "team.eyebrow":"Your care team","team.onshift":"On shift","verified":"Background verified",
+      "role.surgeon":"Supervising Orthopedic Surgeon","cr.surgeon":"MBBS · MS (Ortho) · designs & reviews the care plan",
+      "role.physio":"Registered Physiotherapist","cr.physio":"MPT · plans home exercise & mobility program",
+      "role.caretaker":"Orthopedic Caretaker","cr.caretaker":"120-hr certified · BLS & First Aid · pressure-care trained",
+      "role.escort":"Patient Escort Associate","cr.escort":"First aid · hospital navigation · emergency response",
+      "role.coord":"Care Coordinator","cr.coord":"GNM · oversees the team & weekly quality visits",
+      "team.micro":"No caretaker is ever changed without your consent first. Every member is police-verified and medically cleared.",
+      "bill.eyebrow":"Billing · August 2026","bill.pkg":"Comprehensive Care","bill.pkgsub":"24-hr caretaker · 4 escorts/mo · physio & nutrition","bill.due":"Due","bill.paid":"Paid",
+      "bill.l1":"Comprehensive package","bill.l2":"Home physiotherapy (8 sessions)","bill.l3":"Senior citizen discount (10%)","bill.l4":"GST (18%)","bill.total":"Total due",
+      "bill.paynow":"Pay now","bill.invoice":"Download GST invoice","bill.plan":"Set up interest-free monthly plan",
+      "bill.micro":"A written estimate was shared before care began — no hidden charges, ever. Your GST invoice supports insurance & tax claims.",
+      "em.title":"We're here, right now","em.body":"This alerts the on-shift caretaker, the care coordinator, and our 24×7 emergency desk at the same time.",
+      "em.sla":"Guaranteed response in under 30 minutes","em.call":"📞  Call emergency desk","em.alert":"Alert care coordinator (Lata G.)","cancel":"Cancel",
+      "pay.title":"Pay ₹68,393","pay.sub":"Choose how you'd like to pay","pay.upi":"GPay, PhonePe, Paytm","pay.card":"Credit / Debit card","pay.nb":"Net-banking","pay.secure":"Payments are secure. OrthoApp never stores your card details.",
+      "dyn.feedback":"★★★★★  Thank you — feedback saved","dyn.invoice":"✓  GST invoice downloaded","dyn.visitdoc":"📄  Summary shared to your inbox",
+      "dyn.call":"📞  Connecting… care desk notified","dyn.alert":"✓  Lata G. has been alerted","dyn.paid":"✓  Payment successful — invoice paid"
+    },
+    te:{
+      "pt.name":"శ్రీమతి కమల రావు","pt.detail":"68 · కుడి తుంటి మార్పిడి శస్త్రచికిత్స · కోలుకునే 9వ రోజు","pt.pkg":"సమగ్ర",
+      "sos":"అత్యవసరం — ఇప్పుడే కేర్ టీమ్‌ను సంప్రదించండి",
+      "tab.today":"ఈ రోజు","tab.plan":"కేర్ ప్లాన్","tab.escorts":"ఎస్కార్ట్","tab.team":"బృందం","tab.billing":"బిల్లింగ్",
+      "today.eyebrow":"ఈ రోజు · శుక్ర, ఆగ 8","today.report":"ఈ రోజు నివేదిక","today.updated":"11 నిమిషాల క్రితం సునీత ఎం. అప్‌డేట్ చేశారు","today.stable":"స్థిరంగా",
+      "v.bp":"బీపీ","v.pulse":"పల్స్","v.temp":"ఉష్ణోగ్రత",
+      "repo.title":"పొజిషన్ మార్పు","repo.sub":"2 గంటలకోసారి · పడక పుండ్లను నివారిస్తుంది","repo.next":"తర్వాత 12:00",
+      "care.title":"ఈ రోజు అందించిన సంరక్షణ",
+      "care.t1":"ఉదయం మందులు","care.t1s":"క్యాల్షియం + విటమిన్ డి, నొప్పి ఉపశమనం",
+      "care.t2":"ఫిజియోథెరపీ — చీలమండ పంప్స్ & క్వాడ్ సెట్స్","care.t2s":"డా. అయ్యర్ ప్లాన్ ప్రకారం · 2 సెట్లు పూర్తి",
+      "care.t3":"స్పాంజ్ స్నానం & గాయం డ్రెస్సింగ్ తనిఖీ","care.t3s":"శస్త్రచికిత్స ప్రదేశం శుభ్రం, ఎర్రదనం లేదు",
+      "care.t4":"మధ్యాహ్న భోజనం — అధిక ప్రోటీన్, క్యాల్షియం","care.t4s":"పోషకాహార నిపుణుల ప్లాన్ ప్రకారం",
+      "care.t5":"మధ్యాహ్నం మందులు","care.t5s":"కుటుంబానికి రిమైండర్‌తో",
+      "note.quote":"“అమ్మ ఈ రోజు తనంతట తానే మంచం అంచున కూర్చున్నారు, వాకర్‌తో ఆరు అడుగులు నడిచారు — నిన్నటి కంటే కొంచెం ఎక్కువ. ఆమె ఉత్సాహంగా ఉన్నారు, పూర్తి అల్పాహారం తిన్నారు.”",
+      "note.by":"సునీత ఎం. · ఆర్థోపెడిక్ కేర్‌టేకర్ · రాత్రి 8 వరకు షిఫ్ట్",
+      "today.rate":"★  ఈ రోజు సందర్శనను రేట్ చేయండి","today.feedmicro":"ప్రతి సందర్శన తర్వాత మీ అభిప్రాయం అమ్మకు సరైన సంరక్షణ అందించడంలో సహాయపడుతుంది.",
+      "plan.eyebrow":"డాక్టర్ పర్యవేక్షణలో కేర్ ప్లాన్","plan.prog":"కోలుకునే పురోగతి","plan.progsub":"అంచనా 6 వారాల ప్లాన్‌లో 9వ రోజు","plan.ontrack":"సవ్యంగా",
+      "ms.surgery":"శస్త్రచికిత్స","ms.bed":"మంచంలో కదలిక","ms.walker":"వాకర్ అడుగులు","ms.stairs":"మెట్లు","ms.indep":"స్వతంత్రం",
+      "plan.appby":"ప్లాన్‌ను ఆమోదించినవారు","plan.approved":"ఆమోదించబడింది",
+      "plan.doc":"<b style=\"color:var(--ink)\">డా. ఆనంద్ అయ్యర్</b>, MBBS · MS (ఆర్థోపెడిక్స్)<br>తదుపరి ఇంటి సమీక్ష: <b style=\"color:var(--ink)\">సోమ, ఆగ 25</b>",
+      "plan.goals":"ఈ వారం లక్ష్యాలు",
+      "g1":"వాకర్ సహాయంతో నడక","g1s":"రోజుకు రెండుసార్లు 10 అడుగులకు పెంచండి",
+      "g2":"కూర్చుని తుంటి & మోకాలి వ్యాయామాలు","g2s":"ఫిజియోథెరపిస్ట్ మార్గదర్శకత్వం, రోజుకు 3 సార్లు",
+      "g3":"ఎముకల ఆరోగ్య పోషణ","g3s":"క్యాల్షియం + విటమిన్ డి ఆహారం",
+      "g4":"పడక పుండ్ల నివారణ","g4s":"2 గంటల పొజిషన్ మార్పు కొనసాగింపు",
+      "esc.eyebrow":"ఆసుపత్రి ఎస్కార్ట్","esc.followup":"డా. అయ్యర్‌తో ఫాలో-అప్","esc.when":"శని, ఆగ 16 · ఉ. 10:30 · అపోలో ఆర్థో OPD, హైదరాబాద్","esc.scheduled":"షెడ్యూల్",
+      "esc.route":"ఇల్లు → ఆసుపత్రి → ఇల్లు","esc.gps":"GPS ట్రాక్",
+      "esc.assoc":"ఎస్కార్ట్: <b style=\"color:var(--ink)\">రమేష్ కె.</b> · ప్రథమ చికిత్స & రోగి నిర్వహణలో సర్టిఫైడ్ · ఉ. 9:45కి వస్తారు",
+      "esc.checklist":"ప్రయాణ చెక్‌లిస్ట్",
+      "esc.s1":"అమ్మను ఇంట్లో సిద్ధం చేయడంలో సహాయం","esc.s2":"అనుకూల వాహనానికి సురక్షిత మార్పిడి","esc.s3":"రిజిస్ట్రేషన్ & ట్రయాజ్‌లో తోడు",
+      "esc.s4":"కుటుంబం కోసం సంప్రదింపు నోట్స్","esc.s5":"ఎక్స్-రే & ఫార్మసీలో సహాయం","esc.s6":"ఇంటికి తిరిగి & డాక్టర్ సూచనలు అందజేత",
+      "esc.last":"చివరి సందర్శన","esc.suture":"కుట్ల సమీక్ష · ఆగ 2","esc.suturesub":"కుట్లు తీసివేయబడ్డాయి · గాయం బాగా మానుతోంది","esc.complete":"పూర్తి","esc.viewdoc":"📄  సందర్శన సారాంశం & సూచనలు చూడండి",
+      "team.eyebrow":"మీ కేర్ బృందం","team.onshift":"షిఫ్ట్‌లో","verified":"నేపథ్య ధృవీకరణ",
+      "role.surgeon":"పర్యవేక్షక ఆర్థోపెడిక్ సర్జన్","cr.surgeon":"MBBS · MS (ఆర్థో) · కేర్ ప్లాన్ రూపకల్పన & సమీక్ష",
+      "role.physio":"రిజిస్టర్డ్ ఫిజియోథెరపిస్ట్","cr.physio":"MPT · ఇంటి వ్యాయామం & చలన కార్యక్రమం",
+      "role.caretaker":"ఆర్థోపెడిక్ కేర్‌టేకర్","cr.caretaker":"120-గం సర్టిఫైడ్ · BLS & ప్రథమ చికిత్స · పడక సంరక్షణ",
+      "role.escort":"పేషెంట్ ఎస్కార్ట్ అసోసియేట్","cr.escort":"ప్రథమ చికిత్స · ఆసుపత్రి నావిగేషన్ · అత్యవసర స్పందన",
+      "role.coord":"కేర్ కోఆర్డినేటర్","cr.coord":"GNM · బృందం పర్యవేక్షణ & వారపు నాణ్యత సందర్శనలు",
+      "team.micro":"మీ అనుమతి లేకుండా ఏ కేర్‌టేకర్‌ను మార్చము. ప్రతి సభ్యుడు పోలీస్ ధృవీకరణ & వైద్య పరీక్ష పొందారు.",
+      "bill.eyebrow":"బిల్లింగ్ · ఆగస్టు 2026","bill.pkg":"సమగ్ర సంరక్షణ","bill.pkgsub":"24-గం కేర్‌టేకర్ · నెలకు 4 ఎస్కార్ట్‌లు · ఫిజియో & పోషణ","bill.due":"చెల్లించాలి","bill.paid":"చెల్లించబడింది",
+      "bill.l1":"సమగ్ర ప్యాకేజీ","bill.l2":"ఇంటి ఫిజియోథెరపీ (8 సెషన్లు)","bill.l3":"సీనియర్ సిటిజన్ డిస్కౌంట్ (10%)","bill.l4":"GST (18%)","bill.total":"మొత్తం చెల్లించాలి",
+      "bill.paynow":"ఇప్పుడు చెల్లించండి","bill.invoice":"GST ఇన్‌వాయిస్ డౌన్‌లోడ్","bill.plan":"వడ్డీ లేని నెలవారీ ప్లాన్ ఏర్పాటు",
+      "bill.micro":"సంరక్షణ ప్రారంభానికి ముందే వ్రాతపూర్వక అంచనా ఇవ్వబడింది — దాచిన ఛార్జీలు లేవు. మీ GST ఇన్‌వాయిస్ బీమా & పన్ను క్లెయిమ్‌లకు ఉపయోగపడుతుంది.",
+      "em.title":"మేము ఇక్కడే ఉన్నాం, ఇప్పుడే","em.body":"ఇది షిఫ్ట్‌లోని కేర్‌టేకర్, కేర్ కోఆర్డినేటర్ మరియు మా 24×7 అత్యవసర డెస్క్‌కు ఒకేసారి హెచ్చరిస్తుంది.",
+      "em.sla":"30 నిమిషాల లోపు హామీ స్పందన","em.call":"📞  అత్యవసర డెస్క్‌కు కాల్ చేయండి","em.alert":"కేర్ కోఆర్డినేటర్‌ను హెచ్చరించండి (లత జి.)","cancel":"రద్దు",
+      "pay.title":"₹68,393 చెల్లించండి","pay.sub":"చెల్లింపు విధానాన్ని ఎంచుకోండి","pay.upi":"జీపే, ఫోన్‌పే, పేటిఎం","pay.card":"క్రెడిట్ / డెబిట్ కార్డ్","pay.nb":"నెట్ బ్యాంకింగ్","pay.secure":"చెల్లింపులు సురక్షితం. OrthoApp మీ కార్డ్ వివరాలను నిల్వ చేయదు.",
+      "dyn.feedback":"★★★★★  ధన్యవాదాలు — అభిప్రాయం సేవ్ చేయబడింది","dyn.invoice":"✓  GST ఇన్‌వాయిస్ డౌన్‌లోడ్ అయింది","dyn.visitdoc":"📄  సారాంశం మీ ఇన్‌బాక్స్‌కు పంపబడింది",
+      "dyn.call":"📞  కనెక్ట్ అవుతోంది… డెస్క్‌కు తెలియజేయబడింది","dyn.alert":"✓  లత జి.కి తెలియజేయబడింది","dyn.paid":"✓  చెల్లింపు విజయవంతం — ఇన్‌వాయిస్ చెల్లించబడింది"
+    },
+    hi:{
+      "pt.name":"श्रीमती कमला राव","pt.detail":"68 · दायाँ कूल्हा प्रत्यारोपण · रिकवरी दिन 9","pt.pkg":"व्यापक",
+      "sos":"आपातकाल — अभी देखभाल टीम से संपर्क करें",
+      "tab.today":"आज","tab.plan":"देखभाल योजना","tab.escorts":"एस्कॉर्ट","tab.team":"टीम","tab.billing":"बिलिंग",
+      "today.eyebrow":"आज · शुक्र, 8 अग","today.report":"आज की रिपोर्ट","today.updated":"11 मिनट पहले सुनीता एम. द्वारा अपडेट","today.stable":"स्थिर",
+      "v.bp":"बीपी","v.pulse":"पल्स","v.temp":"तापमान",
+      "repo.title":"करवट बदलना","repo.sub":"हर 2 घंटे · दबाव घाव रोकता है","repo.next":"अगला 12:00",
+      "care.title":"आज दी गई देखभाल",
+      "care.t1":"सुबह की दवा","care.t1s":"कैल्शियम + विटामिन डी, दर्द निवारक",
+      "care.t2":"फिजियोथेरेपी — टखना पंप और क्वाड सेट","care.t2s":"डॉ. अय्यर की योजना अनुसार · 2 सेट पूरे",
+      "care.t3":"स्पंज स्नान और घाव ड्रेसिंग जाँच","care.t3s":"सर्जरी स्थल साफ, कोई लाली नहीं",
+      "care.t4":"दोपहर का भोजन — उच्च प्रोटीन, कैल्शियम युक्त","care.t4s":"पोषण विशेषज्ञ योजना अनुसार",
+      "care.t5":"दोपहर की दवा","care.t5s":"परिवार को अनुस्मारक के साथ",
+      "note.quote":"“अम्मा आज खुद बिस्तर के किनारे बैठीं और वॉकर से छह कदम चलीं — कल से थोड़ा ज़्यादा। वे अच्छे मन में थीं और पूरा नाश्ता किया।”",
+      "note.by":"सुनीता एम. · ऑर्थोपेडिक केयरटेकर · रात 8 बजे तक शिफ्ट",
+      "today.rate":"★  आज की विज़िट को रेट करें","today.feedmicro":"हर विज़िट के बाद आपकी प्रतिक्रिया अम्मा की सही देखभाल में मदद करती है।",
+      "plan.eyebrow":"डॉक्टर-निगरानी देखभाल योजना","plan.prog":"रिकवरी प्रगति","plan.progsub":"अनुमानित 6-सप्ताह योजना का दिन 9","plan.ontrack":"सही राह पर",
+      "ms.surgery":"सर्जरी","ms.bed":"बिस्तर गतिशीलता","ms.walker":"वॉकर कदम","ms.stairs":"सीढ़ियाँ","ms.indep":"स्वतंत्र",
+      "plan.appby":"योजना स्वीकृत की","plan.approved":"स्वीकृत",
+      "plan.doc":"<b style=\"color:var(--ink)\">डॉ. आनंद अय्यर</b>, MBBS · MS (ऑर्थोपेडिक्स)<br>अगली गृह समीक्षा: <b style=\"color:var(--ink)\">सोम, 25 अग</b>",
+      "plan.goals":"इस सप्ताह के लक्ष्य",
+      "g1":"वॉकर-सहायता चलना","g1s":"दिन में दो बार 10 कदम तक बढ़ाएँ",
+      "g2":"बैठकर कूल्हा और घुटना व्यायाम","g2s":"फिजियोथेरेपिस्ट-निर्देशित, दिन में 3 बार",
+      "g3":"हड्डी-स्वास्थ्य पोषण","g3s":"कैल्शियम + विटामिन डी आहार",
+      "g4":"दबाव घाव रोकथाम","g4s":"हर 2 घंटे करवट जारी",
+      "esc.eyebrow":"अस्पताल एस्कॉर्ट","esc.followup":"डॉ. अय्यर के साथ फॉलो-अप","esc.when":"शनि, 16 अग · सुबह 10:30 · अपोलो ऑर्थो OPD, हैदराबाद","esc.scheduled":"निर्धारित",
+      "esc.route":"घर → अस्पताल → घर","esc.gps":"GPS ट्रैक",
+      "esc.assoc":"एस्कॉर्ट: <b style=\"color:var(--ink)\">रमेश के.</b> · प्राथमिक चिकित्सा और मरीज़ प्रबंधन प्रमाणित · सुबह 9:45 पहुँचेंगे",
+      "esc.checklist":"यात्रा चेकलिस्ट",
+      "esc.s1":"अम्मा को घर पर तैयार होने में मदद","esc.s2":"अनुकूलित वाहन में सुरक्षित स्थानांतरण","esc.s3":"पंजीकरण और ट्राइएज में साथ",
+      "esc.s4":"परिवार के लिए परामर्श नोट्स","esc.s5":"एक्स-रे और फार्मेसी में सहायता","esc.s6":"घर वापसी और डॉक्टर के निर्देश सौंपना",
+      "esc.last":"पिछली विज़िट","esc.suture":"टांके समीक्षा · 2 अग","esc.suturesub":"टांके हटाए · घाव अच्छे से भर रहा","esc.complete":"पूर्ण","esc.viewdoc":"📄  विज़िट सारांश और निर्देश देखें",
+      "team.eyebrow":"आपकी देखभाल टीम","team.onshift":"शिफ्ट पर","verified":"पृष्ठभूमि सत्यापित",
+      "role.surgeon":"पर्यवेक्षक ऑर्थोपेडिक सर्जन","cr.surgeon":"MBBS · MS (ऑर्थो) · योजना बनाना और समीक्षा",
+      "role.physio":"पंजीकृत फिजियोथेरेपिस्ट","cr.physio":"MPT · गृह व्यायाम और गतिशीलता कार्यक्रम",
+      "role.caretaker":"ऑर्थोपेडिक केयरटेकर","cr.caretaker":"120-घंटे प्रमाणित · BLS और प्राथमिक चिकित्सा · दबाव देखभाल",
+      "role.escort":"मरीज़ एस्कॉर्ट सहयोगी","cr.escort":"प्राथमिक चिकित्सा · अस्पताल नेविगेशन · आपातकालीन प्रतिक्रिया",
+      "role.coord":"देखभाल समन्वयक","cr.coord":"GNM · टीम देखरेख और साप्ताहिक गुणवत्ता विज़िट",
+      "team.micro":"आपकी सहमति के बिना कोई केयरटेकर नहीं बदला जाता। हर सदस्य पुलिस-सत्यापित और चिकित्सकीय रूप से जाँचा गया है।",
+      "bill.eyebrow":"बिलिंग · अगस्त 2026","bill.pkg":"व्यापक देखभाल","bill.pkgsub":"24-घंटे केयरटेकर · 4 एस्कॉर्ट/माह · फिजियो और पोषण","bill.due":"देय","bill.paid":"भुगतान हुआ",
+      "bill.l1":"व्यापक पैकेज","bill.l2":"गृह फिजियोथेरेपी (8 सत्र)","bill.l3":"वरिष्ठ नागरिक छूट (10%)","bill.l4":"GST (18%)","bill.total":"कुल देय",
+      "bill.paynow":"अभी भुगतान करें","bill.invoice":"GST चालान डाउनलोड","bill.plan":"ब्याज-मुक्त मासिक योजना सेट करें",
+      "bill.micro":"देखभाल शुरू होने से पहले लिखित अनुमान दिया गया — कोई छिपा शुल्क नहीं। आपका GST चालान बीमा और कर दावों में मदद करता है।",
+      "em.title":"हम यहीं हैं, अभी","em.body":"यह शिफ्ट पर मौजूद केयरटेकर, समन्वयक और हमारे 24×7 आपातकालीन डेस्क को एक साथ सूचित करता है।",
+      "em.sla":"30 मिनट से कम में गारंटीड प्रतिक्रिया","em.call":"📞  आपातकालीन डेस्क को कॉल करें","em.alert":"समन्वयक को सूचित करें (लता जी.)","cancel":"रद्द करें",
+      "pay.title":"₹68,393 भुगतान करें","pay.sub":"भुगतान का तरीका चुनें","pay.upi":"GPay, PhonePe, Paytm","pay.card":"क्रेडिट / डेबिट कार्ड","pay.nb":"नेट-बैंकिंग","pay.secure":"भुगतान सुरक्षित हैं। OrthoApp आपके कार्ड विवरण संग्रहीत नहीं करता।",
+      "dyn.feedback":"★★★★★  धन्यवाद — प्रतिक्रिया सहेजी गई","dyn.invoice":"✓  GST चालान डाउनलोड हुआ","dyn.visitdoc":"📄  सारांश आपके इनबॉक्स में भेजा गया",
+      "dyn.call":"📞  कनेक्ट हो रहा… डेस्क सूचित","dyn.alert":"✓  लता जी. को सूचित किया गया","dyn.paid":"✓  भुगतान सफल — चालान भुगतान हुआ"
+    }
+  };
+
+  var lang='en', paid=false;
+  function t(key){return (I18N[lang] && I18N[lang][key]) || I18N.en[key] || '';}
+
+  function applyLang(l){
+    lang=l;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var v=t(el.getAttribute('data-i18n')); if(v) el.textContent=v;
     });
-
-    var overlay=document.getElementById('overlay');
-    function openSheet(){overlay.classList.add('open')}
-    function closeSheet(){overlay.classList.remove('open')}
-    document.getElementById('sosBtn').addEventListener('click',openSheet);
-    document.getElementById('closeSheet').addEventListener('click',closeSheet);
-    overlay.addEventListener('click',function(e){if(e.target===overlay)closeSheet()});
-    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSheet()});
-    document.getElementById('callBtn').addEventListener('click',function(){this.textContent='📞  Connecting… care desk notified';this.disabled=true;});
-    document.getElementById('alertBtn').addEventListener('click',function(){this.textContent='✓  Lata G. has been alerted';});
-
-    document.getElementById('feedbackBtn').addEventListener('click',function(){this.textContent='★★★★★  Thank you — feedback saved';});
-    document.getElementById('invoiceBtn').addEventListener('click',function(){this.textContent='✓  GST invoice downloaded';});
-    var vd=document.getElementById('visitDocBtn');
-    if(vd)vd.addEventListener('click',function(){this.textContent='📄  Summary shared to your inbox';});
-
-    // theme toggle: cycle system -> light -> dark
-    var root=document.documentElement, btn=document.getElementById('themeBtn'), mode='system';
-    btn.addEventListener('click',function(){
-      mode = mode==='system' ? 'light' : mode==='light' ? 'dark' : 'system';
-      if(mode==='system'){root.removeAttribute('data-theme');btn.textContent='◐ System';}
-      else{root.setAttribute('data-theme',mode);btn.textContent=(mode==='light'?'☀ Light':'☾ Dark');}
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      var v=t(el.getAttribute('data-i18n-html')); if(v) el.innerHTML=v;
     });
-  })();
+    document.querySelectorAll('.langseg button').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-lang')===l);
+    });
+    // keep the "paid" state coherent after a language switch
+    if(paid){ setStatusPaid(); }
+  }
+  document.querySelectorAll('.langseg button').forEach(function(b){
+    b.addEventListener('click',function(){applyLang(b.getAttribute('data-lang'))});
+  });
+
+  // tabs
+  var tabs=document.querySelectorAll('.tab'), panels=document.querySelectorAll('.panel'), screen=document.getElementById('screen');
+  tabs.forEach(function(tb){
+    tb.addEventListener('click',function(){
+      var id=tb.getAttribute('data-tab');
+      tabs.forEach(function(x){x.classList.toggle('active',x===tb)});
+      panels.forEach(function(p){p.classList.toggle('active',p.id===id)});
+      screen.scrollTop=0;
+    });
+  });
+
+  // sheets
+  function open(id){document.getElementById(id).classList.add('open')}
+  function closeAll(){document.querySelectorAll('.overlay').forEach(function(o){o.classList.remove('open')})}
+  document.getElementById('sosBtn').addEventListener('click',function(){open('overlay')});
+  document.getElementById('payBtn').addEventListener('click',function(){if(!paid)open('payOverlay')});
+  document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',closeAll)});
+  document.querySelectorAll('.overlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===o)closeAll()})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+
+  // emergency actions
+  document.getElementById('callBtn').addEventListener('click',function(){this.textContent=t('dyn.call');this.disabled=true;this.removeAttribute('data-i18n')});
+  document.getElementById('alertBtn').addEventListener('click',function(){this.textContent=t('dyn.alert');this.removeAttribute('data-i18n')});
+
+  // today / escort / billing actions
+  document.getElementById('feedbackBtn').addEventListener('click',function(){this.textContent=t('dyn.feedback');this.removeAttribute('data-i18n')});
+  document.getElementById('invoiceBtn').addEventListener('click',function(){this.textContent=t('dyn.invoice');this.removeAttribute('data-i18n')});
+  document.getElementById('visitDocBtn').addEventListener('click',function(){this.textContent=t('dyn.visitdoc');this.removeAttribute('data-i18n')});
+
+  // payment success
+  function setStatusPaid(){
+    var s=document.getElementById('payStatus');
+    s.className='pill good'; s.innerHTML='<span class="dot"></span><span data-i18n="bill.paid">'+t('bill.paid')+'</span>';
+    var pb=document.getElementById('payBtn'); pb.textContent=t('dyn.paid'); pb.disabled=true; pb.removeAttribute('data-i18n');
+  }
+  document.querySelectorAll('[data-pay]').forEach(function(b){
+    b.addEventListener('click',function(){paid=true; setStatusPaid(); closeAll();});
+  });
+
+  // theme cycle: system -> light -> dark
+  var root=document.documentElement, mode='system';
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    mode = mode==='system' ? 'light' : mode==='light' ? 'dark' : 'system';
+    if(mode==='system'){root.removeAttribute('data-theme');this.textContent='◐'}
+    else{root.setAttribute('data-theme',mode);this.textContent=(mode==='light'?'☀':'☾')}
+  });
+})();
 </script>
