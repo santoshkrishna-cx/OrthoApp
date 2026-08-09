@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.svg">
+<title>Asthimitra — Overview slides</title>
+<style>
+  :root{
+    --bg:#EAF1FB; --stage:#FFFFFF; --ink:#132234; --soft:#53637A; --faint:#8593A6;
+    --line:#E3E9F2; --mist:#EAF1FB;
+    --azure:#1466C7; --azure-ink:#0E4C97; --amber:#E0930F; --amber-ink:#B4770A;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0A0F17; --stage:#111A27; --ink:#EAF1FB; --soft:#9DACC0; --faint:#67768C;
+      --line:#243247; --mist:#152134; --azure:#5AA6F0; --azure-ink:#9CC8F6; --amber:#F0A63A; --amber-ink:#F0A63A;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0A0F17; --stage:#111A27; --ink:#EAF1FB; --soft:#9DACC0; --faint:#67768C;
+    --line:#243247; --mist:#152134; --azure:#5AA6F0; --azure-ink:#9CC8F6; --amber:#F0A63A; --amber-ink:#F0A63A;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px}
+
+  .topbar{position:fixed;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:13px;color:var(--soft);z-index:10}
+  .topbar .b{display:flex;align-items:center;gap:9px;font-family:var(--serif);font-size:17px;color:var(--ink)}
+  .topbar .b b{color:var(--azure);font-weight:600}
+  .topbar a{color:var(--azure);text-decoration:none;font-weight:650}
+  .topbar .right{display:flex;gap:14px;align-items:center}
+  .tg{border:1px solid var(--line);background:var(--stage);color:var(--ink);border-radius:999px;width:34px;height:34px;font-size:14px;cursor:pointer}
+
+  .stage-wrap{width:100%;max-width:960px;aspect-ratio:16/9;position:relative;margin-top:14px}
+  @media(max-width:720px){.stage-wrap{aspect-ratio:4/5}}
+  .stage{position:absolute;inset:0;background:var(--stage);border:1px solid var(--line);border-radius:22px;box-shadow:0 40px 90px -50px rgba(20,60,120,.6);overflow:hidden}
+  .slide{position:absolute;inset:0;padding:clamp(24px,4.4vw,52px);opacity:0;visibility:hidden;transition:opacity .35s ease;display:flex;flex-direction:column;overflow:auto}
+  .slide.active{opacity:1;visibility:visible}
+  @media (prefers-reduced-motion:reduce){.slide{transition:none}}
+
+  .eyebrow{font-size:clamp(10px,1.3vw,12px);font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--amber-ink)}
+  .stitle{font-family:var(--serif);font-size:clamp(22px,3.8vw,38px);line-height:1.1;margin:8px 0 2px;color:var(--azure);text-wrap:balance}
+  .lead{font-size:clamp(14px,1.9vw,20px);color:var(--ink);line-height:1.5;margin:12px 0 0;max-width:44ch}
+  .accent-rule{width:64px;height:6px;border-radius:6px;background:var(--amber);margin:14px 0}
+
+  /* title slide */
+  .slide.cover{background:linear-gradient(160deg,var(--azure),var(--azure-ink));justify-content:center}
+  .slide.cover .brand{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+  .slide.cover .brand .glyph{width:clamp(44px,6vw,60px);height:clamp(44px,6vw,60px);border-radius:15px;background:rgba(255,255,255,.16);display:grid;place-items:center}
+  .slide.cover .brand .wm{font-family:var(--serif);font-size:clamp(26px,4.4vw,42px);color:#fff}
+  .slide.cover h1{font-family:var(--serif);font-size:clamp(26px,4.6vw,46px);line-height:1.08;color:#fff;margin:14px 0 0;max-width:20ch;text-wrap:balance}
+  .slide.cover .tagline{color:#FCE3BE;font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:clamp(11px,1.5vw,14px)}
+  .slide.cover .foot{color:rgba(255,255,255,.8);font-size:clamp(11px,1.5vw,14px);margin-top:auto}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px 34px;margin-top:16px}
+  @media(max-width:560px){.cols{grid-template-columns:1fr}}
+  .li{display:flex;gap:10px;font-size:clamp(12px,1.6vw,16px);line-height:1.4;padding:5px 0}
+  .li .k{color:var(--amber-ink);font-weight:800;flex:0 0 auto}
+  .li b{font-weight:650}
+  .li span{color:var(--soft)}
+
+  .cards2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  @media(max-width:560px){.cards2{grid-template-columns:1fr}}
+  .mini{background:var(--mist);border-radius:14px;padding:15px 16px;border-left:4px solid var(--amber)}
+  .mini h3{margin:0 0 4px;font-size:clamp(14px,1.9vw,18px);color:var(--azure)}
+  .mini p{margin:0;font-size:clamp(11.5px,1.5vw,14px);color:var(--soft);line-height:1.45}
+
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:auto;margin-bottom:auto}
+  @media(max-width:640px){.steps{grid-template-columns:1fr 1fr}}
+  .stepc{background:var(--mist);border-radius:14px;padding:14px}
+  .stepc .n{width:30px;height:30px;border-radius:9px;background:var(--azure);color:#fff;display:grid;place-items:center;font-weight:800;font-family:var(--serif)}
+  .stepc h4{margin:10px 0 3px;font-size:clamp(12px,1.5vw,15px)}
+  .stepc p{margin:0;font-size:clamp(10.5px,1.3vw,12.5px);color:var(--soft);line-height:1.35}
+
+  .rolewrap{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .rolewrap span{font-size:clamp(11px,1.5vw,14px);font-weight:700;padding:7px 13px;border-radius:999px;background:var(--mist);color:var(--azure-ink)}
+
+  .callout{margin-top:auto;background:var(--azure);color:#fff;border-radius:14px;padding:14px 18px;font-weight:650;font-size:clamp(12px,1.6vw,16px);line-height:1.45}
+
+  /* controls */
+  .nav{display:flex;align-items:center;gap:16px;margin-top:16px}
+  .arrow{border:1px solid var(--line);background:var(--stage);color:var(--ink);width:44px;height:44px;border-radius:50%;font-size:18px;cursor:pointer;display:grid;place-items:center}
+  .arrow:hover{border-color:var(--azure);color:var(--azure)}
+  .dots{display:flex;gap:8px}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--line);border:none;cursor:pointer;padding:0}
+  .dot.on{background:var(--azure);transform:scale(1.25)}
+  .counter{position:fixed;bottom:16px;right:18px;font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums}
+  .hint{position:fixed;bottom:16px;left:18px;font-size:11.5px;color:var(--faint)}
+  @media(max-width:640px){.hint{display:none}}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="b"><span>Asthi<b>mitra</b></span> · Overview</div>
+    <div class="right">
+      <a href="index.html">&larr; Back to demo</a>
+      <a href="Asthimitra_Overview.pptx">Download PPTX</a>
+      <button class="tg" id="tg" aria-label="Toggle theme">&#9680;</button>
+    </div>
+  </div>
+
+  <div class="stage-wrap">
+    <div class="stage" id="stage">
+
+      <!-- 1 cover -->
+      <section class="slide cover active">
+        <div class="brand"><span class="glyph"><svg width="34" height="34" viewBox="0 0 100 100" fill="none"><path d="M50 20 L28 82" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M50 20 L72 82" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M32 57 H68" stroke="#F4B23C" stroke-width="12" stroke-linecap="round"/><circle cx="31" cy="50" r="9" fill="#F4B23C"/><circle cx="31" cy="64" r="9" fill="#F4B23C"/><circle cx="69" cy="50" r="9" fill="#F4B23C"/><circle cx="69" cy="64" r="9" fill="#F4B23C"/></svg></span><span class="wm">Asthimitra</span></div>
+        <div class="tagline">Your bone-care friend</div>
+        <h1>Dignified orthopedic care, at home &amp; to every hospital visit.</h1>
+        <div class="foot">Doctor-supervised home care &amp; hospital escort · Hyderabad · Overview</div>
+      </section>
+
+      <!-- 2 what -->
+      <section class="slide">
+        <div class="eyebrow">What is this</div>
+        <div class="stitle">Asthimitra in one line</div>
+        <div class="accent-rule"></div>
+        <p class="lead" style="max-width:52ch">Asthimitra is the operating system for the whole home-care service — it turns an enquiry into a <b>doctor-approved care plan</b>, sends <b>verified caretakers and escorts</b>, records <b>every act of care</b>, and keeps the <b>family continuously informed</b>.</p>
+      </section>
+
+      <!-- 3 why -->
+      <section class="slide">
+        <div class="eyebrow">Why it's needed</div>
+        <div class="stitle">Two gaps families can't close alone</div>
+        <div class="cards2">
+          <div class="mini"><h3>Clinical-skill gap at home</h3><p>Safe transfers, pressure-sore prevention, wound care and spotting complications are trained skills — not things love can substitute for.</p></div>
+          <div class="mini"><h3>Continuity gap, hospital ↔ home</h3><p>Appointments get missed, discharge instructions get lost, and unaccompanied travel is unsafe for immobile patients.</p></div>
+        </div>
+        <div class="callout">Today this runs on phone calls, paper and WhatsApp — it doesn't scale, isn't auditable, and gives families no single trustworthy view. Asthimitra fixes that.</div>
+      </section>
+
+      <!-- 4 what it does -->
+      <section class="slide">
+        <div class="eyebrow">What it does</div>
+        <div class="stitle">Nine things, end to end</div>
+        <div class="cols">
+          <div class="li"><span class="k">●</span><span><b>Intake &amp; assessment</b> — enquiry to free home visit</span></div>
+          <div class="li"><span class="k">●</span><span><b>Doctor-approved care plan</b> — no care starts unapproved</span></div>
+          <div class="li"><span class="k">●</span><span><b>Verified staffing</b> — background &amp; certification checks</span></div>
+          <div class="li"><span class="k">●</span><span><b>Scheduling</b> — caretaker shifts + escort trips</span></div>
+          <div class="li"><span class="k">●</span><span><b>Bedside logging</b> — vitals, meds, 2-hour repositioning</span></div>
+          <div class="li"><span class="k">●</span><span><b>Hospital escort</b> — GPS-tracked, checklist-driven</span></div>
+          <div class="li"><span class="k">●</span><span><b>Family transparency</b> — daily reports + messaging</span></div>
+          <div class="li"><span class="k">●</span><span><b>Safety &amp; emergency</b> — 24×7, under-30-min response</span></div>
+          <div class="li"><span class="k">●</span><span><b>Billing &amp; payments</b> — GST invoice, UPI / card / net-banking</span></div>
+        </div>
+      </section>
+
+      <!-- 5 who -->
+      <section class="slide">
+        <div class="eyebrow">Who it's for</div>
+        <div class="stitle">The people around a recovery</div>
+        <div class="cols">
+          <div class="li"><span class="k">●</span><span><b>Families</b> <span>— one trustworthy view; relief from burnout</span></span></div>
+          <div class="li"><span class="k">●</span><span><b>Patients</b> <span>— dignity, consent, comfort</span></span></div>
+          <div class="li"><span class="k">●</span><span><b>Doctors</b> <span>— author, approve &amp; review plans</span></span></div>
+          <div class="li"><span class="k">●</span><span><b>Physiotherapists</b> <span>— home exercise programs</span></span></div>
+          <div class="li"><span class="k">●</span><span><b>Caretakers</b> <span>— bedside logging &amp; escalation</span></span></div>
+          <div class="li"><span class="k">●</span><span><b>Escorts</b> <span>— safe hospital trips &amp; notes</span></span></div>
+          <div class="li"><span class="k">●</span><span><b>Coordinators</b> <span>— scheduling, alerts, quality</span></span></div>
+          <div class="li"><span class="k">●</span><span><b>Operations</b> <span>— compliance, billing, KPIs</span></span></div>
+        </div>
+      </section>
+
+      <!-- 6 how -->
+      <section class="slide">
+        <div class="eyebrow">How it works</div>
+        <div class="stitle">One recovery journey, five steps</div>
+        <div class="steps">
+          <div class="stepc"><div class="n">1</div><h4>Enquiry &amp; assessment</h4><p>Free home visit.</p></div>
+          <div class="stepc"><div class="n">2</div><h4>Doctor care plan</h4><p>Designed &amp; approved.</p></div>
+          <div class="stepc"><div class="n">3</div><h4>Team assigned</h4><p>Matched &amp; briefed.</p></div>
+          <div class="stepc"><div class="n">4</div><h4>Care &amp; monitoring</h4><p>Reports, safety, physio, escorts.</p></div>
+          <div class="stepc"><div class="n">5</div><h4>Review &amp; transition</h4><p>Back to independence.</p></div>
+        </div>
+      </section>
+
+      <!-- 7 the app -->
+      <section class="slide">
+        <div class="eyebrow">The platform</div>
+        <div class="stitle">One app, the whole care team</div>
+        <p class="lead" style="max-width:54ch">Everyone around a recovery works in the same place — each role gets exactly the view they need.</p>
+        <div class="rolewrap">
+          <span>Family</span><span>Doctor</span><span>Escort</span><span>Coordinator</span><span>Physiotherapist</span><span>Nurse</span><span>Nutritionist</span><span>Admin</span>
+        </div>
+      </section>
+
+      <!-- 8 trust -->
+      <section class="slide">
+        <div class="eyebrow">Why trust it</div>
+        <div class="stitle">Built for dignity, safety &amp; transparency</div>
+        <div class="cols">
+          <div class="li"><span class="k">●</span><span><b>Dignity first</b> — consent, privacy, respect</span></div>
+          <div class="li"><span class="k">●</span><span><b>Verified people</b> — police-checked, 120-hr, BLS</span></div>
+          <div class="li"><span class="k">●</span><span><b>No-substitution</b> — no staff change without consent</span></div>
+          <div class="li"><span class="k">●</span><span><b>&lt;30-min emergency</b> — 24×7 desk, tracked</span></div>
+          <div class="li"><span class="k">●</span><span><b>Transparent billing</b> — estimate first, GST, no surprises</span></div>
+          <div class="li"><span class="k">●</span><span><b>Compliant</b> — HIPAA-aligned, NABH guidelines</span></div>
+          <div class="li"><span class="k">●</span><span><b>Built for v1</b> — Hyderabad · EN/TE/HI · offline-first</span></div>
+          <div class="li"><span class="k">●</span><span><b>Doctor-supervised</b> — every plan, always</span></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="arrow" id="prev" aria-label="Previous slide">&#8249;</button>
+    <div class="dots" id="dots"></div>
+    <button class="arrow" id="next" aria-label="Next slide">&#8250;</button>
+  </div>
+
+  <div class="counter" id="counter">1 / 8</div>
+  <div class="hint">← → arrow keys to navigate</div>
+
+  <script>
+    (function(){
+      var slides=[].slice.call(document.querySelectorAll('.slide'));
+      var i=0, dots=document.getElementById('dots'), counter=document.getElementById('counter');
+      slides.forEach(function(_,n){var d=document.createElement('button');d.className='dot'+(n===0?' on':'');d.setAttribute('aria-label','Slide '+(n+1));d.addEventListener('click',function(){go(n)});dots.appendChild(d);});
+      var dotEls=[].slice.call(dots.children);
+      function go(n){
+        i=(n+slides.length)%slides.length;
+        slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
+        dotEls.forEach(function(d,k){d.classList.toggle('on',k===i)});
+        counter.textContent=(i+1)+' / '+slides.length;
+      }
+      document.getElementById('next').addEventListener('click',function(){go(i+1)});
+      document.getElementById('prev').addEventListener('click',function(){go(i-1)});
+      document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){go(i+1)}else if(e.key==='ArrowLeft'){go(i-1)}});
+      var sx=null;
+      document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+      document.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50){go(i+(dx<0?1:-1))}sx=null;},{passive:true});
+
+      var root=document.documentElement, mode='system', b=document.getElementById('tg');
+      b.addEventListener('click',function(){
+        mode=mode==='system'?'light':mode==='light'?'dark':'system';
+        if(mode==='system'){root.removeAttribute('data-theme');b.innerHTML='&#9680;';}
+        else{root.setAttribute('data-theme',mode);b.innerHTML=(mode==='light'?'&#9728;':'&#9790;');}
+      });
+    })();
+  </script>
+</body>
+</html>
