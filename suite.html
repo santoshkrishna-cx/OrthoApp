@@ -5,8 +5,8 @@
     --bg:#F7F9F6; --surface:#FFFFFF; --surface-2:#F0F4F0;
     --ink:#182A27; --ink-soft:#5A6A66; --ink-faint:#8A9994;
     --line:#E2E8E3;
-    --primary:#0E5A54; --primary-ink:#0B4741; --primary-soft:#D8E8E5;
-    --accent:#DC6B4F;
+    --primary:#1466C7; --primary-ink:#0E4C97; --primary-soft:#DCEAFB;
+    --accent:#E0930F;
     --good:#2E7D5B; --good-soft:#DBEFE4;
     --warn:#B9821A; --warn-soft:#F6EACE;
     --crit:#C0392B; --crit-soft:#F6DED9;
@@ -22,8 +22,8 @@
       --bg:#0F1C1A; --surface:#162823; --surface-2:#1E332D;
       --ink:#EAF1EE; --ink-soft:#A3B6B0; --ink-faint:#6E827C;
       --line:#274038;
-      --primary:#4FBFB0; --primary-ink:#8FD9CE; --primary-soft:#123C37;
-      --accent:#E88569;
+      --primary:#5AA6F0; --primary-ink:#9CC8F6; --primary-soft:#14335C;
+      --accent:#F0A63A;
       --good:#5CC08C; --good-soft:#153229;
       --warn:#E0B056; --warn-soft:#33290F;
       --crit:#E4685C; --crit-soft:#38201C;
@@ -35,8 +35,8 @@
     --bg:#0F1C1A; --surface:#162823; --surface-2:#1E332D;
     --ink:#EAF1EE; --ink-soft:#A3B6B0; --ink-faint:#6E827C;
     --line:#274038;
-    --primary:#4FBFB0; --primary-ink:#8FD9CE; --primary-soft:#123C37;
-    --accent:#E88569;
+    --primary:#5AA6F0; --primary-ink:#9CC8F6; --primary-soft:#14335C;
+    --accent:#F0A63A;
     --good:#5CC08C; --good-soft:#153229;
     --warn:#E0B056; --warn-soft:#33290F;
     --crit:#E4685C; --crit-soft:#38201C;
@@ -44,7 +44,7 @@
   }
 
   /* per-app accent identity */
-  .app-family{--accent:#DC6B4F}
+  .app-family{--accent:#E0930F}
   .app-doctor{--accent:#4C7BB0}
   .app-escort{--accent:#E07A3E}
   :root[data-theme="dark"] .app-family,@media (prefers-color-scheme:dark){}
@@ -305,13 +305,13 @@
   <!-- ==================== LAUNCHER ==================== -->
   <section class="view active" id="launcher">
     <div class="launch-brand"><span class="glyph" aria-hidden="true">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.5C1 9.5 2.5 6 6 6c2 0 3.2 1.2 4 2.5C10.8 7.2 12 6 14 6c3.5 0 5 3.5 3.5 6.5C19 16.65 12 21 12 21z"/></svg>
+      <svg width="24" height="24" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M50 20 L28 82" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M50 20 L72 82" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M32 57 H68" stroke="#F4B23C" stroke-width="12" stroke-linecap="round"/><circle cx="31" cy="50" r="9" fill="#F4B23C"/><circle cx="31" cy="64" r="9" fill="#F4B23C"/><circle cx="69" cy="50" r="9" fill="#F4B23C"/><circle cx="69" cy="64" r="9" fill="#F4B23C"/></svg>
     </span>Asthi<b>mitra</b></div>
     <p class="launch-sub">Doctor-supervised orthopedic home care & hospital escort in Hyderabad. Choose your view.</p>
     <div class="launch-label">Open an app</div>
 
     <button class="rolecard" data-role="familyApp">
-      <span class="ico" style="background:#DC6B4F">👪</span>
+      <span class="ico" style="background:#E0930F">👪</span>
       <span class="rc"><b>Family</b><span>Follow your loved one's recovery, day by day</span></span>
       <span class="go">›</span>
     </button>
@@ -359,8 +359,8 @@
 
         <p class="section-title">Your care team</p>
         <div class="card">
-          <div class="member"><div class="ph" style="background:#0E5A54">AI</div><div class="info"><div class="nm">Dr. Anand Iyer</div><div class="rl">Supervising Orthopedic Surgeon</div><div class="verified">✓ Background verified</div></div></div>
-          <div class="member"><div class="ph" style="background:#1C7A6E">PV</div><div class="info"><div class="nm">Priya Venkat</div><div class="rl">Registered Physiotherapist</div><div class="verified">✓ Background verified</div></div></div>
+          <div class="member"><div class="ph" style="background:#1466C7">AI</div><div class="info"><div class="nm">Dr. Anand Iyer</div><div class="rl">Supervising Orthopedic Surgeon</div><div class="verified">✓ Background verified</div></div></div>
+          <div class="member"><div class="ph" style="background:#2E7DE1">PV</div><div class="info"><div class="nm">Priya Venkat</div><div class="rl">Registered Physiotherapist</div><div class="verified">✓ Background verified</div></div></div>
           <div class="member"><div class="ph" style="background:var(--accent)">SM</div><div class="info"><div class="nm">Sunita M. <span class="pill good" style="font-size:9px"><span class="dot"></span>On shift</span></div><div class="rl">Orthopedic Caretaker</div><div class="verified">✓ Background verified</div></div></div>
           <div class="member"><div class="ph" style="background:#5A6E4A">RK</div><div class="info"><div class="nm">Ramesh K.</div><div class="rl">Patient Escort Associate</div><div class="verified">✓ Background verified</div></div></div>
         </div>
@@ -484,9 +484,9 @@
       <section class="panel active" data-panel="d-patients">
         <p class="eyebrow">Patients under supervision</p>
         <div class="card" style="padding:6px 16px">
-          <button class="prow" data-goto="d-detail"><div class="pi" style="background:#0E5A54">KR</div><div class="pd"><b>Kamala Rao · 68</b><span>Right THR · Day 9</span></div><span class="pill good"><span class="dot"></span>Stable</span></button>
+          <button class="prow" data-goto="d-detail"><div class="pi" style="background:#1466C7">KR</div><div class="pd"><b>Kamala Rao · 68</b><span>Right THR · Day 9</span></div><span class="pill good"><span class="dot"></span>Stable</span></button>
           <button class="prow" data-goto="d-detail"><div class="pi" style="background:#C0392B">VR</div><div class="pd"><b>Venkat Reddy · 74</b><span>Femur fracture · Day 4</span></div><span class="pill crit"><span class="dot"></span>Attention</span></button>
-          <button class="prow" data-goto="d-detail"><div class="pi" style="background:#1C7A6E">FB</div><div class="pd"><b>Fatima Begum · 66</b><span>TKR (knee) · Day 15</span></div><span class="pill good"><span class="dot"></span>Stable</span></button>
+          <button class="prow" data-goto="d-detail"><div class="pi" style="background:#2E7DE1">FB</div><div class="pd"><b>Fatima Begum · 66</b><span>TKR (knee) · Day 15</span></div><span class="pill good"><span class="dot"></span>Stable</span></button>
           <button class="prow" data-goto="d-approvals"><div class="pi" style="background:#8A5A2B">AR</div><div class="pd"><b>Arjun Rao · 52</b><span>Spinal fusion · Day 2</span></div><span class="pill warn"><span class="dot"></span>Plan pending</span></button>
           <button class="prow" data-goto="d-detail"><div class="pi" style="background:#5A6E4A">LD</div><div class="pd"><b>Lakshmi Devi · 71</b><span>Osteoporosis · conservative</span></div><span class="pill good"><span class="dot"></span>Stable</span></button>
         </div>

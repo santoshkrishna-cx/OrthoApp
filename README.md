@@ -10,6 +10,7 @@ This repo holds the founding artifacts: the source charter, a Business Requireme
 
 | File | What it is |
 |------|-----------|
+| [`logo.svg`](logo.svg) · [`favicon.svg`](favicon.svg) | **Brand marks** — the final Asthimitra “A-Bone” logo and app-icon favicon |
 | [`OrthoApp.docx`](OrthoApp.docx) | **Source charter** — the original Asthimitra HomeCare service brochure everything is derived from |
 | [`BRD.md`](BRD.md) | **Business Requirements Document** — objectives, scope, personas, 40+ business requirements, process flows, NFRs, risks, and resolved v1 decisions |
 | [`prototype.html`](prototype.html) | **Family app prototype** — trilingual (English / Telugu / Hindi), in-app payments |
@@ -50,6 +51,17 @@ Asthimitra turns an enquiry into a **doctor-approved care plan**, sends **verifi
 - **Offline:** mandatory for field staff (caretakers/escorts)
 
 See [`BRD.md`](BRD.md) §10 for the full decision log and what remains to confirm.
+
+---
+
+## 🎨 Brand
+
+- **Name:** **Asthimitra** — *asthi* (bone) + *mitra* (friend) → “your bone-care friend”
+- **Logo:** the “A-Bone” monogram — an **A** for Asthi whose crossbar is a bone (chunky variant)
+- **Colours:** Azure `#1466C7` (trust, energy, hope) + Gold Amber `#E0930F` (warmth, optimism — the bone)
+- **Type:** humanist serif wordmark (*Asthi* ink · **mitra** azure)
+
+Logo/colour exploration is preserved in `brand*.html`. Before public use: clear the name & mark against **IP India** trademarks, and check the **asthimitra.in** domain + app-store name.
 
 ---
 
