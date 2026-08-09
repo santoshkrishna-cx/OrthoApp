@@ -47,8 +47,12 @@
   .app-family{--accent:#E0930F}
   .app-doctor{--accent:#4C7BB0}
   .app-escort{--accent:#E07A3E}
-  :root[data-theme="dark"] .app-family,@media (prefers-color-scheme:dark){}
-  .app-family,.app-doctor,.app-escort{--accent-soft:color-mix(in srgb, var(--accent) 16%, var(--surface))}
+  .app-coord{--accent:#0E9488}
+  .app-physio{--accent:#2AA775}
+  .app-nurse{--accent:#C0508A}
+  .app-nutri{--accent:#7A9E2E}
+  .app-admin{--accent:#6B5BD2}
+  .app{--accent-soft:color-mix(in srgb, var(--accent) 16%, var(--surface))}
 
   *{box-sizing:border-box}
   body{
@@ -293,7 +297,7 @@
 
 <div class="caption">
   <div class="mark">Asthi<b>mitra</b> · Role Suite</div>
-  <p>One platform, three apps. Pick a role to enter its app — Family, Doctor, or Escort. Use ⌂ to switch roles anytime.</p>
+  <p>One platform, eight roles. Pick a role to enter its app — Family, Doctor, Escort, Coordinator, Physiotherapist, Nurse, Nutritionist, or Admin. Use ⌂ to switch roles anytime.</p>
 </div>
 
 <div class="phone" role="application" aria-label="Asthimitra multi-role prototype">
@@ -323,6 +327,33 @@
     <button class="rolecard" data-role="escortApp">
       <span class="ico" style="background:#E07A3E">🚑</span>
       <span class="rc"><b>Escort</b><span>Guide patients safely to and from hospital</span></span>
+      <span class="go">›</span>
+    </button>
+
+    <div class="launch-label" style="margin-top:22px">Care team &amp; operations</div>
+    <button class="rolecard" data-role="coordApp">
+      <span class="ico" style="background:#0E9488">🗂️</span>
+      <span class="rc"><b>Care Coordinator</b><span>Intake, team roster, alerts &amp; quality</span></span>
+      <span class="go">›</span>
+    </button>
+    <button class="rolecard" data-role="physioApp">
+      <span class="ico" style="background:#2AA775">🤸</span>
+      <span class="rc"><b>Physiotherapist</b><span>Home exercise plans &amp; session logs</span></span>
+      <span class="go">›</span>
+    </button>
+    <button class="rolecard" data-role="nurseApp">
+      <span class="ico" style="background:#C0508A">💉</span>
+      <span class="rc"><b>Home Nurse</b><span>Clinical visits, meds, wound &amp; IV care</span></span>
+      <span class="go">›</span>
+    </button>
+    <button class="rolecard" data-role="nutriApp">
+      <span class="ico" style="background:#7A9E2E">🥗</span>
+      <span class="rc"><b>Nutritionist</b><span>Bone-health diet plans</span></span>
+      <span class="go">›</span>
+    </button>
+    <button class="rolecard" data-role="adminApp">
+      <span class="ico" style="background:#6B5BD2">📊</span>
+      <span class="rc"><b>Operations / Admin</b><span>KPIs, staff compliance &amp; billing</span></span>
       <span class="go">›</span>
     </button>
 
@@ -643,6 +674,227 @@
     </nav>
   </div>
 
+  <!-- ==================== CARE COORDINATOR ==================== -->
+  <div class="view app app-coord" id="coordApp">
+    <header class="appbar">
+      <div class="row1"><button class="homebtn" data-home>⌂ Roles</button><div class="controls"><span class="rolechip">Coordinator view</span><button class="theme-toggle" data-theme-btn>◐</button></div></div>
+      <div class="idrow"><div class="avatar">LG</div><div class="who"><h1>Lata G.</h1><p>Care Coordinator · Hyderabad</p></div><div class="stat"><b>5</b>patients</div></div>
+    </header>
+    <main class="screen">
+      <section class="panel active" data-panel="c-intake">
+        <p class="eyebrow">New enquiries</p>
+        <div class="card"><div class="between"><div><h3>S. Reddy · 70</h3><p class="sub">Hip fracture · website enquiry · 2h ago</p></div><span class="pill warn"><span class="dot"></span>New</span></div><button class="btn accent" data-once="✓  Free home assessment booked · Sat 10 AM" style="margin-top:12px">Schedule free home assessment</button></div>
+        <div class="card"><div class="between"><div><h3>M. Fatima · 63</h3><p class="sub">Post-TKR · helpline · assessment booked</p></div><span class="pill info"><span class="dot"></span>Assessment Fri</span></div></div>
+        <p class="section-title">Ready to onboard</p>
+        <div class="card"><div class="between"><div><h3>Arjun Rao · 52</h3><p class="sub">Spinal fusion · plan approved by Dr. Iyer</p></div><button class="pill good" data-once="✓  Team matched &amp; briefed" style="border:none;cursor:pointer">Assign team ›</button></div></div>
+      </section>
+      <section class="panel" data-panel="c-roster">
+        <p class="eyebrow">Today's assignments</p>
+        <div class="card">
+          <div class="member"><div class="ph" style="background:var(--accent)">SM</div><div class="info"><div class="nm">Sunita M. <span class="pill good" style="font-size:9px"><span class="dot"></span>On shift</span></div><div class="rl">Caretaker → Kamala Rao</div><div class="cr">24-hr · until 8 PM</div></div></div>
+          <div class="member"><div class="ph" style="background:#4C7BB0">RK</div><div class="info"><div class="nm">Ramesh K.</div><div class="rl">Escort → Kamala Rao</div><div class="cr">Apollo OPD · Sat 10:30</div></div></div>
+          <div class="member"><div class="ph" style="background:#2AA775">PV</div><div class="info"><div class="nm">Priya Venkat</div><div class="rl">Physiotherapist → 3 patients</div><div class="cr">Home sessions today</div></div></div>
+        </div>
+        <div class="microcopy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>No caretaker is reassigned without recorded family consent.</span></div>
+      </section>
+      <section class="panel" data-panel="c-alerts">
+        <p class="eyebrow">Operational alerts</p>
+        <div class="card"><div class="between"><div><h3 style="font-size:14px">Escalation unacknowledged</h3><p class="sub">V. Reddy · raised 6 min ago · SLA 30 min</p></div><span class="pill crit"><span class="dot"></span>Act now</span></div></div>
+        <div class="card"><div class="between"><div><h3 style="font-size:14px">Credential expiring</h3><p class="sub">Escort R. Kumar · BLS cert · 12 days</p></div><span class="pill warn"><span class="dot"></span>Renew</span></div></div>
+        <div class="card"><div class="between"><div><h3 style="font-size:14px">Repositioning logged late</h3><p class="sub">Kamala Rao · 04:00 turn · +22 min</p></div><span class="pill neutral"><span class="dot"></span>Note</span></div></div>
+      </section>
+      <section class="panel" data-panel="c-quality">
+        <p class="eyebrow">Quality &amp; feedback</p>
+        <div class="card"><div class="between"><div><h3>Family satisfaction</h3><p class="sub">Avg after-visit rating, this month</p></div><span class="pill good"><span class="dot"></span>4.8 / 5</span></div></div>
+        <p class="section-title">Supervisor spot-visits</p>
+        <div class="card"><div class="tasks">
+          <div class="task"><div class="ck done">✓</div><div class="tx"><b>Kamala Rao — home visit</b><span>Care quality: excellent</span></div><div class="time">Mon</div></div>
+          <div class="task"><div class="ck due">·</div><div class="tx"><b>Fatima Begum — home visit</b><span>Scheduled</span></div><div class="time">Thu</div></div>
+        </div></div>
+      </section>
+    </main>
+    <nav class="tabbar">
+      <button class="tab active" data-goto="c-intake"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg>Intake</button>
+      <button class="tab" data-goto="c-roster"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>Roster</button>
+      <button class="tab" data-goto="c-alerts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>Alerts</button>
+      <button class="tab" data-goto="c-quality"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg>Quality</button>
+    </nav>
+  </div>
+
+  <!-- ==================== PHYSIOTHERAPIST ==================== -->
+  <div class="view app app-physio" id="physioApp">
+    <header class="appbar">
+      <div class="row1"><button class="homebtn" data-home>⌂ Roles</button><div class="controls"><span class="rolechip">Physio view</span><button class="theme-toggle" data-theme-btn>◐</button></div></div>
+      <div class="idrow"><div class="avatar">PV</div><div class="who"><h1>Priya Venkat</h1><p>Registered Physiotherapist · MPT</p></div><div class="stat"><b>6</b>patients</div></div>
+    </header>
+    <main class="screen">
+      <section class="panel active" data-panel="p-today">
+        <p class="eyebrow">Today's session · Kamala Rao</p>
+        <div class="card"><div class="between"><div><h3>Walker gait &amp; strengthening</h3><p class="sub">9:30 AM · home · Day 9 post-THR</p></div><span class="pill info"><span class="dot"></span>Now</span></div></div>
+        <p class="section-title">Exercise checklist</p>
+        <div class="card"><div class="chk">
+          <div class="cstep" data-toggle><span class="b">✓</span><span>Ankle pumps ×20</span></div>
+          <div class="cstep" data-toggle><span class="b">✓</span><span>Quad sets — 3 sets ×10</span></div>
+          <div class="cstep" data-toggle><span class="b">✓</span><span>Walker-assisted walk — 10 steps ×2</span></div>
+          <div class="cstep" data-toggle><span class="b">✓</span><span>Seated knee extensions — 2 ×10</span></div>
+        </div></div>
+        <button class="btn accent" data-log="✓  Session logged &amp; shared with Dr. Iyer">Log session</button>
+      </section>
+      <section class="panel" data-panel="p-patients">
+        <p class="eyebrow">My patients</p>
+        <div class="card" style="padding:6px 16px">
+          <button class="prow" data-goto="p-plan"><div class="pi" style="background:var(--accent)">KR</div><div class="pd"><b>Kamala Rao · Day 9</b><span>THR · walker phase</span></div><span class="pill good"><span class="dot"></span>On track</span></button>
+          <button class="prow" data-goto="p-plan"><div class="pi" style="background:#4C7BB0">FB</div><div class="pd"><b>Fatima Begum · Day 15</b><span>TKR · stairs phase</span></div><span class="pill good"><span class="dot"></span>Ahead</span></button>
+          <button class="prow" data-goto="p-plan"><div class="pi" style="background:#C0392B">VR</div><div class="pd"><b>Venkat Reddy · Day 4</b><span>Femur · bed mobility</span></div><span class="pill warn"><span class="dot"></span>Slow</span></button>
+        </div>
+      </section>
+      <section class="panel" data-panel="p-plan">
+        <p class="eyebrow">Exercise plan · Kamala Rao</p>
+        <div class="card"><div class="tasks">
+          <div class="task"><div class="ck done">✓</div><div class="tx"><b>Week 2 — mobilise</b><span>Walker gait, quad sets, ankle pumps · 3× daily</span></div></div>
+          <div class="task"><div class="ck due">·</div><div class="tx"><b>Week 3 — progress</b><span>Add mini-squats &amp; step-ups, reduce walker reliance</span></div></div>
+          <div class="task"><div class="ck due">·</div><div class="tx"><b>Week 4 — stairs</b><span>Assisted stair practice, balance work</span></div></div>
+        </div></div>
+        <button class="btn accent" data-once="✓  Plan updated — coordinator notified">Update plan</button>
+        <button class="btn ghost" data-goto="p-patients">‹ All patients</button>
+      </section>
+    </main>
+    <nav class="tabbar">
+      <button class="tab active" data-goto="p-today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Today</button>
+      <button class="tab" data-goto="p-patients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>Patients</button>
+      <button class="tab" data-goto="p-plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Plan</button>
+    </nav>
+  </div>
+
+  <!-- ==================== HOME NURSE ==================== -->
+  <div class="view app app-nurse" id="nurseApp">
+    <header class="appbar">
+      <div class="row1"><button class="homebtn" data-home>⌂ Roles</button><div class="controls"><span class="rolechip">Nurse view</span><button class="theme-toggle" data-theme-btn>◐</button></div></div>
+      <div class="idrow"><div class="avatar">AN</div><div class="who"><h1>Anjali N.</h1><p>Registered Nurse · BSc Nursing</p></div><div class="stat"><b>3</b>visits</div></div>
+    </header>
+    <main class="screen">
+      <section class="panel active" data-panel="n-visits">
+        <p class="eyebrow">Today's visits</p>
+        <button class="card" style="width:100%;text-align:left;border:none;cursor:pointer" data-goto="n-tasks"><div class="between"><div><h3>Kamala Rao</h3><p class="sub">11:00 AM · wound care + medication</p></div><span class="pill warn"><span class="dot"></span>Next</span></div></button>
+        <div class="card"><div class="between"><div><h3>Venkat Reddy</h3><p class="sub">2:00 PM · IV antibiotics</p></div><span class="pill neutral"><span class="dot"></span>Later</span></div></div>
+      </section>
+      <section class="panel" data-panel="n-tasks">
+        <p class="eyebrow">Clinical tasks · Kamala Rao</p>
+        <div class="card"><div class="chk">
+          <div class="cstep" data-toggle><span class="b">✓</span><span>Administer morning medication</span></div>
+          <div class="cstep" data-toggle><span class="b">✓</span><span>Surgical wound dressing change</span></div>
+          <div class="cstep" data-toggle><span class="b">✓</span><span>Inspect site for infection signs</span></div>
+          <div class="cstep" data-toggle><span class="b">✓</span><span>Catheter care &amp; output check</span></div>
+        </div></div>
+        <button class="btn accent" data-log="✓  Clinical notes saved to care record">Save clinical notes</button>
+      </section>
+      <section class="panel" data-panel="n-vitals">
+        <p class="eyebrow">Record vitals · Kamala Rao</p>
+        <div class="card"><div class="vitals">
+          <div class="vital"><div class="v">118/76</div><div class="u">mmHg</div><div class="l">BP</div></div>
+          <div class="vital"><div class="v">72</div><div class="u">bpm</div><div class="l">Pulse</div></div>
+          <div class="vital"><div class="v">98</div><div class="u">%</div><div class="l">SpO₂</div></div>
+          <div class="vital"><div class="v">98.4</div><div class="u">°F</div><div class="l">Temp</div></div>
+        </div></div>
+        <button class="btn accent" data-log="✓  Vitals recorded &amp; shared with the doctor">Record vitals</button>
+      </section>
+    </main>
+    <nav class="tabbar">
+      <button class="tab active" data-goto="n-visits"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Visits</button>
+      <button class="tab" data-goto="n-tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Tasks</button>
+      <button class="tab" data-goto="n-vitals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Vitals</button>
+    </nav>
+  </div>
+
+  <!-- ==================== NUTRITIONIST ==================== -->
+  <div class="view app app-nutri" id="nutriApp">
+    <header class="appbar">
+      <div class="row1"><button class="homebtn" data-home>⌂ Roles</button><div class="controls"><span class="rolechip">Nutritionist view</span><button class="theme-toggle" data-theme-btn>◐</button></div></div>
+      <div class="idrow"><div class="avatar">MK</div><div class="who"><h1>Meena K.</h1><p>Diet Consultant · bone-health</p></div><div class="stat"><b>4</b>plans</div></div>
+    </header>
+    <main class="screen">
+      <section class="panel active" data-panel="d2-patients">
+        <p class="eyebrow">Diet plans</p>
+        <div class="card" style="padding:6px 16px">
+          <button class="prow" data-goto="d2-plan"><div class="pi" style="background:var(--accent)">KR</div><div class="pd"><b>Kamala Rao</b><span>Post-THR · bone healing</span></div><span class="pill good"><span class="dot"></span>Active</span></button>
+          <button class="prow" data-goto="d2-plan"><div class="pi" style="background:#4C7BB0">LD</div><div class="pd"><b>Lakshmi Devi</b><span>Osteoporosis</span></div><span class="pill good"><span class="dot"></span>Active</span></button>
+        </div>
+      </section>
+      <section class="panel" data-panel="d2-plan">
+        <p class="eyebrow">Bone-health plan · Kamala Rao</p>
+        <div class="card"><div class="between"><h3>Daily targets</h3><span class="pill good"><span class="dot"></span>On plan</span></div>
+          <div class="vitals" style="margin-top:10px">
+            <div class="vital"><div class="v">1200</div><div class="u">mg</div><div class="l">Calcium</div></div>
+            <div class="vital"><div class="v">800</div><div class="u">IU</div><div class="l">Vit D</div></div>
+            <div class="vital"><div class="v">70</div><div class="u">g</div><div class="l">Protein</div></div>
+            <div class="vital"><div class="v">2.0</div><div class="u">L</div><div class="l">Fluids</div></div>
+          </div>
+        </div>
+        <div class="card"><div class="tasks">
+          <div class="task"><div class="ck done">✓</div><div class="tx"><b>Breakfast</b><span>Ragi porridge, milk, egg, banana</span></div></div>
+          <div class="task"><div class="ck done">✓</div><div class="tx"><b>Lunch</b><span>Rice, dal, leafy greens, curd, fish</span></div></div>
+          <div class="task"><div class="ck due">·</div><div class="tx"><b>Snack</b><span>Almonds, sesame ladoo, fruit</span></div></div>
+          <div class="task"><div class="ck due">·</div><div class="tx"><b>Dinner</b><span>Millet roti, paneer, vegetables</span></div></div>
+        </div></div>
+        <button class="btn accent" data-once="✓  Diet plan updated &amp; shared with family">Update plan</button>
+        <button class="btn ghost" data-goto="d2-patients">‹ All plans</button>
+      </section>
+    </main>
+    <nav class="tabbar">
+      <button class="tab active" data-goto="d2-patients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>Patients</button>
+      <button class="tab" data-goto="d2-plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 002-2V2M5 2v20M17 2a3 3 0 00-3 3v7h6V5a3 3 0 00-3-3zM17 12v10"/></svg>Diet Plan</button>
+    </nav>
+  </div>
+
+  <!-- ==================== OPERATIONS / ADMIN ==================== -->
+  <div class="view app app-admin" id="adminApp">
+    <header class="appbar">
+      <div class="row1"><button class="homebtn" data-home>⌂ Roles</button><div class="controls"><span class="rolechip">Admin view</span><button class="theme-toggle" data-theme-btn>◐</button></div></div>
+      <div class="idrow"><div class="avatar">OP</div><div class="who"><h1>Operations</h1><p>Asthimitra HomeCare · Hyderabad</p></div><div class="stat"><b>5</b>patients</div></div>
+    </header>
+    <main class="screen">
+      <section class="panel active" data-panel="a-dash">
+        <p class="eyebrow">This month · KPIs</p>
+        <div class="card"><div class="vitals">
+          <div class="vital"><div class="v">0</div><div class="u">this month</div><div class="l">Missed visits</div></div>
+          <div class="vital"><div class="v">96</div><div class="u">%</div><div class="l">&lt;30m emergency</div></div>
+          <div class="vital"><div class="v">100</div><div class="u">%</div><div class="l">Reposition log</div></div>
+          <div class="vital"><div class="v">4.8</div><div class="u">/5</div><div class="l">Family CSAT</div></div>
+        </div></div>
+        <div class="card"><div class="between"><div><h3>Monthly revenue</h3><p class="sub">Across 5 active patients</p></div><span class="pill good"><span class="dot"></span>+8%</span></div>
+          <div style="margin-top:6px">
+            <div class="line"><span>Recognised revenue</span><span class="amt">₹3.42L</span></div>
+            <div class="line"><span>Outstanding (invoiced)</span><span class="amt">₹68,393</span></div>
+            <div class="line total"><span>Collected</span><span class="amt">₹2.74L</span></div>
+          </div>
+        </div>
+      </section>
+      <section class="panel" data-panel="a-staff">
+        <p class="eyebrow">Staff compliance</p>
+        <div class="microcopy" style="margin:0 4px 12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg><span>Staff with missing/expired credentials cannot be assigned.</span></div>
+        <div class="card" style="padding:6px 16px">
+          <div class="prow" style="cursor:default"><div class="pi" style="background:var(--accent)">SM</div><div class="pd"><b>Sunita M. · Caretaker</b><span>120-hr · BLS · police-verified</span></div><span class="pill good"><span class="dot"></span>Valid</span></div>
+          <div class="prow" style="cursor:default"><div class="pi" style="background:#4C7BB0">RK</div><div class="pd"><b>Ramesh K. · Escort</b><span>BLS renewal in 12 days</span></div><span class="pill warn"><span class="dot"></span>Expiring</span></div>
+          <div class="prow" style="cursor:default"><div class="pi" style="background:#2AA775">PV</div><div class="pd"><b>Priya Venkat · Physio</b><span>MPT · verified</span></div><span class="pill good"><span class="dot"></span>Valid</span></div>
+        </div>
+      </section>
+      <section class="panel" data-panel="a-billing">
+        <p class="eyebrow">Billing overview</p>
+        <div class="card"><div class="tasks">
+          <div class="task"><div class="ck done">✓</div><div class="tx"><b>Kamala Rao — Comprehensive</b><span>GST invoice · paid</span></div><div class="time">₹68k</div></div>
+          <div class="task"><div class="ck due">·</div><div class="tx"><b>Fatima Begum — Standard</b><span>GST invoice · due</span></div><div class="time">₹42k</div></div>
+          <div class="task"><div class="ck done">✓</div><div class="tx"><b>Lakshmi Devi — Basic</b><span>GST invoice · paid</span></div><div class="time">₹24k</div></div>
+        </div></div>
+        <button class="btn accent" data-once="✓  Monthly GST report exported">Export GST report</button>
+      </section>
+    </main>
+    <nav class="tabbar">
+      <button class="tab active" data-goto="a-dash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Dashboard</button>
+      <button class="tab" data-goto="a-staff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>Staff</button>
+      <button class="tab" data-goto="a-billing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>Billing</button>
+    </nav>
+  </div>
+
   <!-- ===== Shared sheets ===== -->
   <div class="overlay" id="emSheet">
     <div class="sheet" role="dialog" aria-modal="true" aria-label="Emergency">
@@ -770,6 +1022,14 @@
     document.getElementById('d-apActions').innerHTML='<div class="microcopy" style="margin-top:4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--good)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Plan approved — care can now begin. Team assignment unlocked.</span></div>';
     say('✓  Care plan approved for Arjun Rao');
   })}
+
+  // ---- generic checklists (physio, nurse) ----
+  document.querySelectorAll('.cstep[data-toggle]').forEach(function(s){
+    s.addEventListener('click',function(){
+      s.classList.toggle('done');
+      if(typeof say==='function') say(s.classList.contains('done')?'✓  Logged & saved':'Unmarked');
+    });
+  });
 
   // ---- theme toggle (any app) ----
   var root=document.documentElement, mode='system';
