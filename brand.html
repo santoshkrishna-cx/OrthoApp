@@ -1,0 +1,218 @@
+<title>Asthimitra — Logo Directions</title>
+<style>
+  :root{
+    --bg:#F5F7F3; --panel:#FFFFFF; --ink:#182A27; --soft:#5A6A66; --faint:#8A9994;
+    --line:#E4E9E3; --mist:#EEF3EE;
+    --teal:#0E5A54; --teal-ink:#0B4741; --coral:#DC6B4F; --coral-soft:#F6C9BB;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0C1615; --panel:#152420; --ink:#EAF1EE; --soft:#A3B6B0; --faint:#6E827C;
+      --line:#25382F; --mist:#1B2C27;
+      --teal:#4FBFB0; --teal-ink:#8FD9CE; --coral:#E88569; --coral-soft:#5A3226;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0C1615; --panel:#152420; --ink:#EAF1EE; --soft:#A3B6B0; --faint:#6E827C;
+    --line:#25382F; --mist:#1B2C27;
+    --teal:#4FBFB0; --teal-ink:#8FD9CE; --coral:#E88569; --coral-soft:#5A3226;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.55}
+  .wrap{max-width:880px;margin:0 auto;padding:44px 22px 80px}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--coral)}
+  h1{font-family:var(--serif);font-size:34px;margin:6px 0 6px}
+  h1 b{color:var(--teal);font-weight:600}
+  .lede{color:var(--soft);font-size:15.5px;max-width:64ch;margin:0 0 8px}
+  .sec{font-family:var(--serif);font-size:22px;margin:46px 0 4px;text-wrap:balance}
+  .sec + .note{color:var(--soft);font-size:13.5px;margin:0 0 18px}
+  hr{border:none;border-top:1px solid var(--line);margin:34px 0 0}
+
+  /* wordmark */
+  .wordmark{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .wm-type{font-family:var(--serif);font-size:44px;letter-spacing:.4px;color:var(--ink);line-height:1}
+  .wm-type b{color:var(--teal);font-weight:600}
+  .lockups{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+  .lockup{border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;align-items:center;gap:16px;min-height:110px}
+  .lockup.on-teal{background:var(--teal);border-color:transparent}
+  .lockup.on-teal .wm-type,.lockup.on-teal .wm-type b{color:#fff}
+  .lockup .cap{position:absolute}
+  .lockcap{font-size:11px;color:var(--faint);margin:7px 2px 0;font-weight:600}
+
+  /* concept cards */
+  .cards{display:grid;grid-template-columns:1fr;gap:18px;margin-top:6px}
+  @media(min-width:680px){.cards{grid-template-columns:1fr 1fr 1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+  .tile{background:var(--mist);display:grid;place-items:center;padding:30px 0 26px}
+  .tile svg{width:104px;height:104px}
+  .cbody{padding:16px 17px 18px}
+  .cbody .k{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--coral)}
+  .cbody h3{font-family:var(--serif);font-size:18px;margin:3px 0 6px}
+  .cbody p{font-size:12.8px;color:var(--soft);margin:0}
+  .rec{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;color:#fff;background:var(--coral);padding:3px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+
+  /* variant chips */
+  .variants{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;align-items:flex-end}
+  .vchip{text-align:center}
+  .swatch{width:78px;height:78px;border-radius:18px;display:grid;place-items:center;border:1px solid var(--line)}
+  .swatch svg{width:52px;height:52px}
+  .swatch.teal{background:var(--teal);border-color:transparent}
+  .swatch.ink{background:var(--ink)}
+  .swatch.paper{background:#fff}
+  .vlbl{font-size:10.5px;color:var(--faint);margin-top:6px;font-weight:600}
+  .mono-ink{--teal:var(--ink);--coral:var(--ink)}
+  .rev{--teal:#fff;--coral:var(--coral-soft)}
+  .rev-onink{--teal:#fff;--coral:#E7A48D}
+
+  /* app icons */
+  .icons{display:flex;gap:16px;flex-wrap:wrap;margin-top:6px}
+  .appicon{width:96px;height:96px;border-radius:22px;display:grid;place-items:center;box-shadow:0 10px 24px -12px rgba(0,0,0,.4)}
+  .appicon svg{width:58px;height:58px}
+  .ai-teal{background:linear-gradient(155deg,#127a70,#0b4741)}
+  .ai-paper{background:linear-gradient(155deg,#ffffff,#eef3ee)}
+  .ai-coral{background:linear-gradient(155deg,#e8825f,#c9553b)}
+
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;background:var(--mist);color:var(--teal-ink)}
+  .palette{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .pchip{border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:11.5px;color:var(--soft);display:flex;align-items:center;gap:9px}
+  .pdot{width:20px;height:20px;border-radius:6px}
+  .foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);line-height:1.6}
+  .toggle{position:fixed;top:14px;right:14px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;width:38px;height:38px;font-size:15px;cursor:pointer}
+</style>
+
+<button class="toggle" id="tg" aria-label="Toggle theme">◐</button>
+<div class="wrap">
+  <div class="eyebrow">Brand exploration</div>
+  <h1>Asthi<b>mitra</b> — logo directions</h1>
+  <p class="lede"><b>Asthi</b> (అస్థి / अस्थि, “bone”) + <b>mitra</b> (“friend”): <i>your bone-care friend</i>. Three mark concepts, a wordmark, and app-icon treatments — early sketches to react to, not final art.</p>
+
+  <!-- WORDMARK -->
+  <div class="sec">The wordmark</div>
+  <p class="note">Two halves, one word: <b>Asthi</b> in a calm ink weight, <b>mitra</b> carrying the warmth of the brand in teal. Set in a humanist serif for dignity and trust.</p>
+  <div class="lockups">
+    <div>
+      <div class="lockup">
+        <svg viewBox="0 0 100 100" width="56" height="56" aria-hidden="true"><path d="M50 22 L30 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M50 22 L70 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M37 57 H63" stroke="var(--coral)" stroke-width="6" stroke-linecap="round"/><circle cx="33" cy="54" r="4.4" fill="var(--coral)"/><circle cx="33" cy="61" r="4.4" fill="var(--coral)"/><circle cx="67" cy="54" r="4.4" fill="var(--coral)"/><circle cx="67" cy="61" r="4.4" fill="var(--coral)"/></svg>
+        <span class="wm-type">Asthi<b>mitra</b></span>
+      </div>
+      <div class="lockcap">Primary lockup — on light</div>
+    </div>
+    <div>
+      <div class="lockup on-teal">
+        <svg viewBox="0 0 100 100" width="56" height="56" class="rev" aria-hidden="true"><path d="M50 22 L30 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M50 22 L70 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M37 57 H63" stroke="var(--coral)" stroke-width="6" stroke-linecap="round"/><circle cx="33" cy="54" r="4.4" fill="var(--coral)"/><circle cx="33" cy="61" r="4.4" fill="var(--coral)"/><circle cx="67" cy="54" r="4.4" fill="var(--coral)"/><circle cx="67" cy="61" r="4.4" fill="var(--coral)"/></svg>
+        <span class="wm-type">Asthi<b>mitra</b></span>
+      </div>
+      <div class="lockcap">Reversed — on teal</div>
+    </div>
+  </div>
+
+  <!-- CONCEPTS -->
+  <div class="sec">Three logomark directions</div>
+  <p class="note">Each mark works in a rounded app tile and reduces cleanly to a favicon.</p>
+  <div class="cards">
+    <!-- Concept 1 -->
+    <div class="card">
+      <div class="tile">
+        <svg viewBox="0 0 100 100" aria-label="A-bone monogram">
+          <path d="M50 22 L30 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <path d="M50 22 L70 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <path d="M37 57 H63" stroke="var(--coral)" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="33" cy="53" r="5" fill="var(--coral)"/><circle cx="33" cy="61" r="5" fill="var(--coral)"/>
+          <circle cx="67" cy="53" r="5" fill="var(--coral)"/><circle cx="67" cy="61" r="5" fill="var(--coral)"/>
+        </svg>
+      </div>
+      <div class="cbody">
+        <div class="k">Concept 1 <span class="rec">Recommended</span></div>
+        <h3>The A-Bone monogram</h3>
+        <p>The letter “A” for <b>Asthi</b>, its crossbar drawn as a bone. Instantly legible as both an initial and an orthopedic mark — the most ownable and scalable.</p>
+      </div>
+    </div>
+    <!-- Concept 2 -->
+    <div class="card">
+      <div class="tile">
+        <svg viewBox="0 0 100 100" aria-label="Bone heart">
+          <path d="M50 80 C 16 56, 20 28, 39 28 C 46 28, 50 34, 50 39 C 50 34, 54 28, 61 28 C 80 28, 84 56, 50 80 Z" fill="var(--teal)"/>
+          <path d="M40 54 H60" stroke="var(--coral)" stroke-width="6.5" stroke-linecap="round"/>
+          <circle cx="37" cy="50.5" r="4.6" fill="var(--coral)"/><circle cx="37" cy="57.5" r="4.6" fill="var(--coral)"/>
+          <circle cx="63" cy="50.5" r="4.6" fill="var(--coral)"/><circle cx="63" cy="57.5" r="4.6" fill="var(--coral)"/>
+        </svg>
+      </div>
+      <div class="cbody">
+        <div class="k">Concept 2</div>
+        <h3>The Bone-Heart</h3>
+        <p>A heart holding a bone at its centre — care (<b>mitra</b>) around the clinical core (<b>asthi</b>). The warmest, most emotional read; leans consumer.</p>
+      </div>
+    </div>
+    <!-- Concept 3 -->
+    <div class="card">
+      <div class="tile">
+        <svg viewBox="0 0 100 100" aria-label="Companion embrace">
+          <path d="M67.4 33.3 A 27 27 0 1 1 32.6 33.3" fill="none" stroke="var(--teal)" stroke-width="11" stroke-linecap="round"/>
+          <circle cx="50" cy="43" r="12" fill="var(--coral)"/>
+        </svg>
+      </div>
+      <div class="cbody">
+        <div class="k">Concept 3</div>
+        <h3>The Companion</h3>
+        <p>An arm curved protectively around a person — the <b>mitra</b> / friend and the safe-escort idea in one abstract, human form. Softest, most caring.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIANTS -->
+  <div class="sec">Colour behaviour — Concept 1</div>
+  <p class="note">The recommended mark holds up full-colour, reversed, and single-colour.</p>
+  <div class="variants">
+    <div class="vchip"><div class="swatch paper">
+      <svg viewBox="0 0 100 100"><path d="M50 22 L30 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M50 22 L70 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M37 57 H63" stroke="var(--coral)" stroke-width="7" stroke-linecap="round"/><circle cx="33" cy="53" r="5" fill="var(--coral)"/><circle cx="33" cy="61" r="5" fill="var(--coral)"/><circle cx="67" cy="53" r="5" fill="var(--coral)"/><circle cx="67" cy="61" r="5" fill="var(--coral)"/></svg>
+    </div><div class="vlbl">Full colour</div></div>
+
+    <div class="vchip"><div class="swatch teal">
+      <svg viewBox="0 0 100 100" class="rev-onink"><path d="M50 22 L30 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M50 22 L70 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M37 57 H63" stroke="var(--coral)" stroke-width="7" stroke-linecap="round"/><circle cx="33" cy="53" r="5" fill="var(--coral)"/><circle cx="33" cy="61" r="5" fill="var(--coral)"/><circle cx="67" cy="53" r="5" fill="var(--coral)"/><circle cx="67" cy="61" r="5" fill="var(--coral)"/></svg>
+    </div><div class="vlbl">Reversed</div></div>
+
+    <div class="vchip"><div class="swatch ink">
+      <svg viewBox="0 0 100 100" class="rev"><path d="M50 22 L30 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M50 22 L70 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M37 57 H63" stroke="var(--coral)" stroke-width="7" stroke-linecap="round"/><circle cx="33" cy="53" r="5" fill="var(--coral)"/><circle cx="33" cy="61" r="5" fill="var(--coral)"/><circle cx="67" cy="53" r="5" fill="var(--coral)"/><circle cx="67" cy="61" r="5" fill="var(--coral)"/></svg>
+    </div><div class="vlbl">One-colour (knockout)</div></div>
+
+    <div class="vchip"><div class="swatch paper mono-ink">
+      <svg viewBox="0 0 100 100"><path d="M50 22 L30 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M50 22 L70 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M37 57 H63" stroke="var(--coral)" stroke-width="7" stroke-linecap="round"/><circle cx="33" cy="53" r="5" fill="var(--coral)"/><circle cx="33" cy="61" r="5" fill="var(--coral)"/><circle cx="67" cy="53" r="5" fill="var(--coral)"/><circle cx="67" cy="61" r="5" fill="var(--coral)"/></svg>
+    </div><div class="vlbl">Mono (ink)</div></div>
+  </div>
+
+  <!-- APP ICONS -->
+  <div class="sec">App icon</div>
+  <p class="note">How Concept 1 sits on a home screen — three grounds.</p>
+  <div class="icons">
+    <div class="appicon ai-teal"><svg viewBox="0 0 100 100" class="rev-onink"><path d="M50 22 L30 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M50 22 L70 80" stroke="var(--teal)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M37 57 H63" stroke="var(--coral)" stroke-width="7" stroke-linecap="round"/><circle cx="33" cy="53" r="5" fill="var(--coral)"/><circle cx="33" cy="61" r="5" fill="var(--coral)"/><circle cx="67" cy="53" r="5" fill="var(--coral)"/><circle cx="67" cy="61" r="5" fill="var(--coral)"/></svg></div>
+    <div class="appicon ai-paper"><svg viewBox="0 0 100 100"><path d="M50 22 L30 80" stroke="#0E5A54" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M50 22 L70 80" stroke="#0E5A54" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M37 57 H63" stroke="#DC6B4F" stroke-width="7" stroke-linecap="round"/><circle cx="33" cy="53" r="5" fill="#DC6B4F"/><circle cx="33" cy="61" r="5" fill="#DC6B4F"/><circle cx="67" cy="53" r="5" fill="#DC6B4F"/><circle cx="67" cy="61" r="5" fill="#DC6B4F"/></svg></div>
+    <div class="appicon ai-coral"><svg viewBox="0 0 100 100"><path d="M50 22 L30 80" stroke="#fff" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M50 22 L70 80" stroke="#fff" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M37 57 H63" stroke="#0E5A54" stroke-width="7" stroke-linecap="round"/><circle cx="33" cy="53" r="5" fill="#0E5A54"/><circle cx="33" cy="61" r="5" fill="#0E5A54"/><circle cx="67" cy="53" r="5" fill="#0E5A54"/><circle cx="67" cy="61" r="5" fill="#0E5A54"/></svg></div>
+  </div>
+
+  <!-- PALETTE -->
+  <div class="sec">Palette & type</div>
+  <div class="palette">
+    <div class="pchip"><span class="pdot" style="background:#0E5A54"></span>Teal · #0E5A54 · trust, care</div>
+    <div class="pchip"><span class="pdot" style="background:#DC6B4F"></span>Coral · #DC6B4F · warmth, the friend</div>
+    <div class="pchip"><span class="pdot" style="background:#182A27"></span>Ink · #182A27</div>
+    <div class="pchip"><span class="pdot" style="background:#EEF3EE;border:1px solid #ccc"></span>Mist · #EEF3EE</div>
+  </div>
+  <p class="note" style="margin-top:14px"><b>Type:</b> humanist serif for the wordmark (shown here in a system serif; production could license <i>Fraunces</i> or <i>Lora</i>). Devanagari/Telugu companion mark available for regional collateral.</p>
+
+  <div class="foot">
+    Sketches only — vector source, spacing, and optical corrections come next once a direction is chosen. Before public use: clear the name & mark against IP India trademarks and check the <code>asthimitra.in</code> domain and app-store name.
+  </div>
+</div>
+
+<script>
+  (function(){
+    var root=document.documentElement, mode='system', b=document.getElementById('tg');
+    b.addEventListener('click',function(){
+      mode = mode==='system'?'light':mode==='light'?'dark':'system';
+      if(mode==='system'){root.removeAttribute('data-theme');b.textContent='◐';}
+      else{root.setAttribute('data-theme',mode);b.textContent=(mode==='light'?'☀':'☾');}
+    });
+  })();
+</script>

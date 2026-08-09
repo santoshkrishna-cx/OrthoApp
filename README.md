@@ -14,6 +14,7 @@ This repo holds the founding artifacts: the source charter, a Business Requireme
 | [`BRD.md`](BRD.md) | **Business Requirements Document** — objectives, scope, personas, 40+ business requirements, process flows, NFRs, risks, and resolved v1 decisions |
 | [`prototype.html`](prototype.html) | **Family app prototype** — trilingual (English / Telugu / Hindi), in-app payments |
 | [`suite.html`](suite.html) | **Multi-role suite** — a launcher into three apps: Family (full journey), Doctor (supervise & approve), Escort (live trip, checklist, offline-first) |
+| [`brand.html`](brand.html) | **Logo directions** — 3 logomark concepts, wordmark, colour variants, app icons |
 | [`index.html`](index.html) | **Landing page** — links to the prototypes and docs |
 | [`Asthimitra_Overview.pptx`](Asthimitra_Overview.pptx) | **Overview deck** — brief, 8 slides: what / why / what it does / who / how |
 
